@@ -6,7 +6,7 @@
 
 出刊年月       epub           ipad:PDF      A4:PDF     單頁 HTM     原始碼      全部下載
 ------------   ----------     -----------   --------   -----------  ----------  -------------
-2014年2月      [epub]         [ipad.pdf]    [A4.pdf]   [pmag.html]  [code.zip]  [all.zip]
+2014年2月      [epub]         [ipad.pdf]    [A4.pdf]   [pmag.html]  [code.zip]  [github]
 
 ### 本期內容 (焦點：Lua 程式語言)
 * 前言
@@ -48,5 +48,5 @@
 [A4.pdf]: ../book/A4.pdf
 [code.zip]: ../code.zip
 [pmag.html]: ../book/pmag.html
-[all.zip]: ../archive/gh-pages.zip
+[github]: https://github.com/programmermagazine/201402
 
