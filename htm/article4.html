@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201402/htm/home.html">2014 年 2 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#visual-basic-6.0-繪製wav聲音檔波形圖之程式設計-作者廖憲得-0xde">[Visual Basic 6.0] 繪製WAV聲音檔波形圖之程式設計 (作者：廖憲得 0xde)</a></li>
+</ul>
+</div>
+<h2 id="visual-basic-6.0-繪製wav聲音檔波形圖之程式設計-作者廖憲得-0xde"><a href="#visual-basic-6.0-繪製wav聲音檔波形圖之程式設計-作者廖憲得-0xde">[Visual Basic 6.0] 繪製WAV聲音檔波形圖之程式設計 (作者：廖憲得 0xde)</a></h2>
+<p>[Visual Basic 6.0] 繪製WAV聲音檔波形圖之程式設計</p>
+<p>當遇到 WAV、BMP 等檔案處理問題時，就必須使用二進位讀檔。</p>
+<div class="figure">
+<img src="../img/VB1.jpg" />
+</div>
+<div class="figure">
+<img src="../img/VB2.jpg" />
+</div>
+<pre class="sourceCode Monobasic"><code class="sourceCode monobasic"><span class="co">&#39;# [Visual Basic 6.0] 繪製WAV聲音檔波形圖之程式設計</span>
+<span class="co">&#39;# 0xDe</span>
+
+<span class="kw">Dim</span> WavByteArray(9999) <span class="kw">As</span> <span class="dt">Byte</span>
+<span class="kw">Dim</span> DataE
+<span class="kw">Dim</span> DataF
+<span class="kw">Private</span> <span class="kw">Sub </span>Command1_Click()
+Open Text1.Text <span class="kw">For </span>Binary <span class="kw">As</span> #1
+
+<span class="kw">Dim</span> Inp <span class="kw">As</span> <span class="dt">Byte</span>
+
+I = 0 <span class="co">&#39; 紀錄目前存放陣列數</span>
+
+<span class="kw">Do While Not</span> EOF(1)
+    <span class="kw">Get </span>#1, , Inp
+    WavByteArray(I) = Inp
+    I = I + 1
+<span class="kw">Loop</span>
+    Close
+<span class="co">&#39; 因為題目說明說（表中數值為16進制數）所以將 16 進位轉換為 10 進位</span>
+
+<span class="co">&#39; 判斷 00～03 Byte 是否為 &quot;RIFF&quot;</span>
+<span class="co">&#39; 判斷 08～0E Byte 是否為 &quot;WAVEfmt&quot;</span>
+<span class="co">&#39; 判斷 14～15 Byte 是否為 &quot;0100&quot;  表示PCM格式</span>
+<span class="co">&#39; 判斷 16～17 Byte 是否為 &quot;0100&quot;  表示單聲道</span>
+<span class="co">&#39; 判斷 22～23 Byte 是否為 &quot;0800&quot;  8位元</span>
+<span class="kw">If </span>ByteToData(&amp;H0, &amp;H3) = <span class="st">&quot;RIFF&quot;</span> <span class="kw">And</span> ByteToData(&amp;H8, &amp;HE) = <span class="st">&quot;WAVEfmt&quot;</span> <span class="kw">And</span> ByteData(&amp;H14, &amp;H17) = <span class="st">&quot;1010&quot;</span> <span class="kw">And</span> ByteData(&amp;H22, &amp;H23) = <span class="st">&quot;80&quot;</span> <span class="kw">Then</span>
+
+<span class="co">&#39; 取得 18～1B Byte 採樣頻率</span>
+<span class="co">&#39; 取得 28～2B Byte 樣本數</span>
+DataF = 0 <span class="co">&#39; 頻率</span>
+DataE = 0 <span class="co">&#39; 樣本數</span>
+
+<span class="kw">For </span>I = 0 <span class="kw">To</span> 3
+    DataF = DataF + 256 ^ I * WavByteArray(I + &amp;H18)
+    DataE = DataE + 256 ^ I * WavByteArray(I + &amp;H28)
+<span class="kw">Next</span>
+
+Text3 = Format(DataE / DataF, <span class="st">&quot;0.00000&quot;</span>) <span class="co">&#39; 聲音長度</span>
+HScroll1.Min = &amp;H2C <span class="co">&#39; 最小值為 資料開始</span>
+HScroll1.Max = HScroll1.Min + DataE  <span class="co">&#39; 最大值為 資料開始 + 聲音總樣本數</span>
+
+<span class="kw">Else</span>
+    MsgBox <span class="st">&quot;輸入的檔案名稱不是RIFF WAVEfmt PCM格式 8位元&quot;</span>, 16, <span class="st">&quot;輸入的檔案名稱：&quot;</span> &amp; Text1
+<span class="kw">End If</span>
+<span class="kw">End Sub</span>
+
+<span class="co">&#39; Byte 轉換為 Data</span>
+<span class="kw">Function </span>ByteToData(ByteInp <span class="kw">As</span> <span class="dt">Integer</span>, ByteOut <span class="kw">As</span> <span class="dt">Integer</span>)
+    Data = <span class="st">&quot;&quot;</span>
+<span class="kw">For </span>I = ByteInp <span class="kw">To</span> ByteOut
+    Data = Data &amp; Chr(WavByteArray(I))
+<span class="kw">Next </span>I
+    ByteToData = Data
+<span class="kw">End Function</span>
+<span class="co">&#39; Byte 輸出</span>
+<span class="kw">Function </span>ByteData(ByteInp <span class="kw">As</span> <span class="dt">Integer</span>, ByteOut <span class="kw">As</span> <span class="dt">Integer</span>)
+    Data = <span class="st">&quot;&quot;</span>
+<span class="kw">For </span>I = ByteInp <span class="kw">To</span> ByteOut
+    Data = Data &amp; WavByteArray(I)
+<span class="kw">Next </span>I
+    ByteData = Data
+<span class="kw">End Function</span>
+
+<span class="kw">Private</span> <span class="kw">Sub </span>HScroll1_Change()
+        Picture1.Cls
+        Picture1.Scale (0, 80)-(200, -80)
+    <span class="kw">For </span>I = 0 <span class="kw">To</span> 200
+        <span class="kw">If </span>HScroll1.Value + I &lt;= HScroll1.Max <span class="kw">Then</span>
+            Picture1.Line (I, (WavByteArray(HScroll1.Value + I) - 128))-(I, -(WavByteArray(HScroll1.Value + I) - 128))
+        <span class="kw">Else</span>
+            Picture1.PSet (I, 0)
+        <span class="kw">End If</span>
+    <span class="kw">Next </span>I
+    
+    Text2.Text = Format((HScroll1.Value - 44) / DataF, <span class="st">&quot;0.00000&quot;</span>) <span class="co">&#39; 目前秒數</span>
+<span class="kw">End Sub</span></code></pre>
+<ul>
+<li>原始碼下載： <a href="http://files.dotblogs.com.tw/0xde/1312/2013124195539553.rar">Visual Basic 6.0 繪製 Wav 波形.rar</a></li>
+</ul>
+<p>【本文作者為「廖憲得」，原文網址為： <a href="http://www.dotblogs.com.tw/0xde/archive/2013/12/04/132528.aspx">http://www.dotblogs.com.tw/0xde/archive/2013/12/04/132528.aspx</a> ，由陳鍾誠編輯後納入本雜誌】</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>

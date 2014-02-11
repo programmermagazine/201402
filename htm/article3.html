@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201402/htm/home.html">2014 年 2 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#資料型態認識浮點數-single-double-作者研發養成所-bridan">資料型態認識─浮點數 (single ＆ double) (作者：研發養成所 Bridan)</a></li>
+</ul>
+</div>
+<h2 id="資料型態認識浮點數-single-double-作者研發養成所-bridan"><a href="#資料型態認識浮點數-single-double-作者研發養成所-bridan">資料型態認識─浮點數 (single ＆ double) (作者：研發養成所 Bridan)</a></h2>
+<h3 id="簡介"><a href="#簡介">簡介</a></h3>
+<p>浮點數在電腦系統中是很重要的資料結構，很多程式設計者都知道有這樣的資料結構，但是清楚它的結構的人並不多，因為撰寫高階程式無需注意這些細節，只要會正確宣告變數型態，存在記憶體的資料不要有錯就好，況且高階語言的數學函數庫都很齊備，所以一般程式設計師根本碰不到這樣的問題。</p>
+<p>常見二進制浮點數的宣告有兩種(IEEE-754,1985)： 單精準度 single (float)，32 bits，數值範圍 -3.4 x 1038 ～ +3.4 x 1038，最小的正數為 +1.4 x 10-45 雙精準度 double，64 bits，數值範圍 -1.80 x 10308 ～ +1.80 x 10308，最小的正數為 +4.94 x 10-324</p>
+<p>標準請參見，</p>
+<ul>
+<li><a href="http://zh.wikipedia.org/zh-tw/IEEE_754">IEEE-754,1985</a> : binary floating point arithmetic standard specified</li>
+<li>IEEE-854,1987: standard expanded to include decimal arithmetic</li>
+</ul>
+<p>接下來說明單精準浮點數資料格式(32 bits)，當你弄懂後，雙精準數值(64 bits)自然就可以自己推導。</p>
+<div class="figure">
+<img src="../img/float32.jpg" />
+</div>
+<div class="figure">
+<img src="../img/example32.jpg" />
+</div>
+<div class="figure">
+<img src="../img/double64.jpg" />
+</div>
+<p><em>使用浮點數寫程式有兩種狀況要注意</em> ，</p>
+<p>一、<strong>有效位數</strong> ─ 當你把二進制浮點資料轉換成十進制數值，需要注意它的有效位數，例如 single 有效位數只有六位，為什麼只有六位？自己想一想。</p>
+<p>二、<strong>尾數誤差</strong> ─ 這是最常遇到的問題，如果引用數值經過計算或轉換後會產生尾數誤差，也就是十進制數值最後一位有效位數會誤差 ±1。例如，單精準 12.0000 會變成 12.0001，為什麼？如何解決？自己動腦想一想。</p>
+<p>這些都是韌體工程師會遇到的數學難題。</p>
+<p>(本文作者 研發養成所 Bridan，原文網址為 <a href="http://4rdp.blogspot.tw/2010/03/signle-double.html">http://4rdp.blogspot.tw/2010/03/signle-double.html</a> ，由陳鍾誠編輯後納入程式人雜誌)</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>

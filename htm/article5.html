@@ -1,0 +1,470 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201402/htm/home.html">2014 年 2 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#開放電腦計畫-8-16-位元微控制器-mcu0-的中斷處理-作者陳鍾誠">開放電腦計畫 (8) – 16 位元微控制器 MCU0 的中斷處理 (作者：陳鍾誠)</a></li>
+</ul>
+</div>
+<h2 id="開放電腦計畫-8-16-位元微控制器-mcu0-的中斷處理-作者陳鍾誠"><a href="#開放電腦計畫-8-16-位元微控制器-mcu0-的中斷處理-作者陳鍾誠">開放電腦計畫 (8) – 16 位元微控制器 MCU0 的中斷處理 (作者：陳鍾誠)</a></h2>
+<p>在上一期當中，我們設計出了出了 MCU0 這顆 16 位元處理器，文章網址如下：</p>
+<ul>
+<li><a href="https://dl.dropboxusercontent.com/u/101584453/pmag/201401/htm/article5.html">開放電腦計畫 (7) – 完整指令集的 16 位元處理器 MCU0s</a></li>
+</ul>
+<p>雖然上述處理器的指令已經算是完整了，但是卻沒有加入中斷機制，本其中我們將說明中斷在 Verilog 中的處理方式。</p>
+<h3 id="mcu0-的中斷位元"><a href="#mcu0-的中斷位元">MCU0 的中斷位元</a></h3>
+<p>現代的處理器通常會用中斷的方式來處理「輸出入請求」，或者進行「行程切換」， 在本節中我們將透過微控制器 MCU0 來示範中斷的處理方式。</p>
+<p>在 MCU0 中，狀態暫存器裏有個中斷位元，用來代表目前是否正處於中斷狀態中，以下是其定義：</p>
+<pre><code>`define SW   R[2]      // 狀態暫存器
+`define I    `SW[3]    // 是否中斷中</code></pre>
+<p>當 MCU0 處於中斷狀態時，就無法在接受任何的中斷請求，換言之、MCU0 採用不可重入的中斷機制。</p>
+<h3 id="mcu0-的中斷處理"><a href="#mcu0-的中斷處理">MCU0 的中斷處理</a></h3>
+<p>當中斷 interrupt 發生時，會透過 irq 線路傳入中斷代號，此時 MCU0 會檢查是否已經處於中斷狀態， 如果是則忽略此一中斷請求。否則就會進入中斷狀態，將返回位址記錄到 LR 中，然後執行 PC = irq 指令 跳到中斷位址，開始執行中斷處理程式。其主要程式碼如下所示：</p>
+<pre class="sourceCode verilog"><code class="sourceCode verilog"><span class="kw">module</span> cpu(<span class="dt">input</span> clock, <span class="dt">input</span> interrupt, <span class="dt">input</span>[<span class="dv">2</span>:<span class="dv">0</span>] irq); 
+...
+  <span class="kw">always</span> @(<span class="kw">posedge</span> clock) <span class="kw">begin</span> <span class="co">// 在 clock 時脈的正邊緣時觸發</span>
+    IR = m[<span class="ot">`PC</span>];                <span class="co">// 指令擷取階段：IR=m[PC], 2 個 Byte 的記憶體</span>
+    pc0= <span class="ot">`PC</span>;                   <span class="co">// 儲存舊的 PC 值在 pc0 中。</span>
+    <span class="ot">`PC</span> = <span class="ot">`PC</span><span class="dv">+1</span>;                <span class="co">// 擷取完成，PC 前進到下一個指令位址</span>
+    <span class="kw">case</span> (<span class="ot">`OP</span>)                  <span class="co">// 解碼、根據 OP 執行動作</span>
+      <span class="dv">LD:</span> <span class="ot">`A</span> = <span class="ot">`M</span>;              <span class="co">// LD C</span>
+      ...
+      <span class="dv">OP8:</span> <span class="kw">case</span> (IR[<span class="dv">11</span>:<span class="dv">8</span>])      <span class="co">// OP8: 加長運算碼</span>
+        ...
+        <span class="dv">IRET:</span> <span class="kw">begin</span> <span class="ot">`PC</span> = <span class="ot">`LR</span>; <span class="ot">`I</span> = <span class="dv">0</span>; <span class="kw">end</span>          <span class="co">// IRET</span>
+    ...
+      <span class="kw">endcase</span>   
+    <span class="kw">endcase</span>
+    <span class="co">// 印出 PC, IR, SW, A 等暫存器值以供觀察</span>
+    <span class="dt">$display</span>(<span class="st">&quot;%4dns PC=%x IR=%x, SW=%x, A=%d SP=%x LR=%x&quot;</span>, <span class="dt">$stime</span>, pc0, IR, <span class="ot">`SW</span>, <span class="ot">`A</span>, <span class="ot">`SP</span>, <span class="ot">`LR</span>);
+    <span class="kw">if</span> (!<span class="ot">`I</span> &amp;&amp; interrupt) <span class="kw">begin</span>
+      <span class="ot">`I</span> = <span class="dv">1</span>;
+      <span class="ot">`LR</span> = <span class="ot">`PC</span>;
+      <span class="ot">`PC</span> = irq;
+    <span class="kw">end</span>    
+  <span class="kw">end</span>
+<span class="kw">endmodule</span></code></pre>
+<h3 id="完整的-mcu0-中斷測試程式"><a href="#完整的-mcu0-中斷測試程式">完整的 MCU0 中斷測試程式</a></h3>
+<pre class="sourceCode verilog"><code class="sourceCode verilog"><span class="ot">`define OP   IR[15:12] </span><span class="co">// 運算碼</span>
+<span class="ot">`define C    IR[11:0]  </span><span class="co">// 常數欄位</span>
+<span class="ot">`define SC8  $signed(IR[7:0]) </span><span class="co">// 常數欄位</span>
+<span class="ot">`define C4   IR[3:0]   </span><span class="co">// 常數欄位</span>
+<span class="ot">`define Ra   IR[7:4]   </span><span class="co">// Ra</span>
+<span class="ot">`define Rb   IR[3:0]   </span><span class="co">// Rb</span>
+<span class="ot">`define A    R[0]      </span><span class="co">// 累積器</span>
+<span class="ot">`define LR   R[1]      </span><span class="co">// 狀態暫存器</span>
+<span class="ot">`define SW   R[2]      </span><span class="co">// 狀態暫存器</span>
+<span class="ot">`define SP   R[3]      </span><span class="co">// 堆疊暫存器</span>
+<span class="ot">`define PC   R[4]      </span><span class="co">// 程式計數器</span>
+<span class="ot">`define N    `SW[15]   </span><span class="co">// 負號旗標</span>
+<span class="ot">`define Z    `SW[14]   </span><span class="co">// 零旗標</span>
+<span class="ot">`define I    `SW[3]    </span><span class="co">// 是否中斷中</span>
+<span class="ot">`define M    m[`C]     </span><span class="co">// 存取記憶體</span>
+
+<span class="kw">module</span> cpu(<span class="dt">input</span> clock, <span class="dt">input</span> interrupt, <span class="dt">input</span>[<span class="dv">2</span>:<span class="dv">0</span>] irq); 
+  <span class="dt">parameter</span> [<span class="dv">3</span>:<span class="dv">0</span>] LD=<span class="bn">4&#39;h0</span>,ST=<span class="bn">4&#39;h1</span>,ADD=<span class="bn">4&#39;h2</span>,SUB=<span class="bn">4&#39;h3</span>,MUL=<span class="bn">4&#39;h4</span>,DIV=<span class="bn">4&#39;h5</span>,AND=<span class="bn">4&#39;h6</span>,OR=<span class="bn">4&#39;h7</span>,XOR=<span class="bn">4&#39;h8</span>,CMP=<span class="bn">4&#39;h9</span>,JMP=<span class="bn">4&#39;hA</span>,JEQ=<span class="bn">4&#39;hB</span>, JLT=<span class="bn">4&#39;hC</span>, JLE=<span class="bn">4&#39;hD</span>, JSUB=<span class="bn">4&#39;hE</span>, OP8=<span class="bn">4&#39;hF</span>;
+  <span class="dt">parameter</span> [<span class="dv">3</span>:<span class="dv">0</span>] LDI=<span class="bn">4&#39;h0</span>, MOV=<span class="bn">4&#39;h2</span>, PUSH=<span class="bn">4&#39;h3</span>, POP=<span class="bn">4&#39;h4</span>, SHL=<span class="bn">4&#39;h5</span>, SHR=<span class="bn">4&#39;h6</span>, ADDI=<span class="bn">4&#39;h7</span>, SUBI=<span class="bn">4&#39;h8</span>, NEG=<span class="bn">4&#39;h9</span>, SWI=<span class="bn">4&#39;hA</span>, NSW=<span class="bn">4&#39;hD</span>, RET=<span class="bn">4&#39;hE</span>, IRET=<span class="bn">4&#39;hF</span>;
+  <span class="dt">reg</span> [<span class="dv">15</span>:<span class="dv">0</span>] IR;    <span class="co">// 指令暫存器</span>
+  <span class="dt">reg</span> <span class="dt">signed</span> [<span class="dv">15</span>:<span class="dv">0</span>] R[<span class="dv">0</span>:<span class="dv">4</span>];
+  <span class="dt">reg</span> <span class="dt">signed</span> [<span class="dv">15</span>:<span class="dv">0</span>] pc0;
+  <span class="dt">reg</span> <span class="dt">signed</span> [<span class="dv">15</span>:<span class="dv">0</span>] m [<span class="dv">0</span>:<span class="dv">4095</span>]; <span class="co">// 內部的快取記憶體</span>
+  <span class="dt">integer</span> i;
+  <span class="kw">initial</span>  <span class="co">// 初始化</span>
+  <span class="kw">begin</span>
+    <span class="ot">`PC</span> = <span class="dv">0</span>; <span class="co">// 將 PC 設為起動位址 0</span>
+    <span class="ot">`SW</span> = <span class="dv">0</span>;
+    <span class="dt">$readmemh</span>(<span class="st">&quot;mcu0i.hex&quot;</span>, m);
+    <span class="kw">for</span> (i=<span class="dv">0</span>; i &lt; <span class="dv">32</span>; i=i<span class="dv">+2</span>) <span class="kw">begin</span>
+       <span class="dt">$display</span>(<span class="st">&quot;%x %x&quot;</span>, i, m[i]);
+    <span class="kw">end</span>
+  <span class="kw">end</span>
+  
+  <span class="kw">always</span> @(<span class="kw">posedge</span> clock) <span class="kw">begin</span> <span class="co">// 在 clock 時脈的正邊緣時觸發</span>
+    IR = m[<span class="ot">`PC</span>];                <span class="co">// 指令擷取階段：IR=m[PC], 2 個 Byte 的記憶體</span>
+    pc0= <span class="ot">`PC</span>;                   <span class="co">// 儲存舊的 PC 值在 pc0 中。</span>
+    <span class="ot">`PC</span> = <span class="ot">`PC</span><span class="dv">+1</span>;                <span class="co">// 擷取完成，PC 前進到下一個指令位址</span>
+    <span class="kw">case</span> (<span class="ot">`OP</span>)                  <span class="co">// 解碼、根據 OP 執行動作</span>
+      <span class="dv">LD:</span> <span class="ot">`A</span> = <span class="ot">`M</span>;              <span class="co">// LD C</span>
+      <span class="dv">ST:</span> <span class="ot">`M</span> = <span class="ot">`A</span>;              <span class="co">// ST C</span>
+      <span class="dv">ADD:</span> <span class="ot">`A</span> = <span class="ot">`A</span> + <span class="ot">`M</span>;        <span class="co">// ADD C</span>
+      <span class="dv">SUB:</span> <span class="ot">`A</span> = <span class="ot">`A</span> - <span class="ot">`M</span>;        <span class="co">// SUB C</span>
+      <span class="dv">MUL:</span> <span class="ot">`A</span> = <span class="ot">`A</span> * <span class="ot">`M</span>;        <span class="co">// MUL C</span>
+      <span class="dv">DIV:</span> <span class="ot">`A</span> = <span class="ot">`A</span> / <span class="ot">`M</span>;        <span class="co">// DIV C</span>
+      <span class="dv">AND:</span> <span class="ot">`A</span> = <span class="ot">`A</span> &amp; <span class="ot">`M</span>;        <span class="co">// AND C</span>
+      <span class="dv">OR :</span> <span class="ot">`A</span> = <span class="ot">`A</span> | <span class="ot">`M</span>;        <span class="co">// OR  C</span>
+      <span class="dv">XOR:</span> <span class="ot">`A</span> = <span class="ot">`A</span> ^ <span class="ot">`M</span>;        <span class="co">// XOR C</span>
+      <span class="dv">CMP:</span> <span class="kw">begin</span> <span class="ot">`N</span>=(<span class="ot">`A</span> &lt; <span class="ot">`M</span>); <span class="ot">`Z</span>=(<span class="ot">`A</span>==<span class="ot">`M</span>); <span class="kw">end</span> <span class="co">// CMP C</span>
+      <span class="dv">JMP:</span> <span class="ot">`PC</span> = <span class="ot">`C</span>;            <span class="co">// JSUB C</span>
+      <span class="dv">JEQ:</span> <span class="kw">if</span> (<span class="ot">`Z</span>) <span class="ot">`PC</span>=<span class="ot">`C</span>;      <span class="co">// JEQ C</span>
+      <span class="dv">JLT:</span> <span class="kw">if</span> (<span class="ot">`N</span>) <span class="ot">`PC</span>=<span class="ot">`C</span>;      <span class="co">// JLT C</span>
+      <span class="dv">JLE:</span> <span class="kw">if</span> (<span class="ot">`N</span> || <span class="ot">`Z</span>) <span class="ot">`PC</span>=<span class="ot">`C</span>;<span class="co">// JLE C</span>
+      <span class="dv">JSUB:</span><span class="kw">begin</span> <span class="ot">`LR</span> = <span class="ot">`PC</span>; <span class="ot">`PC</span> = <span class="ot">`C</span>; <span class="kw">end</span> <span class="co">// JSUB C</span>
+      <span class="dv">OP8:</span> <span class="kw">case</span> (IR[<span class="dv">11</span>:<span class="dv">8</span>])      <span class="co">// OP8: 加長運算碼</span>
+        <span class="dv">LDI:</span>  R[<span class="ot">`Ra</span>] = <span class="ot">`C4</span>;                         <span class="co">// LDI C</span>
+        <span class="dv">ADDI:</span> R[<span class="ot">`Ra</span>] = R[<span class="ot">`Ra</span>] + <span class="ot">`C4</span>;                <span class="co">// ADDI C</span>
+        <span class="dv">SUBI:</span> R[<span class="ot">`Ra</span>] = R[<span class="ot">`Ra</span>] - <span class="ot">`C4</span>;                <span class="co">// ADDI C</span>
+        <span class="dv">MOV:</span>  R[<span class="ot">`Ra</span>] = R[<span class="ot">`Rb</span>];                      <span class="co">// MOV Ra, Rb</span>
+        <span class="dv">PUSH:</span> <span class="kw">begin</span> <span class="ot">`SP</span>=<span class="ot">`SP</span><span class="dv">-1</span>; m[<span class="ot">`SP</span>] = R[<span class="ot">`Ra</span>]; <span class="kw">end</span> <span class="co">// PUSH Ra</span>
+        <span class="dv">POP:</span>  <span class="kw">begin</span> R[<span class="ot">`Ra</span>] = m[<span class="ot">`SP</span>]; <span class="ot">`SP</span>=<span class="ot">`SP</span><span class="dv">+1</span>; <span class="kw">end</span> <span class="co">// POP  Ra</span>
+        <span class="dv">SHL:</span>  R[<span class="ot">`Ra</span>] = R[<span class="ot">`Ra</span>] &lt;&lt; <span class="ot">`C4</span>;               <span class="co">// SHL C</span>
+        <span class="dv">SHR:</span>  R[<span class="ot">`Ra</span>] = R[<span class="ot">`Ra</span>] &gt;&gt; <span class="ot">`C4</span>;               <span class="co">// SHR C</span>
+        <span class="dv">SWI:</span>  <span class="dt">$display</span>(<span class="st">&quot;SWI C8=%d A=%d&quot;</span>, <span class="ot">`SC8</span>, <span class="ot">`A</span>); <span class="co">// SWI C</span>
+        <span class="dv">NEG:</span>  R[<span class="ot">`Ra</span>] = ~R[<span class="ot">`Ra</span>];                     <span class="co">// NEG Ra</span>
+        <span class="dv">NSW:</span>  <span class="kw">begin</span> <span class="ot">`N</span>=~<span class="ot">`N</span>; <span class="ot">`Z</span>=~<span class="ot">`Z</span>; <span class="kw">end</span>             <span class="co">// NSW  (negate N, Z)</span>
+        <span class="dv">RET:</span>  <span class="ot">`PC</span> = <span class="ot">`LR</span>;                            <span class="co">// RET</span>
+        <span class="dv">IRET:</span> <span class="kw">begin</span> <span class="ot">`PC</span> = <span class="ot">`LR</span>; <span class="ot">`I</span> = <span class="dv">0</span>; <span class="kw">end</span>          <span class="co">// IRET</span>
+        <span class="kw">default</span>: <span class="dt">$display</span>(<span class="st">&quot;op8=%d , not defined!&quot;</span>, IR[<span class="dv">11</span>:<span class="dv">8</span>]);
+      <span class="kw">endcase</span>
+    <span class="kw">endcase</span>
+    <span class="co">// 印出 PC, IR, SW, A 等暫存器值以供觀察</span>
+    <span class="dt">$display</span>(<span class="st">&quot;%4dns PC=%x IR=%x, SW=%x, A=%d SP=%x LR=%x&quot;</span>, <span class="dt">$stime</span>, pc0, IR, <span class="ot">`SW</span>, <span class="ot">`A</span>, <span class="ot">`SP</span>, <span class="ot">`LR</span>);
+    <span class="kw">if</span> (!<span class="ot">`I</span> &amp;&amp; interrupt) <span class="kw">begin</span>
+      <span class="ot">`I</span> = <span class="dv">1</span>;
+      <span class="ot">`LR</span> = <span class="ot">`PC</span>;
+      <span class="ot">`PC</span> = irq;
+    <span class="kw">end</span>    
+  <span class="kw">end</span>
+<span class="kw">endmodule</span>
+
+<span class="kw">module</span> main;                <span class="co">// 測試程式開始</span>
+<span class="dt">reg</span> clock;                  <span class="co">// 時脈 clock 變數</span>
+<span class="dt">reg</span> interrupt;
+<span class="dt">reg</span> [<span class="dv">2</span>:<span class="dv">0</span>] irq;
+
+cpu cpux(clock, interrupt, irq);            <span class="co">// 宣告 cpu0mc 處理器</span>
+
+<span class="kw">initial</span> <span class="kw">begin</span>
+  clock = <span class="dv">0</span>;          <span class="co">// 一開始 clock 設定為 0</span>
+  interrupt = <span class="dv">0</span>;
+  irq = <span class="dv">2</span>;
+<span class="kw">end</span>
+<span class="kw">always</span> <span class="bn">#10</span> clock=~clock;    <span class="co">// 每隔 10ns 反相，時脈週期為 20ns</span>
+
+<span class="kw">always</span> <span class="bn">#500</span> <span class="kw">begin</span> 
+  interrupt=<span class="dv">1</span>;
+  <span class="bn">#30</span>;
+  interrupt=<span class="dv">0</span>;
+<span class="kw">end</span>
+
+<span class="kw">initial</span> <span class="bn">#4000</span> <span class="dt">$finish</span>;      <span class="co">// 停止測試。</span>
+
+<span class="kw">endmodule</span></code></pre>
+<h3 id="輸入機器碼與組合語言"><a href="#輸入機器碼與組合語言">輸入機器碼與組合語言</a></h3>
+<pre><code>A00F  // 00            JMP   RESET
+A003  // 01            JMP   ERROR
+A004  // 02            JMP   IRQ
+A006  // 03    ERROR:  JMP   ERROR
+F300  // 04    IRQ:    PUSH  A
+F301  // 05            PUSH  LR
+F302  // 06            PUSH  SW
+001E  // 07            LD    TIMER
+F701  // 08            ADDI  1
+FA01  // 09            SWI   1
+101E  // 0A            ST    TIMER
+F402  // 0B            POP   SW
+F401  // 0C            POP   LR
+F400  // 0D            POP   A
+FF00  // 0E            IRET
+001F  // 0F    RESET:  LD    STACKEND
+F230  // 10            MOV   SP, A
+001C  // 11    LOOP:   LD    I
+901D  // 12            CMP   N
+B01A  // 13            JEQ   EXIT
+F701  // 14            ADDI  1
+101C  // 15            ST    I
+001B  // 16            LD    SUM
+201C  // 17            ADD   I
+101B  // 18            ST    SUM
+A011  // 19            JMP   LOOP
+A01A  // 1A    EXIT:   JMP   EXIT
+0000  // 1B    SUM:    WORD  0
+0000  // 1C    I:      WORD  0
+000A  // 1D    N:      WORD  10
+0000  // 1E    TIMER:  WORD  0
+007F  // 1F    STACKEND: WORD 127</code></pre>
+<h3 id="執行結果"><a href="#執行結果">執行結果</a></h3>
+<pre><code>D:\Dropbox\Public\web\oc\code\mcu0&gt;iverilog -o mcu0i mcu0i.v
+
+D:\Dropbox\Public\web\oc\code\mcu0&gt;vvp mcu0i
+WARNING: mcu0i.v:29: $readmemh(mcu0i.hex): Not enough words in the file for the
+requested range [0:4095].
+00000000 a00f
+00000002 a004
+00000004 f300
+00000006 f302
+00000008 f701
+0000000a 101e
+0000000c f401
+0000000e ff00
+00000010 f230
+00000012 901d
+00000014 f701
+00000016 001b
+00000018 101b
+0000001a a01a
+0000001c 0000
+0000001e 0000
+  10ns PC=0000 IR=a00f, SW=0000, A=    x SP=xxxx LR=xxxx
+  30ns PC=000f IR=001f, SW=0000, A=  127 SP=xxxx LR=xxxx
+  50ns PC=0010 IR=f230, SW=0000, A=  127 SP=007f LR=xxxx
+  70ns PC=0011 IR=001c, SW=0000, A=    0 SP=007f LR=xxxx
+  90ns PC=0012 IR=901d, SW=8000, A=    0 SP=007f LR=xxxx
+ 110ns PC=0013 IR=b01a, SW=8000, A=    0 SP=007f LR=xxxx
+ 130ns PC=0014 IR=f701, SW=8000, A=    1 SP=007f LR=xxxx
+ 150ns PC=0015 IR=101c, SW=8000, A=    1 SP=007f LR=xxxx
+ 170ns PC=0016 IR=001b, SW=8000, A=    0 SP=007f LR=xxxx
+ 190ns PC=0017 IR=201c, SW=8000, A=    1 SP=007f LR=xxxx
+ 210ns PC=0018 IR=101b, SW=8000, A=    1 SP=007f LR=xxxx
+ 230ns PC=0019 IR=a011, SW=8000, A=    1 SP=007f LR=xxxx
+ 250ns PC=0011 IR=001c, SW=8000, A=    1 SP=007f LR=xxxx
+ 270ns PC=0012 IR=901d, SW=8000, A=    1 SP=007f LR=xxxx
+ 290ns PC=0013 IR=b01a, SW=8000, A=    1 SP=007f LR=xxxx
+ 310ns PC=0014 IR=f701, SW=8000, A=    2 SP=007f LR=xxxx
+ 330ns PC=0015 IR=101c, SW=8000, A=    2 SP=007f LR=xxxx
+ 350ns PC=0016 IR=001b, SW=8000, A=    1 SP=007f LR=xxxx
+ 370ns PC=0017 IR=201c, SW=8000, A=    3 SP=007f LR=xxxx
+ 390ns PC=0018 IR=101b, SW=8000, A=    3 SP=007f LR=xxxx
+ 410ns PC=0019 IR=a011, SW=8000, A=    3 SP=007f LR=xxxx
+ 430ns PC=0011 IR=001c, SW=8000, A=    2 SP=007f LR=xxxx
+ 450ns PC=0012 IR=901d, SW=8000, A=    2 SP=007f LR=xxxx
+ 470ns PC=0013 IR=b01a, SW=8000, A=    2 SP=007f LR=xxxx
+ 490ns PC=0014 IR=f701, SW=8000, A=    3 SP=007f LR=xxxx
+ 510ns PC=0015 IR=101c, SW=8000, A=    3 SP=007f LR=xxxx
+ 530ns PC=0002 IR=a004, SW=8008, A=    3 SP=007f LR=0016
+ 550ns PC=0004 IR=f300, SW=8008, A=    3 SP=007e LR=0016
+ 570ns PC=0005 IR=f301, SW=8008, A=    3 SP=007d LR=0016
+ 590ns PC=0006 IR=f302, SW=8008, A=    3 SP=007c LR=0016
+ 610ns PC=0007 IR=001e, SW=8008, A=    0 SP=007c LR=0016
+ 630ns PC=0008 IR=f701, SW=8008, A=    1 SP=007c LR=0016
+SWI C8=   1 A=    1
+ 650ns PC=0009 IR=fa01, SW=8008, A=    1 SP=007c LR=0016
+ 670ns PC=000a IR=101e, SW=8008, A=    1 SP=007c LR=0016
+ 690ns PC=000b IR=f402, SW=8008, A=    3 SP=007d LR=0016
+ 710ns PC=000c IR=f401, SW=8008, A=    3 SP=007e LR=0016
+ 730ns PC=000d IR=f400, SW=8008, A=    3 SP=007f LR=0016
+ 750ns PC=000e IR=ff00, SW=8000, A=    3 SP=007f LR=0016
+ 770ns PC=0016 IR=001b, SW=8000, A=    3 SP=007f LR=0016
+ 790ns PC=0017 IR=201c, SW=8000, A=    6 SP=007f LR=0016
+ 810ns PC=0018 IR=101b, SW=8000, A=    6 SP=007f LR=0016
+ 830ns PC=0019 IR=a011, SW=8000, A=    6 SP=007f LR=0016
+ 850ns PC=0011 IR=001c, SW=8000, A=    3 SP=007f LR=0016
+ 870ns PC=0012 IR=901d, SW=8000, A=    3 SP=007f LR=0016
+ 890ns PC=0013 IR=b01a, SW=8000, A=    3 SP=007f LR=0016
+ 910ns PC=0014 IR=f701, SW=8000, A=    4 SP=007f LR=0016
+ 930ns PC=0015 IR=101c, SW=8000, A=    4 SP=007f LR=0016
+ 950ns PC=0016 IR=001b, SW=8000, A=    6 SP=007f LR=0016
+ 970ns PC=0017 IR=201c, SW=8000, A=   10 SP=007f LR=0016
+ 990ns PC=0018 IR=101b, SW=8000, A=   10 SP=007f LR=0016
+1010ns PC=0019 IR=a011, SW=8000, A=   10 SP=007f LR=0016
+1030ns PC=0011 IR=001c, SW=8000, A=    4 SP=007f LR=0016
+1050ns PC=0002 IR=a004, SW=8008, A=    4 SP=007f LR=0012
+1070ns PC=0004 IR=f300, SW=8008, A=    4 SP=007e LR=0012
+1090ns PC=0005 IR=f301, SW=8008, A=    4 SP=007d LR=0012
+1110ns PC=0006 IR=f302, SW=8008, A=    4 SP=007c LR=0012
+1130ns PC=0007 IR=001e, SW=8008, A=    1 SP=007c LR=0012
+1150ns PC=0008 IR=f701, SW=8008, A=    2 SP=007c LR=0012
+SWI C8=   1 A=    2
+1170ns PC=0009 IR=fa01, SW=8008, A=    2 SP=007c LR=0012
+1190ns PC=000a IR=101e, SW=8008, A=    2 SP=007c LR=0012
+1210ns PC=000b IR=f402, SW=8008, A=    4 SP=007d LR=0012
+1230ns PC=000c IR=f401, SW=8008, A=    4 SP=007e LR=0012
+1250ns PC=000d IR=f400, SW=8008, A=    4 SP=007f LR=0012
+1270ns PC=000e IR=ff00, SW=8000, A=    4 SP=007f LR=0012
+1290ns PC=0012 IR=901d, SW=8000, A=    4 SP=007f LR=0012
+1310ns PC=0013 IR=b01a, SW=8000, A=    4 SP=007f LR=0012
+1330ns PC=0014 IR=f701, SW=8000, A=    5 SP=007f LR=0012
+1350ns PC=0015 IR=101c, SW=8000, A=    5 SP=007f LR=0012
+1370ns PC=0016 IR=001b, SW=8000, A=   10 SP=007f LR=0012
+1390ns PC=0017 IR=201c, SW=8000, A=   15 SP=007f LR=0012
+1410ns PC=0018 IR=101b, SW=8000, A=   15 SP=007f LR=0012
+1430ns PC=0019 IR=a011, SW=8000, A=   15 SP=007f LR=0012
+1450ns PC=0011 IR=001c, SW=8000, A=    5 SP=007f LR=0012
+1470ns PC=0012 IR=901d, SW=8000, A=    5 SP=007f LR=0012
+1490ns PC=0013 IR=b01a, SW=8000, A=    5 SP=007f LR=0012
+1510ns PC=0014 IR=f701, SW=8000, A=    6 SP=007f LR=0012
+1530ns PC=0015 IR=101c, SW=8000, A=    6 SP=007f LR=0012
+1550ns PC=0016 IR=001b, SW=8000, A=   15 SP=007f LR=0012
+1570ns PC=0017 IR=201c, SW=8000, A=   21 SP=007f LR=0012
+1590ns PC=0002 IR=a004, SW=8008, A=   21 SP=007f LR=0018
+1610ns PC=0004 IR=f300, SW=8008, A=   21 SP=007e LR=0018
+1630ns PC=0005 IR=f301, SW=8008, A=   21 SP=007d LR=0018
+1650ns PC=0006 IR=f302, SW=8008, A=   21 SP=007c LR=0018
+1670ns PC=0007 IR=001e, SW=8008, A=    2 SP=007c LR=0018
+1690ns PC=0008 IR=f701, SW=8008, A=    3 SP=007c LR=0018
+SWI C8=   1 A=    3
+1710ns PC=0009 IR=fa01, SW=8008, A=    3 SP=007c LR=0018
+1730ns PC=000a IR=101e, SW=8008, A=    3 SP=007c LR=0018
+1750ns PC=000b IR=f402, SW=8008, A=   21 SP=007d LR=0018
+1770ns PC=000c IR=f401, SW=8008, A=   21 SP=007e LR=0018
+1790ns PC=000d IR=f400, SW=8008, A=   21 SP=007f LR=0018
+1810ns PC=000e IR=ff00, SW=8000, A=   21 SP=007f LR=0018
+1830ns PC=0018 IR=101b, SW=8000, A=   21 SP=007f LR=0018
+1850ns PC=0019 IR=a011, SW=8000, A=   21 SP=007f LR=0018
+1870ns PC=0011 IR=001c, SW=8000, A=    6 SP=007f LR=0018
+1890ns PC=0012 IR=901d, SW=8000, A=    6 SP=007f LR=0018
+1910ns PC=0013 IR=b01a, SW=8000, A=    6 SP=007f LR=0018
+1930ns PC=0014 IR=f701, SW=8000, A=    7 SP=007f LR=0018
+1950ns PC=0015 IR=101c, SW=8000, A=    7 SP=007f LR=0018
+1970ns PC=0016 IR=001b, SW=8000, A=   21 SP=007f LR=0018
+1990ns PC=0017 IR=201c, SW=8000, A=   28 SP=007f LR=0018
+2010ns PC=0018 IR=101b, SW=8000, A=   28 SP=007f LR=0018
+2030ns PC=0019 IR=a011, SW=8000, A=   28 SP=007f LR=0018
+2050ns PC=0011 IR=001c, SW=8000, A=    7 SP=007f LR=0018
+2070ns PC=0012 IR=901d, SW=8000, A=    7 SP=007f LR=0018
+2090ns PC=0013 IR=b01a, SW=8000, A=    7 SP=007f LR=0018
+2110ns PC=0002 IR=a004, SW=8008, A=    7 SP=007f LR=0014
+2130ns PC=0004 IR=f300, SW=8008, A=    7 SP=007e LR=0014
+2150ns PC=0005 IR=f301, SW=8008, A=    7 SP=007d LR=0014
+2170ns PC=0006 IR=f302, SW=8008, A=    7 SP=007c LR=0014
+2190ns PC=0007 IR=001e, SW=8008, A=    3 SP=007c LR=0014
+2210ns PC=0008 IR=f701, SW=8008, A=    4 SP=007c LR=0014
+SWI C8=   1 A=    4
+2230ns PC=0009 IR=fa01, SW=8008, A=    4 SP=007c LR=0014
+2250ns PC=000a IR=101e, SW=8008, A=    4 SP=007c LR=0014
+2270ns PC=000b IR=f402, SW=8008, A=    7 SP=007d LR=0014
+2290ns PC=000c IR=f401, SW=8008, A=    7 SP=007e LR=0014
+2310ns PC=000d IR=f400, SW=8008, A=    7 SP=007f LR=0014
+2330ns PC=000e IR=ff00, SW=8000, A=    7 SP=007f LR=0014
+2350ns PC=0014 IR=f701, SW=8000, A=    8 SP=007f LR=0014
+2370ns PC=0015 IR=101c, SW=8000, A=    8 SP=007f LR=0014
+2390ns PC=0016 IR=001b, SW=8000, A=   28 SP=007f LR=0014
+2410ns PC=0017 IR=201c, SW=8000, A=   36 SP=007f LR=0014
+2430ns PC=0018 IR=101b, SW=8000, A=   36 SP=007f LR=0014
+2450ns PC=0019 IR=a011, SW=8000, A=   36 SP=007f LR=0014
+2470ns PC=0011 IR=001c, SW=8000, A=    8 SP=007f LR=0014
+2490ns PC=0012 IR=901d, SW=8000, A=    8 SP=007f LR=0014
+2510ns PC=0013 IR=b01a, SW=8000, A=    8 SP=007f LR=0014
+2530ns PC=0014 IR=f701, SW=8000, A=    9 SP=007f LR=0014
+2550ns PC=0015 IR=101c, SW=8000, A=    9 SP=007f LR=0014
+2570ns PC=0016 IR=001b, SW=8000, A=   36 SP=007f LR=0014
+2590ns PC=0017 IR=201c, SW=8000, A=   45 SP=007f LR=0014
+2610ns PC=0018 IR=101b, SW=8000, A=   45 SP=007f LR=0014
+2630ns PC=0019 IR=a011, SW=8000, A=   45 SP=007f LR=0014
+2650ns PC=0002 IR=a004, SW=8008, A=   45 SP=007f LR=0011
+2670ns PC=0004 IR=f300, SW=8008, A=   45 SP=007e LR=0011
+2690ns PC=0005 IR=f301, SW=8008, A=   45 SP=007d LR=0011
+2710ns PC=0006 IR=f302, SW=8008, A=   45 SP=007c LR=0011
+2730ns PC=0007 IR=001e, SW=8008, A=    4 SP=007c LR=0011
+2750ns PC=0008 IR=f701, SW=8008, A=    5 SP=007c LR=0011
+SWI C8=   1 A=    5
+2770ns PC=0009 IR=fa01, SW=8008, A=    5 SP=007c LR=0011
+2790ns PC=000a IR=101e, SW=8008, A=    5 SP=007c LR=0011
+2810ns PC=000b IR=f402, SW=8008, A=   45 SP=007d LR=0011
+2830ns PC=000c IR=f401, SW=8008, A=   45 SP=007e LR=0011
+2850ns PC=000d IR=f400, SW=8008, A=   45 SP=007f LR=0011
+2870ns PC=000e IR=ff00, SW=8000, A=   45 SP=007f LR=0011
+2890ns PC=0011 IR=001c, SW=8000, A=    9 SP=007f LR=0011
+2910ns PC=0012 IR=901d, SW=8000, A=    9 SP=007f LR=0011
+2930ns PC=0013 IR=b01a, SW=8000, A=    9 SP=007f LR=0011
+2950ns PC=0014 IR=f701, SW=8000, A=   10 SP=007f LR=0011
+2970ns PC=0015 IR=101c, SW=8000, A=   10 SP=007f LR=0011
+2990ns PC=0016 IR=001b, SW=8000, A=   45 SP=007f LR=0011
+3010ns PC=0017 IR=201c, SW=8000, A=   55 SP=007f LR=0011
+3030ns PC=0018 IR=101b, SW=8000, A=   55 SP=007f LR=0011
+3050ns PC=0019 IR=a011, SW=8000, A=   55 SP=007f LR=0011
+3070ns PC=0011 IR=001c, SW=8000, A=   10 SP=007f LR=0011
+3090ns PC=0012 IR=901d, SW=4000, A=   10 SP=007f LR=0011
+3110ns PC=0013 IR=b01a, SW=4000, A=   10 SP=007f LR=0011
+3130ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=0011
+3150ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=0011
+3170ns PC=0002 IR=a004, SW=4008, A=   10 SP=007f LR=001a
+3190ns PC=0004 IR=f300, SW=4008, A=   10 SP=007e LR=001a
+3210ns PC=0005 IR=f301, SW=4008, A=   10 SP=007d LR=001a
+3230ns PC=0006 IR=f302, SW=4008, A=   10 SP=007c LR=001a
+3250ns PC=0007 IR=001e, SW=4008, A=    5 SP=007c LR=001a
+3270ns PC=0008 IR=f701, SW=4008, A=    6 SP=007c LR=001a
+SWI C8=   1 A=    6
+3290ns PC=0009 IR=fa01, SW=4008, A=    6 SP=007c LR=001a
+3310ns PC=000a IR=101e, SW=4008, A=    6 SP=007c LR=001a
+3330ns PC=000b IR=f402, SW=4008, A=   10 SP=007d LR=001a
+3350ns PC=000c IR=f401, SW=4008, A=   10 SP=007e LR=001a
+3370ns PC=000d IR=f400, SW=4008, A=   10 SP=007f LR=001a
+3390ns PC=000e IR=ff00, SW=4000, A=   10 SP=007f LR=001a
+3410ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3430ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3450ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3470ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3490ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3510ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3530ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3550ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3570ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3590ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3610ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3630ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3650ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3670ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3690ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3710ns PC=0002 IR=a004, SW=4008, A=   10 SP=007f LR=001a
+3730ns PC=0004 IR=f300, SW=4008, A=   10 SP=007e LR=001a
+3750ns PC=0005 IR=f301, SW=4008, A=   10 SP=007d LR=001a
+3770ns PC=0006 IR=f302, SW=4008, A=   10 SP=007c LR=001a
+3790ns PC=0007 IR=001e, SW=4008, A=    6 SP=007c LR=001a
+3810ns PC=0008 IR=f701, SW=4008, A=    7 SP=007c LR=001a
+SWI C8=   1 A=    7
+3830ns PC=0009 IR=fa01, SW=4008, A=    7 SP=007c LR=001a
+3850ns PC=000a IR=101e, SW=4008, A=    7 SP=007c LR=001a
+3870ns PC=000b IR=f402, SW=4008, A=   10 SP=007d LR=001a
+3890ns PC=000c IR=f401, SW=4008, A=   10 SP=007e LR=001a
+3910ns PC=000d IR=f400, SW=4008, A=   10 SP=007f LR=001a
+3930ns PC=000e IR=ff00, SW=4000, A=   10 SP=007f LR=001a
+3950ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3970ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3990ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a</code></pre>
+<p>您可以看到上述執行過程中，每隔一小段時間就會印出 SWI 指令，那就是下列中斷處理常式的 <code>SWI 1</code> 這個指令所印出來的， 當 2 號中斷發生時，程式會跳到 02 位址的指令，也就是 JMP IRQ，接著跳到 04 位址的 IRQ 標記上，開始執行中斷常式， 於是在 09 的 SWI 1 這行當中，我們會利用 <code>SWI:  $display(&quot;SWI C8=%d A=%d&quot;,</code>SC8, <code>A);</code> 這行程式印出累積器 A 的値 以便觀察到中斷的發生，以下是測試程式中斷部份得機器碼與組合語言。</p>
+<pre><code>A00F  // 00            JMP   RESET
+A003  // 01            JMP   ERROR
+A004  // 02            JMP   IRQ
+A006  // 03    ERROR:  JMP   ERROR
+F300  // 04    IRQ:    PUSH  A
+F301  // 05            PUSH  LR
+F302  // 06            PUSH  SW
+001E  // 07            LD    TIMER
+F701  // 08            ADDI  1
+FA01  // 09            SWI   1
+101E  // 0A            ST    TIMER
+F402  // 0B            POP   SW
+F401  // 0C            POP   LR
+F400  // 0D            POP   A
+FF00  // 0E            IRET
+...</code></pre>
+<p>以上片段中 IRQ 到 IRET 指令之間為中斷常式，每次中斷時該常式就會將 TIMER 加一，因此就可以用來計算中斷發生的次數， 雖然這樣的程式並沒有太大的用途，但還蠻適合用來說明中斷原理的。</p>
+<h3 id="結語"><a href="#結語">結語</a></h3>
+<p>中斷向量裏通常存放一堆跳躍指令，在中斷的時候可以可以透過這些指令跳到中斷處理程式， 以便判別中斷類型並進行對應的處理，後續我們將介紹如何使用中斷機制進行輸出入處理 與行程切換的動作。</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>

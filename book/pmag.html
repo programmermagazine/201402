@@ -1,0 +1,1757 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="2014 年 2 月號" />
+  <title>程式人雜誌</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201402/htm/home.html">2014 年 2 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="header">
+<h1 class="title"><a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a></h1>
+<h2 class="author">2014 年 2 月號</h2>
+<h3 class="date">本期焦點：Lua 程式語言</h3>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#前言">前言</a><ul>
+<li><a href="#編輯小語">編輯小語</a></li>
+<li><a href="#授權聲明">授權聲明</a></li>
+</ul></li>
+<li><a href="#程式人短訊">程式人短訊</a><ul>
+<li><a href="#程式短訊lua-語言簡介">程式短訊：Lua 語言簡介</a></li>
+<li><a href="#程式短訊lua-的程式範例">程式短訊：Lua 的程式範例</a></li>
+<li><a href="#程式短訊lua-的-bnf-語法">程式短訊：Lua 的 BNF 語法</a></li>
+<li><a href="#程式短訊如何在-windows-中用-mingw-建置-lua">程式短訊：如何在 Windows 中用 MinGW 建置 Lua ?</a></li>
+</ul></li>
+<li><a href="#人物速寫">人物速寫</a><ul>
+<li><a href="#lua-的創造者----巴西的-tecgraf-組織與-roberto-ierusalimschy-教授">Lua 的創造者 -- 巴西的 Tecgraf 組織與 Roberto Ierusalimschy 教授</a></li>
+</ul></li>
+<li><a href="#影音頻道">影音頻道</a><ul>
+<li><a href="#看影片學-lua-程式設計">看影片學 Lua 程式設計</a></li>
+</ul></li>
+<li><a href="#程式人文集">程式人文集</a><ul>
+<li><a href="#lua-引擎的解析與使用-作者陳鍾誠">Lua 引擎的解析與使用 (作者：陳鍾誠)</a></li>
+<li><a href="#arduino入門教學14-以-amarino-連接-android-與-arduino-作者cooper-maa">Arduino入門教學(14) – 以 Amarino 連接 Android 與 Arduino (作者：Cooper Maa)</a></li>
+<li><a href="#c-語言秘技-3-快取記憶體的影響力實驗-作者陳鍾誠">C 語言秘技 (3) – 快取記憶體的影響力實驗 (作者：陳鍾誠)</a></li>
+<li><a href="#資料型態認識浮點數-single-double-作者研發養成所-bridan">資料型態認識─浮點數 (single ＆ double) (作者：研發養成所 Bridan)</a></li>
+<li><a href="#visual-basic-6.0-繪製wav聲音檔波形圖之程式設計-作者廖憲得-0xde">[Visual Basic 6.0] 繪製WAV聲音檔波形圖之程式設計 (作者：廖憲得 0xde)</a></li>
+<li><a href="#開放電腦計畫-8-16-位元微控制器-mcu0-的中斷處理-作者陳鍾誠">開放電腦計畫 (8) – 16 位元微控制器 MCU0 的中斷處理 (作者：陳鍾誠)</a></li>
+<li><a href="#講題分享---用-r-進行中文-text-mining-作者陳嘉葳taiwan-r-user-group">講題分享 - 用 R 進行中文 text Mining (作者:陳嘉葳@Taiwan R User Group)</a></li>
+</ul></li>
+<li><a href="#雜誌訊息">雜誌訊息</a><ul>
+<li><a href="#讀者訂閱">讀者訂閱</a></li>
+<li><a href="#投稿須知">投稿須知</a></li>
+<li><a href="#參與編輯">參與編輯</a></li>
+<li><a href="#公益資訊">公益資訊</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="前言"><a href="#前言">前言</a></h1>
+<h2 id="編輯小語"><a href="#編輯小語">編輯小語</a></h2>
+<p>在本期的「程式人雜誌」中，聚焦的主題是「Lua 程式語言」！</p>
+<p>筆者是因為「開放電腦計畫」需要一個極為簡單的程式語言，才開始對 Lua 產生興趣，並研究 Lua 的原始碼的。</p>
+<p>由於 Lua 的語法非常簡單，因此很適合當成「編譯器、解譯器、如何設計一個程式語言？」等研究的入門磚，所以筆者企圖利用這種方式闡述「開放電腦計畫」中的軟體面向，用 Lua 做為「開放電腦計畫」的主要程式語言。</p>
+<p>當然、本期不只有 Lua 的相關文章，還有更精彩的 Arduino, VB, OpenNI, C 語言等內容，希望讀者會喜歡這期的「程式人雜誌」！</p>
+<p>---- （程式人雜誌編輯 - 陳鍾誠）</p>
+<h2 id="授權聲明"><a href="#授權聲明">授權聲明</a></h2>
+<p>本雜誌採用 創作共用：<a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權，若您想要修改本書產生衍生著作時，至少應該遵守下列授權條件：</p>
+<ol style="list-style-type: decimal">
+<li>標示原作者姓名</li>
+<li>採用 創作共用：<a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 的方式公開衍生著作。</li>
+</ol>
+<p>另外、當本雜誌中有文章或素材並非採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 時，將會在該文章或素材後面標示其授權，此時該文章將以該標示的方式授權釋出，請修改者注意這些授權標示，以避免產生侵權糾紛。</p>
+<p>例如有些文章可能不希望被作為「商業性使用」，此時就可能會採用創作共用：<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/tw/">姓名標示、非商業性、相同方式分享</a> 的授權，此時您就不應當將該文章用於商業用途上。</p>
+<p>最後、懇請勿移除公益捐贈的相關描述，以便讓愛心得以持續散播！</p>
+<h1 id="程式人短訊"><a href="#程式人短訊">程式人短訊</a></h1>
+<h2 id="程式短訊lua-語言簡介"><a href="#程式短訊lua-語言簡介">程式短訊：Lua 語言簡介</a></h2>
+<p>Lua 是一個輕量級的程式語言，該語言是由巴西的 Computer Graphics Technology Group (Tecgraf) 這家公司的員工 Roberto Ierusalimschy, Luiz Henrique de Figueiredo, and Waldemar Celes 等人所創造的。</p>
+<p>讀者可能會感到驚訝，為何會有一個來自巴西的程式語言呢？關於這件事，其實是有歷史典故的。很多技術的創新，其實都來自於某個歷史意外，Lua 語言的發明也是如此。</p>
+<p>在 1977 年到 1992 年之間，巴西對電腦軟硬體進行了嚴格的貿易管制保護措施，很多需要電腦軟硬體的公司無法買到國外的軟硬體，於是 Tecgraf 這家主攻「電腦繪圖與使用者介面」的公司就只好自行發展「程式語言與開發工具」，並且提供給客戶使用。</p>
+<p>在設計出 Lua 之前，Tecgraf 其實已經創造過 SOL (Simple Object Language) 與 DEL (data-entry language) 這兩個程式語言，但這兩個語言並沒有甚麼「流程控制」的語法，於是他們吸取了 SOL 與 DEL 的設計經驗，然後再參考了 「Modula 語言的 控制結構 (if, while, repeat/until)」，以及 「CLU 語言的 (多重指定、多傳回值) 等特性」，還有 「SNOBOL、AWK 中的字典 (associative arrays) 概念」，最後創造出了一種語法非常簡易的語言，那就是 Lua。</p>
+<p>為何叫做 Lua 呢？Lua 一詞是葡萄牙語中「Luna」（月亮）的意思，因為其前身 SOL 語言的葡萄牙語意義為「太陽」，所以下一個語言就自然叫做「月亮」囉！</p>
+<p>Lua 的語法非常的簡單，其 BNF 語法寫起來只有一頁，因此可以說是世界上最簡單的語言之一 (雖然 LISP 的語法比 Lua 更簡單，其 BNF 應該只要兩三行就寫完了，但是寫起來卻很不容易閱讀；而 Lua 則是容易讀容易寫，但是 BNF 語法就比 LISP 稍長了一些)。</p>
+<p>由於這種簡易的特性，後來 Lua 被廣泛使用在各種遊戲引擎裏做為「腳本語言」(Script Language) 使用，列表如下：</p>
+<ul>
+<li>2D 遊戲引擎 : Corona SDK、Love2D、Agen、Blitwizard、Cocos2d-x、EGSL、Grail、MOAI。</li>
+<li>2.5D 遊戲引擎 : Lavgine。</li>
+<li>3D 遊戲引擎 : Baja、Glint 3d、Irrlicht、Leadwerks、Spring RTS、Luxinia、Polycode、Cryengine。</li>
+</ul>
+<p>另外、Lua 也常被各式各樣需要腳本語言的工具軟體使用，像是 Damn Small Linux、Wikipedia template engine、Wireshark、Nginx、LuaTeX、Adobe Photoshop Lightroom 等軟體裏都有內嵌 Lua 腳本語言。</p>
+<p>筆者之所以對 Lua 感興趣，主要是因為我們正在進行「開放電腦計畫」，該計劃採用 KISS (Keep It Simple and Stupid) 的極度簡化原則，希望讓整台電腦的軟硬體設計都達到最簡易的程度。</p>
+<p>當我看到 Lua 的 BNF 語法時，感覺非常驚訝。因為我發現自己不可能設計得比 Lua 更好了，於是我決定要在「開放電腦計畫」中以 Lua 做為主要的程式語言，並開始研究 Lua 的編譯器與解譯引擎。</p>
+<p>筆者學習 Lua 的主要目的是為了創造開放電腦計畫中的編譯器與解譯器。官方版 Lua 預設的編譯器是用 C 語言寫成的，不過也有其他人寫出用 Lua 寫的 Lua 解譯器與編譯器，以下是相關資訊的網址：</p>
+<ul>
+<li><a href="http://lua-users.org/wiki/LuaInterpreterInLua">http://lua-users.org/wiki/LuaInterpreterInLua</a></li>
+<li><a href="http://lua-users.org/wiki/LuaCompilerInLua">http://lua-users.org/wiki/LuaCompilerInLua</a></li>
+</ul>
+<p>另外、也有像 LuaJIT 與 LLVM-Lua 這樣的立即編譯引擎 (Just in Time Compiler)，或許對「開放電腦計畫」也是有用的，以下是其網址：</p>
+<ul>
+<li><a href="http://luajit.org/">http://luajit.org/</a></li>
+<li><a href="https://code.google.com/p/llvm-lua/">https://code.google.com/p/llvm-lua/</a></li>
+</ul>
+<p>而且、在 LuaWiki 這個網站中，也有不少關於 Lua 原始碼與實作的研究，您可以從下列網址找到：</p>
+<ul>
+<li><a href="http://lua-users.org/wiki/LuaSource">http://lua-users.org/wiki/LuaSource</a></li>
+<li><a href="http://lua-users.org/wiki/LuaImplementations">http://lua-users.org/wiki/LuaImplementations</a></li>
+<li><a href="http://lua-users.org/wiki/LuaGrammar">http://lua-users.org/wiki/LuaGrammar</a></li>
+</ul>
+<p>當我開始做這件事情時，竟發現自己深深的被 Lua 迷住，我簡直愛死這個月亮了！</p>
+<p>如果您用過 JavaScript，應該會覺得這個語言怎麼這麼簡單又強大。但是當您看過 Lua 之後，可能會覺得 JavaScript 還是有點複雜，因為 Lua 感覺就像是「脫光光」的 JavaScript，沒有任何一點累贅的語法啊！</p>
+<h3 id="參考文獻"><a href="#參考文獻">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Lua_programming_language">Wikipedia:Lua</a></li>
+<li>TecGraf -- <a href="http://lac-rio.com/tecgraf">http://lac-rio.com/tecgraf</a></li>
+<li><a href="http://stackoverflow.com/questions/5053134/what-is-a-good-game-engine-that-uses-lua">http://stackoverflow.com/questions/5053134/what-is-a-good-game-engine-that-uses-lua</a></li>
+</ul>
+<p>【本文由陳鍾誠取材並修改自 <a href="http://zh.wikipedia.org/">維基百科</a>，採用創作共用的 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權】</p>
+<h2 id="程式短訊lua-的程式範例"><a href="#程式短訊lua-的程式範例">程式短訊：Lua 的程式範例</a></h2>
+<p>本文的 Lua 程式乃是在 MS. Windows 的 MinGW 環境下執行的結果。</p>
+<p>檔案：hello.lua</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="fu">print</span><span class="ot">(</span><span class="st">&#39;Hello World!&#39;</span><span class="ot">)</span></code></pre>
+<p>執行結果：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ lua hello.lua
+Hello World!</code></pre>
+<p>範例：註解語法</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="co">-- A comment in Lua starts with a double-hyphen and runs to the end of the line.</span>
+ 
+<span class="co">--[[ Multi-line strings &amp; comments</span>
+<span class="co">     are adorned with double square brackets. ]]</span>
+ 
+<span class="co">--[=[ Comments like this can have other --[[comments]] nested. ]=]</span></code></pre>
+<p>範例：迴圈語法</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="co">--condition = true</span>
+ 
+<span class="kw">while</span> <span class="kw">condition</span> <span class="kw">do</span>
+  <span class="co">--statements</span>
+<span class="kw">end</span>
+ 
+<span class="kw">repeat</span>
+  <span class="co">--statements</span>
+<span class="kw">until</span> <span class="kw">condition</span>
+ 
+<span class="kw">for</span> <span class="kw">i</span> <span class="ot">=</span> <span class="kw">first</span><span class="ot">,</span><span class="kw">last</span><span class="ot">,</span><span class="kw">delta</span> <span class="kw">do</span>     <span class="co">--delta may be negative, allowing the for loop to count down or up</span>
+  <span class="fu">print</span><span class="ot">(</span><span class="kw">i</span><span class="ot">)</span>
+<span class="kw">end</span>
+
+<span class="kw">for</span> <span class="kw">key</span><span class="ot">,</span> <span class="kw">value</span> <span class="kw">in</span> <span class="fu">pairs</span><span class="ot">(</span><span class="kw">_G</span><span class="ot">)</span> <span class="kw">do</span>
+  <span class="fu">print</span><span class="ot">(</span><span class="kw">key</span><span class="ot">,</span> <span class="kw">value</span><span class="ot">)</span>
+<span class="kw">end</span></code></pre>
+<p>檔案：fact.lua -- 計算階層 n!</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="kw">function</span> factorial<span class="ot">(</span><span class="kw">n</span><span class="ot">)</span>
+  <span class="kw">local</span> <span class="kw">x</span> <span class="ot">=</span> <span class="dv">1</span>
+  <span class="kw">for</span> <span class="kw">i</span> <span class="ot">=</span> <span class="dv">2</span><span class="ot">,</span><span class="kw">n</span> <span class="kw">do</span>
+    <span class="kw">x</span> <span class="ot">=</span> <span class="kw">x</span> <span class="ot">*</span> <span class="kw">i</span>
+  <span class="kw">end</span>
+  <span class="kw">return</span> <span class="kw">x</span>
+<span class="kw">end</span>
+
+<span class="fu">print</span><span class="ot">(</span><span class="st">&quot;factorial(5)=&quot;</span><span class="ot">..</span>factorial<span class="ot">(</span><span class="dv">5</span><span class="ot">));</span></code></pre>
+<p>執行結果：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ lua fact.lua
+factorial(5)=120</code></pre>
+<p>檔案：obj.lua -- 物件</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="kw">function</span> Point<span class="ot">(</span><span class="kw">x</span><span class="ot">,</span> <span class="kw">y</span><span class="ot">)</span>        <span class="co">-- &quot;Point&quot; object constructor</span>
+  <span class="kw">return</span> <span class="ot">{</span> <span class="kw">x</span> <span class="ot">=</span> <span class="kw">x</span><span class="ot">,</span> <span class="kw">y</span> <span class="ot">=</span> <span class="kw">y</span> <span class="ot">}</span>   <span class="co">-- Creates and returns a new object (table)</span>
+<span class="kw">end</span>
+
+<span class="kw">array</span> <span class="ot">=</span> <span class="ot">{</span> Point<span class="ot">(</span><span class="dv">10</span><span class="ot">,</span> <span class="dv">20</span><span class="ot">),</span> Point<span class="ot">(</span><span class="dv">30</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">),</span> Point<span class="ot">(</span><span class="dv">50</span><span class="ot">,</span> <span class="dv">60</span><span class="ot">)</span> <span class="ot">}</span>   <span class="co">-- Creates array of points</span>
+
+<span class="kw">for</span> <span class="kw">i</span> <span class="ot">=</span> <span class="dv">1</span><span class="ot">,</span><span class="dv">3</span> <span class="kw">do</span> 
+  <span class="fu">print</span><span class="ot">(</span><span class="st">&quot;point(&quot;</span><span class="ot">..</span><span class="kw">array</span><span class="ot">[</span><span class="kw">i</span><span class="ot">].</span><span class="kw">x</span><span class="ot">..</span><span class="st">&quot;,&quot;</span><span class="ot">..</span><span class="kw">array</span><span class="ot">[</span><span class="kw">i</span><span class="ot">].</span><span class="kw">y</span><span class="ot">..</span><span class="st">&quot;)&quot;</span><span class="ot">)</span>
+<span class="kw">end</span></code></pre>
+<p>執行結果：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ lua obj.lua
+point(10,20)
+point(30,40)
+point(50,60)</code></pre>
+<p>另外、Lua 不只可以直接執行，也可以先編譯成中間碼 (bytecode) 之後再執行，如下所示：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ luac -o obj.lo obj.lua
+
+ccc@ccc-PC /c/lua
+$ lua obj.lo
+point(10,20)
+point(30,40)
+point(50,60)</code></pre>
+<h3 id="參考文獻-1"><a href="#參考文獻-1">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Lua_programming_language">Wikipedia:Lua</a></li>
+</ul>
+<p>【本文由陳鍾誠取材並修改自 <a href="http://zh.wikipedia.org/">維基百科</a>，採用創作共用的 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權】</p>
+<h2 id="程式短訊lua-的-bnf-語法"><a href="#程式短訊lua-的-bnf-語法">程式短訊：Lua 的 BNF 語法</a></h2>
+<p>看完上述的 Lua 程式範例之後，讓我們來看看 Lua 程式語言的語法吧！</p>
+<p>Lua 的語法非常精簡，可以列印在單一頁面中，以下是 Lua 的 BNF 語法。</p>
+<pre class="BNF"><code>    chunk ::= block
+
+    block ::= {stat} [retstat]
+
+    stat ::=  ‘;’ | 
+         varlist ‘=’ explist | 
+         functioncall | 
+         label | 
+         break | 
+         goto Name | 
+         do block end | 
+         while exp do block end | 
+         repeat block until exp | 
+         if exp then block {elseif exp then block} [else block] end | 
+         for Name ‘=’ exp ‘,’ exp [‘,’ exp] do block end | 
+         for namelist in explist do block end | 
+         function funcname funcbody | 
+         local function Name funcbody | 
+         local namelist [‘=’ explist] 
+
+    retstat ::= return [explist] [‘;’]
+
+    label ::= ‘::’ Name ‘::’
+
+    funcname ::= Name {‘.’ Name} [‘:’ Name]
+
+    varlist ::= var {‘,’ var}
+
+    var ::=  Name | prefixexp ‘[’ exp ‘]’ | prefixexp ‘.’ Name 
+
+    namelist ::= Name {‘,’ Name}
+
+    explist ::= exp {‘,’ exp}
+
+    exp ::=  nil | false | true | Number | String | ‘...’ | functiondef | 
+         prefixexp | tableconstructor | exp binop exp | unop exp 
+
+    prefixexp ::= var | functioncall | ‘(’ exp ‘)’
+
+    functioncall ::=  prefixexp args | prefixexp ‘:’ Name args 
+
+    args ::=  ‘(’ [explist] ‘)’ | tableconstructor | String 
+
+    functiondef ::= function funcbody
+
+    funcbody ::= ‘(’ [parlist] ‘)’ block end
+
+    parlist ::= namelist [‘,’ ‘...’] | ‘...’
+
+    tableconstructor ::= ‘{’ [fieldlist] ‘}’
+
+    fieldlist ::= field {fieldsep field} [fieldsep]
+
+    field ::= ‘[’ exp ‘]’ ‘=’ exp | Name ‘=’ exp | exp
+
+    fieldsep ::= ‘,’ | ‘;’
+
+    binop ::= ‘+’ | ‘-’ | ‘*’ | ‘/’ | ‘^’ | ‘%’ | ‘..’ | 
+         ‘&lt;’ | ‘&lt;=’ | ‘&gt;’ | ‘&gt;=’ | ‘==’ | ‘~=’ | 
+         and | or
+
+    unop ::= ‘-’ | not | ‘#’</code></pre>
+<p>以上的 Lua 語法中總有 23 個非終端項目，去除空行不算的話只有 40 行的 BNF 語法，而且高階語言該有的特性 Lua 都不會少，是一個非常完整的程式語言。</p>
+<p>對於那些想學習「編譯器」與「設計程式語言」的程式人而言，我相信研究 Lua 會是一件很美好的事情，因為「簡單就是美」啊！</p>
+<h3 id="參考文獻-2"><a href="#參考文獻-2">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Lua_programming_language">Wikipedia:Lua</a></li>
+<li>Lua 5.2 Reference Manual -- <a href="http://www.lua.org/manual/5.2/manual.html">http://www.lua.org/manual/5.2/manual.html</a></li>
+</ul>
+<p>【本文由陳鍾誠取材並修改自 <a href="http://zh.wikipedia.org/">維基百科</a>，採用創作共用的 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權】</p>
+<h2 id="程式短訊如何在-windows-中用-mingw-建置-lua"><a href="#程式短訊如何在-windows-中用-mingw-建置-lua">程式短訊：如何在 Windows 中用 MinGW 建置 Lua ?</a></h2>
+<p>為了學習 Lua 的「編譯器與解譯器」的設計方式，筆者必須要自行建置 Lua 的環境，於是找到 Lua 官網的下載點如下：</p>
+<ul>
+<li><a href="http://www.lua.org/download.html">http://www.lua.org/download.html</a></li>
+</ul>
+<p>筆者下載時為 5.2.3 版，但是從官網下載下列網址的壓縮檔後，發現檔案似乎已經損壞，因此無法解開。</p>
+<ul>
+<li><a href="http://www.lua.org/ftp/lua-5.2.3.tar.gz">http://www.lua.org/ftp/lua-5.2.3.tar.gz</a></li>
+</ul>
+<p>後來筆者乾脆到所有版本的下載點中：</p>
+<ul>
+<li><a href="http://www.lua.org/ftp/">http://www.lua.org/ftp/</a></li>
+</ul>
+<p>下載那個所有版本一次打包的檔案如下：</p>
+<ul>
+<li><a href="http://www.lua.org/ftp/lua-all.tar.gz">http://www.lua.org/ftp/lua-all.tar.gz</a></li>
+</ul>
+<p>結果就可以順利的解壓縮了！</p>
+<p>於是我將解壓縮後的 lua-5.2.3 版之內容，放到 <code>c:\lua</code> 資料夾中。</p>
+<p>接著我參考下列網址的說明：</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/16641826/how-do-i-build-lua-for-windows-using-mingw-and-msys">http://stackoverflow.com/questions/16641826/how-do-i-build-lua-for-windows-using-mingw-and-msys</a></li>
+</ul>
+<p>在 MinGW 的環境中，使用 <code>make PLAT=mingw</code> 指令編譯 Lua 環境，結果得到下列錯誤訊息：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ make PLAT=mingw
+cc -Wall -O2   -c -o lapi.o lapi.c
+make: cc: Command not found
+make: *** [lapi.o] Error 127</code></pre>
+<p>看來是 make 的 cc 指令沒有定義，於是我在 Makefile 最前面一行加上 <code>CC=gcc</code> ，存檔後然後再下一次 <code>make PLAT=mingw</code> 指令，結果就可以了：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ make PLAT=mingw
+gcc -Wall -O2   -c -o lapi.o lapi.c
+gcc -Wall -O2   -c -o lcode.o lcode.c
+gcc -Wall -O2   -c -o lctype.o lctype.c
+gcc -Wall -O2   -c -o ldebug.o ldebug.c
+gcc -Wall -O2   -c -o ldo.o ldo.c
+gcc -Wall -O2   -c -o ldump.o ldump.c
+gcc -Wall -O2   -c -o lfunc.o lfunc.c
+gcc -Wall -O2   -c -o lgc.o lgc.c
+gcc -Wall -O2   -c -o llex.o llex.c
+gcc -Wall -O2   -c -o lmem.o lmem.c
+gcc -Wall -O2   -c -o lobject.o lobject.c
+gcc -Wall -O2   -c -o lopcodes.o lopcodes.c
+gcc -Wall -O2   -c -o lparser.o lparser.c
+gcc -Wall -O2   -c -o lstate.o lstate.c
+gcc -Wall -O2   -c -o lstring.o lstring.c
+gcc -Wall -O2   -c -o ltable.o ltable.c
+gcc -Wall -O2   -c -o ltm.o ltm.c
+gcc -Wall -O2   -c -o lundump.o lundump.c
+gcc -Wall -O2   -c -o lvm.o lvm.c
+gcc -Wall -O2   -c -o lzio.o lzio.c
+gcc -Wall -O2   -c -o lua.o lua.c
+gcc -Wall -O2   -c -o lauxlib.o lauxlib.c
+gcc -Wall -O2   -c -o lbaselib.o lbaselib.c
+gcc -Wall -O2   -c -o lbitlib.o lbitlib.c
+gcc -Wall -O2   -c -o lcorolib.o lcorolib.c
+gcc -Wall -O2   -c -o ldblib.o ldblib.c
+gcc -Wall -O2   -c -o liolib.o liolib.c
+gcc -Wall -O2   -c -o lmathlib.o lmathlib.c
+gcc -Wall -O2   -c -o loslib.o loslib.c
+gcc -Wall -O2   -c -o lstrlib.o lstrlib.c
+gcc -Wall -O2   -c -o ltablib.o ltablib.c
+gcc -Wall -O2   -c -o loadlib.o loadlib.c
+gcc -Wall -O2   -c -o linit.o linit.c
+gcc -o lua lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o l
+mem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o
+ lvm.o lzio.o lua.o lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o liolib.o
+lmathlib.o loslib.o lstrlib.o ltablib.o loadlib.o linit.o -lm
+gcc -Wall -O2   -c -o luac.o luac.c
+gcc -o luac lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o
+lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.
+o lvm.o lzio.o luac.o lauxlib.o -lm
+./lua test.lua
+Hello from Lua 5.2
+./luac -l test.lua
+
+main &lt;test.lua:0,0&gt; (6 instructions at 005CE140)
+0+ params, 3 slots, 1 upvalue, 0 locals, 3 constants, 0 functions
+        1       [1]     GETTABUP        0 0 -1  ; _ENV &quot;print&quot;
+        2       [1]     LOADK           1 -2    ; &quot;Hello from &quot;
+        3       [1]     GETTABUP        2 0 -3  ; _ENV &quot;_VERSION&quot;
+        4       [1]     CONCAT          1 1 2
+        5       [1]     CALL            0 2 1
+        6       [1]     RETURN          0 1
+</code></pre>
+<p>看來是編譯成功了，編譯完成之後我們可以看到 ls 指令列出的檔案如下，裏面有 lua.exe 與 luac.exe 等兩個檔案，這分別是 Lua 的「解譯器」與 「編譯器」。</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ ls
+Makefile    lcorolib.c  ldump.o   llimits.h   loslib.c   ltable.h   luac.o
+lapi.c      lcorolib.o  lfunc.c   lmathlib.c  loslib.o   ltable.o   luac.out
+lapi.h      lctype.c    lfunc.h   lmathlib.o  lparser.c  ltablib.c  luaconf.h
+lapi.o      lctype.h    lfunc.o   lmem.c      lparser.h  ltablib.o  lualib.h
+lauxlib.c   lctype.o    lgc.c     lmem.h      lparser.o  ltm.c      lundump.c
+lauxlib.h   ldblib.c    lgc.h     lmem.o      lstate.c   ltm.h      lundump.h
+lauxlib.o   ldblib.o    lgc.o     loadlib.c   lstate.h   ltm.o      lundump.o
+lbaselib.c  ldebug.c    linit.c   loadlib.o   lstate.o   lua.c      lvm.c
+lbaselib.o  ldebug.h    linit.o   lobject.c   lstring.c  lua.exe    lvm.h
+lbitlib.c   ldebug.o    liolib.c  lobject.h   lstring.h  lua.h      lvm.o
+lbitlib.o   ldo.c       liolib.o  lobject.o   lstring.o  lua.hpp    lzio.c
+lcode.c     ldo.h       llex.c    lopcodes.c  lstrlib.c  lua.o      lzio.h
+lcode.h     ldo.o       llex.h    lopcodes.h  lstrlib.o  luac.c     lzio.o
+lcode.o     ldump.c     llex.o    lopcodes.o  ltable.c   luac.exe   test.lua</code></pre>
+<p>其中的 lua.c 是解譯器 lua.exe 的主程式，而 luac.c 則是編譯器 luac.exe 的主程式。</p>
+<h3 id="參考文獻-3"><a href="#參考文獻-3">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Lua_programming_language">Wikipedia:Lua</a></li>
+<li>Lua 5.2 Reference Manual -- <a href="http://www.lua.org/manual/5.2/manual.html">http://www.lua.org/manual/5.2/manual.html</a></li>
+<li><a href="http://stackoverflow.com/questions/16641826/how-do-i-build-lua-for-windows-using-mingw-and-msys">http://stackoverflow.com/questions/16641826/how-do-i-build-lua-for-windows-using-mingw-and-msys</a></li>
+</ul>
+<p>【本文由陳鍾誠取材並修改自 <a href="http://zh.wikipedia.org/">維基百科</a>，採用創作共用的 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權】</p>
+<h1 id="人物速寫"><a href="#人物速寫">人物速寫</a></h1>
+<h2 id="lua-的創造者----巴西的-tecgraf-組織與-roberto-ierusalimschy-教授"><a href="#lua-的創造者----巴西的-tecgraf-組織與-roberto-ierusalimschy-教授">Lua 的創造者 -- 巴西的 Tecgraf 組織與 Roberto Ierusalimschy 教授</a></h2>
+<p>Lua 是由巴西「里約熱內盧」的 Pontifical Catholic 大學 (簡稱 PUC-Rio) 的一個大型實驗室 Tecgraf 所創造的，該創造團隊的核心人物是 Roberto Ierusalimschy 教授，以下是 Roberto 教授與 PUC-Rio 的連結。</p>
+<ul>
+<li><a href="http://www.inf.puc-rio.br/~roberto/">Roberto Ierusalimschy</a></li>
+<li><a href="http://www.puc-rio.br/english/">Pontifical Catholic University</a> of Rio de Janeiro, Brazil.</li>
+</ul>
+<p>Tecgraf 創立於 1987 年五月，與巴西很多公司有合作案。Tecgraf 的研究工作主要是為位電腦圖學與互動程式提供軟體工具，像是繪圖終端機、印表機的驅動程式等等。</p>
+<p>由於 1977 年到 1992 年之間巴西對電腦軟硬體進行了嚴格的貿易管制保護措施，因此有很強的動機必須要開發自己的軟硬體。於是 Tecgraf 開發了一系列的語言，包含 DEL, SOL 與 Lua，其中 DEL 與 SOL 可以說是 Lua 的生父與生母，因為 Lua 繼承了不少他們的語法。</p>
+<p>由於巴西的官方語言為葡萄牙語，因此很多關於 Lua, Roberto Ierusalimschy 與 Tecgraf 的資料都是用葡萄牙語寫的，這讓筆者在蒐集這些資訊時感到有點困難。</p>
+<div class="figure">
+<img src="../img/Robert_Ierusalimschy.jpg" alt="圖、Roberto Ierusalimschy 教授" /><p class="caption">圖、Roberto Ierusalimschy 教授</p>
+</div>
+<p>還好、在 2006 年時，Computer World 雜誌曾經專訪 Roberto 教授，以下是該專訪的連結。</p>
+<ul>
+<li><a href="http://www.computerworld.com.au/article/260022/a-z_programming_languages_lua/">Computerworld Interview with Roberto Ierusalimschy on Lua</a></li>
+</ul>
+<p>在專訪中 Roberto 教授提到他曾在 2006 年 ACM History of Programming Languages 的一篇論文中提到 Lua 語言的創造過程，以下是該論文的連結。</p>
+<ul>
+<li><a href="http://www.tecgraf.puc-rio.br/~lhf/ftp/doc/hopl.pdf">The Evolution of Lua (PDF)</a>, Roberto Ierusalimschy, Luiz Henrique, Waldemar Celes.</li>
+</ul>
+<p>Lua 經常被使用在遊戲引擎中，例如魔獸世界 (World of Warcraft) 就內嵌了 Lua 語言。</p>
+<p>另外、Roberto 教授在 SlideShare 上有篇投影片，也很直得參考！</p>
+<ul>
+<li><a href="http://www.slideshare.net/hughreynolds/origins-of-lua-roberto-ierusalimschy-puc-rio">A brief history of Lua</a> - Roberto Ierusalimschy (PUC Rio).</li>
+</ul>
+<p>Roberto 教授在 Lua 上的經驗，或許可以給台灣的學術界一個啟示，不知何時才會有「來自台灣的程式語言」被發明出來，並且廣為世人使用呢？</p>
+<h3 id="參考文獻-4"><a href="#參考文獻-4">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Roberto_Ierusalimschy">http://en.wikipedia.org/wiki/Roberto_Ierusalimschy</a></li>
+</ul>
+<p>【本文由陳鍾誠取材並修改自 <a href="http://zh.wikipedia.org/">維基百科</a>，採用創作共用的 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權】</p>
+<h1 id="影音頻道"><a href="#影音頻道">影音頻道</a></h1>
+<h2 id="看影片學-lua-程式設計"><a href="#看影片學-lua-程式設計">看影片學 Lua 程式設計</a></h2>
+<p>Lua 的語法很簡單，執行環境也很簡單，如果您用的是 Linux，應該從 <a href="http://www.lua.org/download.html">Lua 官網上下載</a> 建置一下就可以了，以下是官網所提供的建置方法：</p>
+<pre><code>curl -R -O http://www.lua.org/ftp/lua-5.2.3.tar.gz
+tar zxf lua-5.2.3.tar.gz
+cd lua-5.2.3
+make linux test</code></pre>
+<p>如果您用 MS. Windows ，那麼就可以安裝 Lua for Windows，以下是其網址：</p>
+<ul>
+<li><a href="http://luaforwindows.luaforge.net/">http://luaforwindows.luaforge.net/</a></li>
+</ul>
+<p>下載安裝後，您會發現在「開始/所有程式」裏有個 Lua 的資料夾，裏面有「iLua, Lua Command Line, Lua Examples, QuickLuaTour」等項目，建議您看看「QuickLuaTour」，它會帶領你快速的熟悉 Lua 的語法與範例。</p>
+<p>接著您可以直接起動命令列，然後用任何的編輯器，像是「Notepad++」等，開始寫一些簡單的程式，然後直接用 <code>lua &lt;程式名稱&gt;</code> 去執行您的程式即可。以下是筆者執行幾個 Lua 程式的過程：</p>
+<pre><code>D:\Dropbox\Public\pmag\201402\code&gt;lua hello.lua
+Hello World!
+
+D:\Dropbox\Public\pmag\201402\code&gt;lua fact.lua
+factorial(5)=120
+
+D:\Dropbox\Public\pmag\201402\code&gt;lua obj.lua
+10,20
+30,40
+50,60
+
+D:\Dropbox\Public\pmag\201402\code&gt;lua obj.lua
+point(10,20)
+point(30,40)
+point(50,60)</code></pre>
+<p>您可以以看看下列 Lua 的影片，以便瞭解 Lua 的程式寫法：</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">影片</th>
+<th align="left">連結</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Lua Tutorial #1: Introduction and Setup</td>
+<td align="left"><a href="http://youtu.be/dHURyRLMOK0">http://youtu.be/dHURyRLMOK0</a></td>
+</tr>
+<tr class="even">
+<td align="left">Lua Tutorial #2: Hello World</td>
+<td align="left"><a href="http://youtu.be/aSxoOCn6Y4E">http://youtu.be/aSxoOCn6Y4E</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Lua Tutorial #3: Variables and User Input</td>
+<td align="left"><a href="http://youtu.be/ClThmOGuMi4">http://youtu.be/ClThmOGuMi4</a></td>
+</tr>
+<tr class="even">
+<td align="left">Lua Tutorial #4: Basic Mathematics</td>
+<td align="left"><a href="http://youtu.be/jQ40M1DObl4">http://youtu.be/jQ40M1DObl4</a></td>
+</tr>
+<tr class="odd">
+<td align="left">Lua Tutorial #5: If and Else</td>
+<td align="left"><a href="http://youtu.be/vlJftHgeByg">http://youtu.be/vlJftHgeByg</a></td>
+</tr>
+</tbody>
+</table>
+<p>當然、多寫多看，應該是學習程式的不二法門。學程式與學習游泳一樣，只有下水開始扭動身體，才有機會真正學會游泳，也只有真正開始上機寫程式，才有可能真正學會寫程式。對於 Lua 、當然也是如此！</p>
+<h1 id="程式人文集"><a href="#程式人文集">程式人文集</a></h1>
+<h2 id="lua-引擎的解析與使用-作者陳鍾誠"><a href="#lua-引擎的解析與使用-作者陳鍾誠">Lua 引擎的解析與使用 (作者：陳鍾誠)</a></h2>
+<p>本文解析的是 Lua 5.2.3 的原始碼，筆者採用 MinGW 在 MS. Windows 7 上進行編譯測試。</p>
+<h3 id="基本型態"><a href="#基本型態">基本型態</a></h3>
+<p>Lua 是一種弱型態 (Weakly Typed) 的腳本語言 (Script Language)，就像 JavaScript/Python/Ruby/Perl 一樣，您不需像在 C/C++/Java 等語言中那樣宣告變數型態，但每個變數值其實都有個對應的型態，因為 Lua 會自動決定其型態。</p>
+<p>Lua 中的基本型態如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">型態</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">string</td>
+<td align="left">字串：8 bit 字元、以  結尾。</td>
+</tr>
+<tr class="even">
+<td align="left">number</td>
+<td align="left">數字：以 C 的 double 為預設型態，可代表正負整數與浮點數等。</td>
+</tr>
+<tr class="odd">
+<td align="left">nil</td>
+<td align="left">空值：類似 C 語言的 NULL。</td>
+</tr>
+<tr class="even">
+<td align="left">boolean</td>
+<td align="left">布林：真或假。</td>
+</tr>
+<tr class="odd">
+<td align="left">function</td>
+<td align="left">函數：與 javascript 中的函數一樣，都是第一級變數，非次等公民。</td>
+</tr>
+<tr class="even">
+<td align="left">userdata</td>
+<td align="left">使用者定義資料：任何 C 語言中的資料都可以儲存成 Lua 的 userdata 變數。</td>
+</tr>
+<tr class="odd">
+<td align="left">table</td>
+<td align="left">表格：使用字典 associative array 結構，採用 (key, value) 配對結構。</td>
+</tr>
+<tr class="even">
+<td align="left">thread</td>
+<td align="left">線程 (執行緒)：執行的基本程式單元。</td>
+</tr>
+</tbody>
+</table>
+<p>上述的 table 結構威力強大， userdata 也可封裝成類似 table 的 (key,value) 結構，這種結構可用來表示「樹 (Tree)、圖 (Graph)、甚至是 XML」 等複雜結構。</p>
+<p>Lua 的「物件導向」也是建構在 table 這樣的 (key, value) 結構之上的，依靠的是一種稱為 Meta-Methods 的概念。您可以將對應到物件裏的某欄位的 (key, value) 結構，也就是 (欄位、值) 的「值」改掉，就能完成像「抽換、繼承、多型、依賴性注射」之類的慨念。</p>
+<p>Lua 的函數採用傳參照 (call by reference) 的方式，但是卻不允許參數在函數內被修改，還好 Lua 的函數可以傳回多值結果，因此任何被修改的參數都可以透過多值回傳的方式傳回。</p>
+<h3 id="lua-內部的運作方式"><a href="#lua-內部的運作方式">Lua 內部的運作方式</a></h3>
+<p>由於 Lua 強調可內嵌於其它應用程式的功能，因此允許隨時「解譯、載入、執行」，而且應用程式可以輕易的「捕捉錯誤」，甚至同時執行很多個 Lua 程式等等。</p>
+<p>當您想載入 Lua 程式並執行時，通常會經過下列過程：</p>
+<ol style="list-style-type: decimal">
+<li>透過 <code>luaL_newstate()</code> 創造出一份「狀態物件」(State)，這個狀態物件代表 Lua 語言。</li>
+<li>透過 <code>luaL_openlibs()</code> 載入原本的系統函數，或進一步註冊您自訂的 Lua 延伸函數。</li>
+<li>透過 <code>luaL_loadfile()</code> 載入 Lua 的程式碼，這些程式碼會被轉換成可被虛擬機執行的中間碼 (IR, bytecode)。</li>
+<li>透過 <code>lua_pcall()</code> 會呼叫虛擬機去執行 Lua 的中間碼 (bytecode)，若執行有錯就會傳回 1，否則會傳回 0。</li>
+</ol>
+<p>在上述步驟中，luaL_loadfile() 這個函數會進行「掃描 lex、剖析 parse、編譯、compile」等動作，這些動作採用 「Pipes &amp; Filters」的方式進行。</p>
+<p>目前的 Lua 引擎並不採用像 lex 或 yacc 這樣的工具來產生剖析程式碼，而是採用手工打造的剖析器，來進行剖析與中間碼產生的動作。</p>
+<p>當您呼叫 lua_pcall() 函數的時候，其實是呼叫虛擬機去執行 Lua 的中間碼 (bytecode)，虛擬機會解譯每個中間碼指令並執行對應的動作。</p>
+<h3 id="建置-lua-解譯器----mylua"><a href="#建置-lua-解譯器----mylua">建置 Lua 解譯器 -- myLua</a></h3>
+<p>那麼、要怎麼用 C 呼叫並載入並執行一段「Lua 程式」呢？以下是 lua 原始碼中的解譯器 lua.c 裏的主程式，您可以用這種方法載入並執行 lua 程式。</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp"><span class="dt">int</span> main (<span class="dt">int</span> argc, <span class="dt">char</span> **argv) {
+  <span class="dt">int</span> status, result;
+  lua_State *L = luaL_newstate();  <span class="co">/* 步驟1. create state */</span>
+  <span class="kw">if</span> (L == NULL) {
+    l_message(argv[<span class="dv">0</span>], <span class="st">&quot;cannot create state: not enough memory&quot;</span>);
+    <span class="kw">return</span> EXIT_FAILURE;
+  }
+  <span class="co">// 步驟2. 您可以透過註冊函數 pushfunction(L, &amp;func) 的方式註冊延伸函數。</span>
+  <span class="co">/* call &#39;pmain&#39; in protected mode */</span>
+  lua_pushcfunction(L, &amp;pmain);
+  lua_pushinteger(L, argc);  <span class="co">/* 1st argument */</span>
+  lua_pushlightuserdata(L, argv); <span class="co">/* 2nd argument */</span>
+  status = lua_pcall(L, <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">0</span>);
+  result = lua_toboolean(L, -<span class="dv">1</span>);  <span class="co">/* get result */</span>
+  finalreport(L, status);
+  lua_close(L);
+  <span class="kw">return</span> (result &amp;&amp; status == LUA_OK) ? EXIT_SUCCESS : EXIT_FAILURE;
+}</code></pre>
+<p>以下是一個簡化過的 Lua 解譯器程式：</p>
+<p>檔案：myLua.c</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+<span class="ot">#include &quot;lua.h&quot;</span>
+<span class="ot">#include &quot;lauxlib.h&quot;</span>
+<span class="ot">#include &quot;lualib.h&quot;</span>
+
+<span class="dt">void</span> error(lua_State *L, <span class="dt">char</span> *msg){
+    fprintf(stderr, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">FATAL ERROR:</span><span class="ch">\n</span><span class="st">  %s: %s</span><span class="ch">\n\n</span><span class="st">&quot;</span>, msg, lua_tostring(L, -<span class="dv">1</span>));
+    exit(<span class="dv">1</span>);
+}
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[])
+{
+    lua_State *L = luaL_newstate();             <span class="co">// 1. 建立 State 狀態機</span>
+    luaL_openlibs(L);                           <span class="co">// 2. 載入 Lua 基本函式庫</span>
+    
+    <span class="kw">if</span> (luaL_loadfile(L, argv[<span class="dv">1</span>]))              <span class="co">// 3. 載入 argv[1] 指定的 Lua 程式檔 (還沒執行)</span>
+      error(L, <span class="st">&quot;luaL_loadfile() failed&quot;</span>);      
+
+    <span class="kw">if</span> (lua_pcall(L, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>))                  <span class="co">// 4. 執行載入的 Lua 程式</span>
+      error(L, <span class="st">&quot;lua_pcall() failed&quot;</span>);
+
+    lua_close(L);                               <span class="co">// 5. 結束</span>
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>然後我們修改 Lua 5.2.3 版原始碼的 Makefile 如下 (其中的 CC=gcc, MYOBJS=..., myLua: ..., myLuac:... 等段落是我們加入的)：</p>
+<pre><code>CC=gcc
+OBJS0=lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump.o lvm.o lzio.o
+OBJS= $(OBJS0) lua.o lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o liolib.o lmathlib.o loslib.o lstrlib.o ltablib.o loadlib.o linit.o
+OBJS2= $(OBJS0) luac.o lauxlib.o
+
+MYOBJS= $(OBJS0) myLua.o lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o liolib.o lmathlib.o loslib.o lstrlib.o ltablib.o loadlib.o linit.o
+MYOBJS2= $(OBJS0) myLuac.o lauxlib.o
+
+
+CFLAGS= -Wall -O2
+
+T= lua
+
+all:    $T luac
+    ./$T test.lua
+    ./luac -l test.lua
+
+$T: $(OBJS)
+    $(CC) -o $@ $(OBJS) -lm
+
+luac:   $(OBJS2)
+    $(CC) -o $@ $(OBJS2) -lm
+
+myLua:  $(MYOBJS)
+    $(CC) -o $@ $(MYOBJS) -lm
+
+myLuac: $(MYOBJS2)
+    $(CC) -o $@ $(MYOBJS2) -lm
+    
+clean:
+    rm -f $T $(OBJS) $(OBJS2) core core.* luac.out luac
+
+diff:
+    diff ORIG . | grep -v ^Only &gt; DIFFS</code></pre>
+<p>接著我們就可以進行編譯，以下是筆者的操作過程：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ make myLua
+gcc -Wall -O2   -c -o myLua.o myLua.c
+gcc -o myLua lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.o
+ lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundump
+.o lvm.o lzio.o myLua.o lauxlib.o lbaselib.o lbitlib.o lcorolib.o ldblib.o lioli
+b.o lmathlib.o loslib.o lstrlib.o ltablib.o loadlib.o linit.o -lm
+
+ccc@ccc-PC /c/lua
+$ ls *.lua
+fact.lua  hello.lua  obj.lua  test.lua
+
+ccc@ccc-PC /c/lua
+$ myLua hello.lua
+Hello World!
+
+ccc@ccc-PC /c/lua
+$ myLua fact.lua
+factorial(5)=120
+
+ccc@ccc-PC /c/lua
+$ myLua obj.lua
+point(10,20)
+point(30,40)
+point(50,60)
+
+ccc@ccc-PC /c/lua
+$ myLua xxx.lua
+
+FATAL ERROR:
+  luaL_loadfile() failed: cannot open xxx.lua: No such file or directory</code></pre>
+<h3 id="建置-lua-編譯器----myluac"><a href="#建置-lua-編譯器----myluac">建置 Lua 編譯器 -- myLuac</a></h3>
+<p>由於 Lua 定義有中間碼格式，因此也可以將該格式輸出，變成 bytecode。</p>
+<p>Lua 環境中的 luac 這個程式就是 Lua 編譯器，可以將 Lua 程式轉換成 bytecode ，但是若我們想在 C 語言裏寫程式將 Lua 程式轉為 bytecode 該怎麼做呢？以下是一個簡易的範例。</p>
+<p>檔案：myLuac.c</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp"><span class="ot">#include &lt;stdlib.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+<span class="ot">#include &quot;lua.h&quot;</span>
+<span class="ot">#include &quot;lauxlib.h&quot;</span>
+<span class="ot">#include &quot;lualib.h&quot;</span>
+<span class="ot">#include &quot;lundump.h&quot;</span>
+<span class="ot">#include &quot;lobject.h&quot;</span>
+<span class="ot">#include &quot;lstate.h&quot;</span>
+
+<span class="ot">#define toproto(L,i) getproto(L-&gt;top+(i))</span>
+
+<span class="dt">static</span> <span class="dt">int</span> writer(lua_State* L, <span class="dt">const</span> <span class="dt">void</span>* p, size_t size, <span class="dt">void</span>* u)
+{
+ UNUSED(L);
+ <span class="kw">return</span> (fwrite(p,size,<span class="dv">1</span>,(FILE*)u)!=<span class="dv">1</span>) &amp;&amp; (size!=<span class="dv">0</span>);
+}
+
+<span class="dt">void</span> error(lua_State *L, <span class="dt">char</span> *msg){
+    fprintf(stderr, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">FATAL ERROR:</span><span class="ch">\n</span><span class="st">  %s: %s</span><span class="ch">\n\n</span><span class="st">&quot;</span>, msg, lua_tostring(L, -<span class="dv">1</span>));
+    exit(<span class="dv">1</span>);
+}
+
+<span class="dt">int</span> main(<span class="dt">int</span> argc, <span class="dt">char</span> *argv[])
+{
+    lua_State *L = luaL_newstate();             <span class="co">// 1. 建立 State 狀態機</span>
+    
+    <span class="kw">if</span> (luaL_loadfile(L, argv[<span class="dv">1</span>]))              <span class="co">// 2. 載入 argv[1] 指定的 Lua 程式檔 (還沒執行)</span>
+      error(L, <span class="st">&quot;luaL_loadfile() failed&quot;</span>);      
+
+    <span class="dt">int</span> stripping=<span class="dv">0</span>;
+    Proto* f = (Proto*) toproto(L,-<span class="dv">1</span>);
+    FILE* D= fopen(argv[<span class="dv">2</span>],<span class="st">&quot;wb&quot;</span>);
+    <span class="kw">if</span> (D != NULL) {
+      lua_lock(L);
+      luaU_dump(L,f,writer,D,stripping);        <span class="co">// 3. 輸出編譯後的檔案</span>
+      lua_unlock(L);
+    }
+    lua_close(L);                               <span class="co">// 4. 結束</span>
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<p>在上述的 Makefile 中，我們已經加入了 myLuac 的編譯指引，因此可以直接編譯了：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ make myLuac
+gcc -Wall -O2   -c -o myLuac.o myLuac.c
+gcc -o myLuac lapi.o lcode.o lctype.o ldebug.o ldo.o ldump.o lfunc.o lgc.o llex.
+o lmem.o lobject.o lopcodes.o lparser.o lstate.o lstring.o ltable.o ltm.o lundum
+p.o lvm.o lzio.o myLuac.o lauxlib.o -lm
+
+ccc@ccc-PC /c/lua
+$ myLua hello.lua hello.lo
+Hello World!
+
+ccc@ccc-PC /c/lua
+$ myLuac hello.lua hello.lo
+
+ccc@ccc-PC /c/lua
+$ myLua hello.lo
+Hello World!
+
+ccc@ccc-PC /c/lua
+$ myLuac fact.lua fact.lo
+
+ccc@ccc-PC /c/lua
+$ myLua fact.lo
+factorial(5)=120</code></pre>
+<p>上述執行過程的最後一個指令，是我們用 myLua 去執行 myLuac 編譯出來的 bytecode，所得到的結果。</p>
+<p>您可以看到，myLua 除了執行像 fact.lua, hello.lua 的原始程式檔之外，也可以執行編譯後的 bytecode，像是上述的 fact.lo, hello.lo 等等中間檔。</p>
+<h3 id="結語"><a href="#結語">結語</a></h3>
+<p>在本文中，我們介紹了 Lua 環境的基本架構，並修改建置檔 Makefile，建立了一個簡易的的 Lua 解譯器程式，透過這樣的方式，讀者應該已經掌握了 Lua 解譯器的建置、連結與執行方式，並且對 Lua 的運作過程有一定的瞭解了。</p>
+<h3 id="參考文獻-5"><a href="#參考文獻-5">參考文獻</a></h3>
+<ul>
+<li><a href="http://lua-users.org/wiki/LuaSource">Lua Source</a></li>
+<li><a href="http://pgl.yoyo.org/lua/docs/luaarchitecture.doc">The Lua Architecture - Advanced Topics in Software Engineering (DOC)</a>, Mark Stroetzel Glasberg, Jim Bresler, Yongmin Kevin Cho.</li>
+<li><a href="http://www.troubleshooters.com/codecorn/lua/lua_c_calls_lua.htm">Calling Lua From a C Program (With Snippets)</a></li>
+</ul>
+<h2 id="arduino入門教學14-以-amarino-連接-android-與-arduino-作者cooper-maa"><a href="#arduino入門教學14-以-amarino-連接-android-與-arduino-作者cooper-maa">Arduino入門教學(14) – 以 Amarino 連接 Android 與 Arduino (作者：Cooper Maa)</a></h2>
+<p>編輯說明：<a href="http://www.amarino-toolkit.net/">Amarino</a> 是 Android meets Arduino 的縮寫， 可以用 Android 手機來控制 Arduino 裝置，以下連結有 Cooper Maa 對 Amarino 的投影片介紹。</p>
+<ul>
+<li><a href="http://coopermaa2nd.blogspot.tw/2012/07/getting-started-with-amarino.html">Getting Started with Amarino 簡報</a></li>
+</ul>
+<p>這篇說明如何以 Amarino 通過藍芽連接 Android 與 Arduino，可作為 Amarino 入門的第一步</p>
+<h3 id="所需材料"><a href="#所需材料">所需材料</a></h3>
+<ul>
+<li>Android 手機一支</li>
+<li>Arduino x1</li>
+<li>bluetooth module x 1</li>
+</ul>
+<h3 id="step-1安裝-amarino"><a href="#step-1安裝-amarino">Step 1：安裝 Amarino</a></h3>
+<p>到 <a href="http://www.amarino-toolkit.net/">http://www.amarino-toolkit.net/</a> 下載底下兩個 App 並安裝到 Android 手機上：</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="http://code.google.com/p/amarino/downloads/detail?name=Amarino_2_v0_55.apk&amp;can=2&amp;q=">Amarino</a></p></li>
+<li><p><a href="http://code.google.com/p/amarino/downloads/detail?name=AmarinoPluginBundle.apk&amp;can=2&amp;q=">Amarino Plug-in Bundle</a></p></li>
+</ol>
+<h3 id="step-2-安裝-arduino-ide-與-meetandroid-library"><a href="#step-2-安裝-arduino-ide-與-meetandroid-library">Step 2: 安裝 Arduino IDE 與 MeetAndroid Library</a></h3>
+<p>如果你電腦上還沒有 Arduino IDE，請先到 <a href="http://arduino.cc/en/Main/Software">http://arduino.cc/en/Main/Software</a> 下載軟體，下載後解壓縮即可。</p>
+<p>接著下載 <a href="http://code.google.com/p/amarino/downloads/detail?name=MeetAndroid_4.zip&amp;can=2&amp;q=">MeetAndroid Library</a> ，把 MeetAndroid 解到 Arduino IDE 安裝目錄的 libraries 資料夾下。</p>
+<p>重新啟動 Arduino IDE，然後在 Sketch &gt; Import Library 底下應該會看到 MeetAndroid，如下圖：</p>
+<div class="figure">
+<img src="../img/Armarino1.png" />
+</div>
+<h3 id="step-3-上傳-test-程式"><a href="#step-3-上傳-test-程式">Step 3： 上傳 Test 程式</a></h3>
+<p>點 File &gt; Examples &gt; MeetAndroid &gt; Test 打開 Test 程式：</p>
+<div class="figure">
+<img src="../img/Armarino2.png" />
+</div>
+<p>Test 程式所用的 baud rate 預設是 57600 bps，如果你的藍芽模組不是 57600 bps，請做適當的調整：</p>
+<div class="figure">
+<img src="../img/Armarino3.png" />
+</div>
+<p>然後把程式上傳到 Arduino 板子上。</p>
+<h3 id="step-4連接藍芽模組"><a href="#step-4連接藍芽模組">Step 4：連接藍芽模組</a></h3>
+<p>我用的是 <a href="http://www.wavesen.com/">廣州匯承信息科技</a> 的 HC-0x 系列藍芽模組，下圖是 HC-0x 藍芽模組的外觀：</p>
+<div class="figure">
+<img src="../img/Armarino4.jpg" />
+</div>
+<p>▲ HC-0x 藍芽模組 (圖左：正面圖，圖右：背面圖）</p>
+<p>這個藍芽模組連接方法很簡單，只要照下表把 Arduino 和藍芽模組連接起來就好：</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Arduino</th>
+<th align="left">藍芽模組</th>
+<th align="left">備註</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">5V</td>
+<td align="left">VCC</td>
+<td align="left">注意電源不可接錯</td>
+</tr>
+<tr class="even">
+<td align="left">GND</td>
+<td align="left">GND</td>
+<td align="left">注意電源不可接錯</td>
+</tr>
+<tr class="odd">
+<td align="left">RXD</td>
+<td align="left">TXD</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left">TXD</td>
+<td align="left">RXD</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<div class="figure">
+<img src="../img/Armarino5.png" />
+</div>
+<p>連接的時候有兩點要注意：第一是電源千萬不可接錯，不然藍芽模組可能會壞掉，第二是 Arduino 的 RXD 要接藍芽模組的 TXD，而 Arduino 的 TXD 要接藍芽模組的 RXD。</p>
+<p>通電之後，藍芽模組上的 LED 會一直閃爍：</p>
+<div class="figure">
+<img src="../img/Armarino6.png" />
+</div>
+<h3 id="step-5測試連線"><a href="#step-5測試連線">Step 5：測試連線</a></h3>
+<p>打開 Android 手機上的 Amarino App，點擊【Add BT Device】（如下圖左）搜尋藍芽設備，如果藍芽模組有正確安裝，便會出現在列表中（如下圖右）：</p>
+<div class="figure">
+<img src="../img/Armarino7.jpg" />
+</div>
+<p>點選找到的藍芽設備，接著會進到設備列表：</p>
+<div class="figure">
+<img src="../img/Armarino8.png" />
+</div>
+<p>點一下上圖紅框框起來的圖示，接著點【Add Event】（如下圖左）顯示可用的 Events，然後點選【Test Event】（如下圖右）：</p>
+<div class="figure">
+<img src="../img/Armarino9.jpg" />
+</div>
+<p>進入設定頁面後，直接點下面的【Save】鈕（如下圖左），此時藍芽設備已增加了一個 Test Event，如下圖右：</p>
+<div class="figure">
+<img src="../img/Armarino10.jpg" />
+</div>
+<p>按下手機 Back 鍵回到設備列表畫面（如下圖左），點選【Connect】鈕跟 Arduino 連線，如果是第一次與此藍芽設備連線，Android 手機會出現「藍芽配對要求」的畫面，必須輸入配對密碼（一般為 0000 或 1234）才能與此藍芽設備連線（如下圖右）：</p>
+<div class="figure">
+<img src="../img/Armarino11.jpg" />
+</div>
+<p>如果成功建立連線（如下圖），Amarino 便會每隔 3 秒發送一個數值介於 0 到 255 的 random number 給 Arduino，假如 Arduino 上的 LED 燈號（在 pin 13 上）會每隔 3 秒閃爍一下，那麼恭禧你，因為你的 Android 手機已經成功和 Arduino 建立通訊了。</p>
+<div class="figure">
+<img src="../img/Armarino12.png" />
+</div>
+<p>如果想知道 Amarino 背景在做什麼，可以點選【Monitoring】鈕以觀察背後的通訊過程：</p>
+<div class="figure">
+<img src="../img/Armarino13.png" />
+</div>
+<h3 id="參考資料"><a href="#參考資料">參考資料</a></h3>
+<ul>
+<li><a href="http://www.amarino-toolkit.net/index.php/getting-started.html">How to connect my phone to Arduino in 10 steps</a></li>
+<li><a href="http://www.chetanpatil.info/1/post/2011/12/android-talking-to-arduino.html">Android talking to Arduino</a></li>
+</ul>
+<p>【本文作者為馬萬圳，原文網址為： <a href="http://coopermaa2nd.blogspot.tw/2012/06/amarino-android-arduino.html">http://coopermaa2nd.blogspot.tw/2012/06/amarino-android-arduino.html</a> ，由陳鍾誠編輯後納入本雜誌】</p>
+<h2 id="c-語言秘技-3-快取記憶體的影響力實驗-作者陳鍾誠"><a href="#c-語言秘技-3-快取記憶體的影響力實驗-作者陳鍾誠">C 語言秘技 (3) – 快取記憶體的影響力實驗 (作者：陳鍾誠)</a></h2>
+<h3 id="前言-1"><a href="#前言-1">前言</a></h3>
+<p>話說在周星馳「功夫」這部電影裏，火雲邪神接住子彈之後說道：「天下武功，無堅不破，唯快不破！」 。</p>
+<p>通常程式人之所以用 C 語言，主要原因有二，一是因為「快」、二是因為「指標在嵌入式系統上的用途」。</p>
+<p>但是、同樣是用 C 語言，有些人的程式快如脫兔，而另一些人的程式卻慢如蝸牛，為何會有這樣的差異呢？</p>
+<p>要能夠讓 C 語言快，必須瞭解「目標平台的計算機結構」，像是「管線、快取、記憶體管理、堆疊與堆積」等等，有時也要瞭解編譯器會如何編議你的程式。</p>
+<p>在本文中，我們將利用一個「矩陣相乘」的範例，說明「快取」與「區域性」這兩個概念對程式速度的影響。</p>
+<h3 id="矩陣相乘速度評測"><a href="#矩陣相乘速度評測">矩陣相乘速度評測</a></h3>
+<p>廢話不多說，讓我們直接來看這個「矩陣相乘」的測試程式，看完後再來分析為何會有很多倍的速度差異。</p>
+<p>檔案：matrix.c</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp"><span class="ot">#include &lt;stdio.h&gt;</span>
+<span class="ot">#include &lt;time.h&gt;</span>
+
+<span class="ot">#define N    1000</span>
+<span class="ot">#define TYPE int</span>
+
+TYPE A[N][N], B[N][N], C[N][N];
+
+<span class="dt">void</span> init() {
+  <span class="dt">int</span> i,j,k;
+  <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;N; i++)
+    <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;N; j++) {
+      A[i][j] = i+j;
+      B[i][j] = i+j;
+      C[i][j] = <span class="dv">0</span>;
+    }
+}
+
+<span class="dt">void</span> mmul_ijk() {
+  <span class="dt">int</span> i,j,k;
+  <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;N; i++)
+    <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;N; j++)
+      <span class="kw">for</span> (k=<span class="dv">0</span>; k&lt;N; k++)
+        C[i][j] += A[i][k] * B[k][j];
+}
+
+<span class="dt">void</span> mmul_ikj() {
+  <span class="dt">int</span> i,j,k;
+  <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;N; i++)
+    <span class="kw">for</span> (k=<span class="dv">0</span>; k&lt;N; k++)
+      <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;N; j++)
+        C[i][j] += A[i][k] * B[k][j];
+}
+
+<span class="dt">void</span> mmul_jki() {
+  <span class="dt">int</span> i,j,k;
+  <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;N; j++)
+    <span class="kw">for</span> (k=<span class="dv">0</span>; k&lt;N; k++)
+      <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;N; i++)
+        C[i][j] += A[i][k] * B[k][j];
+}
+
+<span class="dt">void</span> run(<span class="dt">void</span> (*mmul)(), <span class="dt">char</span> *fname) {
+  printf(<span class="st">&quot;========= %s ============</span><span class="ch">\n</span><span class="st">&quot;</span>, fname);
+  time_t start, stop;
+  init();
+  start = time(NULL);
+  printf(<span class="st">&quot;start=%d</span><span class="ch">\n</span><span class="st">&quot;</span>, start);
+  mmul();
+  stop  = time(NULL);
+  printf(<span class="st">&quot;stop =%d</span><span class="ch">\n</span><span class="st">&quot;</span>, stop);
+  printf(<span class="st">&quot;diff =%d</span><span class="ch">\n</span><span class="st">&quot;</span>, stop-start);
+}
+
+<span class="dt">int</span> main() {
+  run(mmul_ijk, <span class="st">&quot;mmul_ijk&quot;</span>);
+  run(mmul_ikj, <span class="st">&quot;mmul_ikj&quot;</span>);
+  run(mmul_jki, <span class="st">&quot;mmul_jki&quot;</span>);
+}</code></pre>
+<p>執行結果：</p>
+<pre><code>D:\c\cache&gt;gcc -O0 matrix.c -o matrix
+
+D:\c\cache&gt;matrix
+========= mmul_ijk ============
+start=1388743938
+stop =1388743953
+diff =15
+========= mmul_ikj ============
+start=1388743953
+stop =1388743958
+diff =5
+========= mmul_jki ============
+start=1388743958
+stop =1388743989
+diff =31</code></pre>
+<p>您可以看到，mmul_ikj() 只花了 5 秒，比起 mmul_jki() 的 31 秒快上了六倍，究竟為何如此呢？</p>
+<h3 id="快取與區域性"><a href="#快取與區域性">快取與區域性</a></h3>
+<p>在上述程式中，我們宣告了三組 <code>1000*1000</code> 的整數矩陣，每組大約耗用記憶體 1M 的整數大小，在筆者的電腦上，一個整數佔用 4byte，因此總共約耗用 <code>3*4MB=12MB</code> 的記憶體。</p>
+<p>但是、筆者電腦的記憶體容量為 4G ，因此三個矩陣都可以完全放在記憶體中。</p>
+<p>那麼、為何會有這麼大的速度差異呢？</p>
+<p>根據「計算機結構的常識」推斷，原因應該在於快取記憶體，而要讓快取記憶體有效率的方式，在於增強程式的「區域性」 (locality)。</p>
+<p>筆者用 dxdiag 指令檢視處理器，發現是 AMD Athlon II X4 645 Processor, 3.1 GHZ 的處理器，根據維基百科的資料，該處理器的快取大小如下：</p>
+<pre><code>L1 cache: 64 kB + 64 kB (data + instructions) per core
+L2 cache: 1024 kB 
+L3 cache: 無</code></pre>
+<p>因此 12MB 的資料無法完全放在 L2 cache 中，而 L1 cache 中所能放的資料量更少，所以在處理這個大小為 12MB 的矩陣相乘運算時，誰擁有最好的區域性，誰應該就會有最快的速度。</p>
+<p>讓我們先看看以下這個最常見的標準矩陣相乘寫法 mmul_ijk()，您可以看到他的區域性並不會很好，因為最裏層的 B[k][j] 每次 k 都會變動一步，而 B 是 <code>1000*1000</code> 的矩陣，因此相當於每次 B 都要跳上 1000 個整數。 (不過 A[i][k] 的區域性還不錯，C[i][j] 的區域性則很好)。</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp"><span class="dt">void</span> mmul_ijk() {
+  <span class="dt">int</span> i,j,k;
+  <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;N; i++)
+    <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;N; j++)
+      <span class="kw">for</span> (k=<span class="dv">0</span>; k&lt;N; k++)
+        C[i][j] += A[i][k] * B[k][j];
+}</code></pre>
+<p>所以、執行時上述的標準寫法花了 14 秒，在三者當中效能排行第二。</p>
+<p>接著讓我們看看最快的 mmul_ikj()，該程式原始碼如下：</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp"><span class="dt">void</span> mmul_ikj() {
+  <span class="dt">int</span> i,j,k;
+  <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;N; i++)
+    <span class="kw">for</span> (k=<span class="dv">0</span>; k&lt;N; k++)
+      <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;N; j++)
+        C[i][j] += A[i][k] * B[k][j];
+}</code></pre>
+<p>由於最內層變動者為 j，因此 B[k][j] 有很好的區域性，而 A[i][k] 並不太變動，C[i][j] 也有很好的區域性，因此 mul_ikj() 程式的速度區域性最好，所以速度也最快。</p>
+<p>最後讓我們來看效能最差的 mmul_jki()，由於 i 在最內層，但每次 A[i][k] 與 C[i][j] 的 i 變動時，都要跳上 1000 格的整數，因此其區域性是最糟的，所以效能也是最差的。</p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp"><span class="dt">void</span> mmul_jki() {
+  <span class="dt">int</span> i,j,k;
+  <span class="kw">for</span> (j=<span class="dv">0</span>; j&lt;N; j++)
+    <span class="kw">for</span> (k=<span class="dv">0</span>; k&lt;N; k++)
+      <span class="kw">for</span> (i=<span class="dv">0</span>; i&lt;N; i++)
+        C[i][j] += A[i][k] * B[k][j];
+}</code></pre>
+<h3 id="結語-1"><a href="#結語-1">結語</a></h3>
+<p>雖然在此我們沒有詳細的討論快取記憶體的結構，但是光從區域性 (locality) 的角度來看，就能清楚的看出哪一個程式執行的最快，由於當今處理器的「快取與記憶體間的速度差異」越來越大 (一般來說可達 100 倍)，所以區域性越好的程式，通常速度也就會快上很多倍，這也是為何上述三個程式的表現差異如此之大的原因了。</p>
+<p>因此、當您希望程式跑得快時，最好注意一下「區域性」結構是否良好，這很可能是決定程式效能的關鍵性因素。</p>
+<h3 id="參考文獻-6"><a href="#參考文獻-6">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Athlon_II">http://en.wikipedia.org/wiki/Athlon_II</a></li>
+<li><a href="http://www.waterlike.com.tw/bookdata.asp?NO=TP3C10C008">深入理解计算机系统</a></li>
+</ul>
+<h2 id="資料型態認識浮點數-single-double-作者研發養成所-bridan"><a href="#資料型態認識浮點數-single-double-作者研發養成所-bridan">資料型態認識─浮點數 (single ＆ double) (作者：研發養成所 Bridan)</a></h2>
+<h3 id="簡介"><a href="#簡介">簡介</a></h3>
+<p>浮點數在電腦系統中是很重要的資料結構，很多程式設計者都知道有這樣的資料結構，但是清楚它的結構的人並不多，因為撰寫高階程式無需注意這些細節，只要會正確宣告變數型態，存在記憶體的資料不要有錯就好，況且高階語言的數學函數庫都很齊備，所以一般程式設計師根本碰不到這樣的問題。</p>
+<p>常見二進制浮點數的宣告有兩種(IEEE-754,1985)： 單精準度 single (float)，32 bits，數值範圍 -3.4 x 1038 ～ +3.4 x 1038，最小的正數為 +1.4 x 10-45 雙精準度 double，64 bits，數值範圍 -1.80 x 10308 ～ +1.80 x 10308，最小的正數為 +4.94 x 10-324</p>
+<p>標準請參見，</p>
+<ul>
+<li><a href="http://zh.wikipedia.org/zh-tw/IEEE_754">IEEE-754,1985</a> : binary floating point arithmetic standard specified</li>
+<li>IEEE-854,1987: standard expanded to include decimal arithmetic</li>
+</ul>
+<p>接下來說明單精準浮點數資料格式(32 bits)，當你弄懂後，雙精準數值(64 bits)自然就可以自己推導。</p>
+<div class="figure">
+<img src="../img/float32.jpg" />
+</div>
+<div class="figure">
+<img src="../img/example32.jpg" />
+</div>
+<div class="figure">
+<img src="../img/double64.jpg" />
+</div>
+<p><em>使用浮點數寫程式有兩種狀況要注意</em> ，</p>
+<p>一、<strong>有效位數</strong> ─ 當你把二進制浮點資料轉換成十進制數值，需要注意它的有效位數，例如 single 有效位數只有六位，為什麼只有六位？自己想一想。</p>
+<p>二、<strong>尾數誤差</strong> ─ 這是最常遇到的問題，如果引用數值經過計算或轉換後會產生尾數誤差，也就是十進制數值最後一位有效位數會誤差 ±1。例如，單精準 12.0000 會變成 12.0001，為什麼？如何解決？自己動腦想一想。</p>
+<p>這些都是韌體工程師會遇到的數學難題。</p>
+<p>(本文作者 研發養成所 Bridan，原文網址為 <a href="http://4rdp.blogspot.tw/2010/03/signle-double.html">http://4rdp.blogspot.tw/2010/03/signle-double.html</a> ，由陳鍾誠編輯後納入程式人雜誌)</p>
+<h2 id="visual-basic-6.0-繪製wav聲音檔波形圖之程式設計-作者廖憲得-0xde"><a href="#visual-basic-6.0-繪製wav聲音檔波形圖之程式設計-作者廖憲得-0xde">[Visual Basic 6.0] 繪製WAV聲音檔波形圖之程式設計 (作者：廖憲得 0xde)</a></h2>
+<p>[Visual Basic 6.0] 繪製WAV聲音檔波形圖之程式設計</p>
+<p>當遇到 WAV、BMP 等檔案處理問題時，就必須使用二進位讀檔。</p>
+<div class="figure">
+<img src="../img/VB1.jpg" />
+</div>
+<div class="figure">
+<img src="../img/VB2.jpg" />
+</div>
+<pre class="sourceCode Monobasic"><code class="sourceCode monobasic"><span class="co">&#39;# [Visual Basic 6.0] 繪製WAV聲音檔波形圖之程式設計</span>
+<span class="co">&#39;# 0xDe</span>
+
+<span class="kw">Dim</span> WavByteArray(9999) <span class="kw">As</span> <span class="dt">Byte</span>
+<span class="kw">Dim</span> DataE
+<span class="kw">Dim</span> DataF
+<span class="kw">Private</span> <span class="kw">Sub </span>Command1_Click()
+Open Text1.Text <span class="kw">For </span>Binary <span class="kw">As</span> #1
+
+<span class="kw">Dim</span> Inp <span class="kw">As</span> <span class="dt">Byte</span>
+
+I = 0 <span class="co">&#39; 紀錄目前存放陣列數</span>
+
+<span class="kw">Do While Not</span> EOF(1)
+    <span class="kw">Get </span>#1, , Inp
+    WavByteArray(I) = Inp
+    I = I + 1
+<span class="kw">Loop</span>
+    Close
+<span class="co">&#39; 因為題目說明說（表中數值為16進制數）所以將 16 進位轉換為 10 進位</span>
+
+<span class="co">&#39; 判斷 00～03 Byte 是否為 &quot;RIFF&quot;</span>
+<span class="co">&#39; 判斷 08～0E Byte 是否為 &quot;WAVEfmt&quot;</span>
+<span class="co">&#39; 判斷 14～15 Byte 是否為 &quot;0100&quot;  表示PCM格式</span>
+<span class="co">&#39; 判斷 16～17 Byte 是否為 &quot;0100&quot;  表示單聲道</span>
+<span class="co">&#39; 判斷 22～23 Byte 是否為 &quot;0800&quot;  8位元</span>
+<span class="kw">If </span>ByteToData(&amp;H0, &amp;H3) = <span class="st">&quot;RIFF&quot;</span> <span class="kw">And</span> ByteToData(&amp;H8, &amp;HE) = <span class="st">&quot;WAVEfmt&quot;</span> <span class="kw">And</span> ByteData(&amp;H14, &amp;H17) = <span class="st">&quot;1010&quot;</span> <span class="kw">And</span> ByteData(&amp;H22, &amp;H23) = <span class="st">&quot;80&quot;</span> <span class="kw">Then</span>
+
+<span class="co">&#39; 取得 18～1B Byte 採樣頻率</span>
+<span class="co">&#39; 取得 28～2B Byte 樣本數</span>
+DataF = 0 <span class="co">&#39; 頻率</span>
+DataE = 0 <span class="co">&#39; 樣本數</span>
+
+<span class="kw">For </span>I = 0 <span class="kw">To</span> 3
+    DataF = DataF + 256 ^ I * WavByteArray(I + &amp;H18)
+    DataE = DataE + 256 ^ I * WavByteArray(I + &amp;H28)
+<span class="kw">Next</span>
+
+Text3 = Format(DataE / DataF, <span class="st">&quot;0.00000&quot;</span>) <span class="co">&#39; 聲音長度</span>
+HScroll1.Min = &amp;H2C <span class="co">&#39; 最小值為 資料開始</span>
+HScroll1.Max = HScroll1.Min + DataE  <span class="co">&#39; 最大值為 資料開始 + 聲音總樣本數</span>
+
+<span class="kw">Else</span>
+    MsgBox <span class="st">&quot;輸入的檔案名稱不是RIFF WAVEfmt PCM格式 8位元&quot;</span>, 16, <span class="st">&quot;輸入的檔案名稱：&quot;</span> &amp; Text1
+<span class="kw">End If</span>
+<span class="kw">End Sub</span>
+
+<span class="co">&#39; Byte 轉換為 Data</span>
+<span class="kw">Function </span>ByteToData(ByteInp <span class="kw">As</span> <span class="dt">Integer</span>, ByteOut <span class="kw">As</span> <span class="dt">Integer</span>)
+    Data = <span class="st">&quot;&quot;</span>
+<span class="kw">For </span>I = ByteInp <span class="kw">To</span> ByteOut
+    Data = Data &amp; Chr(WavByteArray(I))
+<span class="kw">Next </span>I
+    ByteToData = Data
+<span class="kw">End Function</span>
+<span class="co">&#39; Byte 輸出</span>
+<span class="kw">Function </span>ByteData(ByteInp <span class="kw">As</span> <span class="dt">Integer</span>, ByteOut <span class="kw">As</span> <span class="dt">Integer</span>)
+    Data = <span class="st">&quot;&quot;</span>
+<span class="kw">For </span>I = ByteInp <span class="kw">To</span> ByteOut
+    Data = Data &amp; WavByteArray(I)
+<span class="kw">Next </span>I
+    ByteData = Data
+<span class="kw">End Function</span>
+
+<span class="kw">Private</span> <span class="kw">Sub </span>HScroll1_Change()
+        Picture1.Cls
+        Picture1.Scale (0, 80)-(200, -80)
+    <span class="kw">For </span>I = 0 <span class="kw">To</span> 200
+        <span class="kw">If </span>HScroll1.Value + I &lt;= HScroll1.Max <span class="kw">Then</span>
+            Picture1.Line (I, (WavByteArray(HScroll1.Value + I) - 128))-(I, -(WavByteArray(HScroll1.Value + I) - 128))
+        <span class="kw">Else</span>
+            Picture1.PSet (I, 0)
+        <span class="kw">End If</span>
+    <span class="kw">Next </span>I
+    
+    Text2.Text = Format((HScroll1.Value - 44) / DataF, <span class="st">&quot;0.00000&quot;</span>) <span class="co">&#39; 目前秒數</span>
+<span class="kw">End Sub</span></code></pre>
+<ul>
+<li>原始碼下載： <a href="http://files.dotblogs.com.tw/0xde/1312/2013124195539553.rar">Visual Basic 6.0 繪製 Wav 波形.rar</a></li>
+</ul>
+<p>【本文作者為「廖憲得」，原文網址為： <a href="http://www.dotblogs.com.tw/0xde/archive/2013/12/04/132528.aspx">http://www.dotblogs.com.tw/0xde/archive/2013/12/04/132528.aspx</a> ，由陳鍾誠編輯後納入本雜誌】</p>
+<h2 id="開放電腦計畫-8-16-位元微控制器-mcu0-的中斷處理-作者陳鍾誠"><a href="#開放電腦計畫-8-16-位元微控制器-mcu0-的中斷處理-作者陳鍾誠">開放電腦計畫 (8) – 16 位元微控制器 MCU0 的中斷處理 (作者：陳鍾誠)</a></h2>
+<p>在上一期當中，我們設計出了出了 MCU0 這顆 16 位元處理器，文章網址如下：</p>
+<ul>
+<li><a href="https://dl.dropboxusercontent.com/u/101584453/pmag/201401/htm/article5.html">開放電腦計畫 (7) – 完整指令集的 16 位元處理器 MCU0s</a></li>
+</ul>
+<p>雖然上述處理器的指令已經算是完整了，但是卻沒有加入中斷機制，本其中我們將說明中斷在 Verilog 中的處理方式。</p>
+<h3 id="mcu0-的中斷位元"><a href="#mcu0-的中斷位元">MCU0 的中斷位元</a></h3>
+<p>現代的處理器通常會用中斷的方式來處理「輸出入請求」，或者進行「行程切換」， 在本節中我們將透過微控制器 MCU0 來示範中斷的處理方式。</p>
+<p>在 MCU0 中，狀態暫存器裏有個中斷位元，用來代表目前是否正處於中斷狀態中，以下是其定義：</p>
+<pre><code>`define SW   R[2]      // 狀態暫存器
+`define I    `SW[3]    // 是否中斷中</code></pre>
+<p>當 MCU0 處於中斷狀態時，就無法在接受任何的中斷請求，換言之、MCU0 採用不可重入的中斷機制。</p>
+<h3 id="mcu0-的中斷處理"><a href="#mcu0-的中斷處理">MCU0 的中斷處理</a></h3>
+<p>當中斷 interrupt 發生時，會透過 irq 線路傳入中斷代號，此時 MCU0 會檢查是否已經處於中斷狀態， 如果是則忽略此一中斷請求。否則就會進入中斷狀態，將返回位址記錄到 LR 中，然後執行 PC = irq 指令 跳到中斷位址，開始執行中斷處理程式。其主要程式碼如下所示：</p>
+<pre class="sourceCode verilog"><code class="sourceCode verilog"><span class="kw">module</span> cpu(<span class="dt">input</span> clock, <span class="dt">input</span> interrupt, <span class="dt">input</span>[<span class="dv">2</span>:<span class="dv">0</span>] irq); 
+...
+  <span class="kw">always</span> @(<span class="kw">posedge</span> clock) <span class="kw">begin</span> <span class="co">// 在 clock 時脈的正邊緣時觸發</span>
+    IR = m[<span class="ot">`PC</span>];                <span class="co">// 指令擷取階段：IR=m[PC], 2 個 Byte 的記憶體</span>
+    pc0= <span class="ot">`PC</span>;                   <span class="co">// 儲存舊的 PC 值在 pc0 中。</span>
+    <span class="ot">`PC</span> = <span class="ot">`PC</span><span class="dv">+1</span>;                <span class="co">// 擷取完成，PC 前進到下一個指令位址</span>
+    <span class="kw">case</span> (<span class="ot">`OP</span>)                  <span class="co">// 解碼、根據 OP 執行動作</span>
+      <span class="dv">LD:</span> <span class="ot">`A</span> = <span class="ot">`M</span>;              <span class="co">// LD C</span>
+      ...
+      <span class="dv">OP8:</span> <span class="kw">case</span> (IR[<span class="dv">11</span>:<span class="dv">8</span>])      <span class="co">// OP8: 加長運算碼</span>
+        ...
+        <span class="dv">IRET:</span> <span class="kw">begin</span> <span class="ot">`PC</span> = <span class="ot">`LR</span>; <span class="ot">`I</span> = <span class="dv">0</span>; <span class="kw">end</span>          <span class="co">// IRET</span>
+    ...
+      <span class="kw">endcase</span>   
+    <span class="kw">endcase</span>
+    <span class="co">// 印出 PC, IR, SW, A 等暫存器值以供觀察</span>
+    <span class="dt">$display</span>(<span class="st">&quot;%4dns PC=%x IR=%x, SW=%x, A=%d SP=%x LR=%x&quot;</span>, <span class="dt">$stime</span>, pc0, IR, <span class="ot">`SW</span>, <span class="ot">`A</span>, <span class="ot">`SP</span>, <span class="ot">`LR</span>);
+    <span class="kw">if</span> (!<span class="ot">`I</span> &amp;&amp; interrupt) <span class="kw">begin</span>
+      <span class="ot">`I</span> = <span class="dv">1</span>;
+      <span class="ot">`LR</span> = <span class="ot">`PC</span>;
+      <span class="ot">`PC</span> = irq;
+    <span class="kw">end</span>    
+  <span class="kw">end</span>
+<span class="kw">endmodule</span></code></pre>
+<h3 id="完整的-mcu0-中斷測試程式"><a href="#完整的-mcu0-中斷測試程式">完整的 MCU0 中斷測試程式</a></h3>
+<pre class="sourceCode verilog"><code class="sourceCode verilog"><span class="ot">`define OP   IR[15:12] </span><span class="co">// 運算碼</span>
+<span class="ot">`define C    IR[11:0]  </span><span class="co">// 常數欄位</span>
+<span class="ot">`define SC8  $signed(IR[7:0]) </span><span class="co">// 常數欄位</span>
+<span class="ot">`define C4   IR[3:0]   </span><span class="co">// 常數欄位</span>
+<span class="ot">`define Ra   IR[7:4]   </span><span class="co">// Ra</span>
+<span class="ot">`define Rb   IR[3:0]   </span><span class="co">// Rb</span>
+<span class="ot">`define A    R[0]      </span><span class="co">// 累積器</span>
+<span class="ot">`define LR   R[1]      </span><span class="co">// 狀態暫存器</span>
+<span class="ot">`define SW   R[2]      </span><span class="co">// 狀態暫存器</span>
+<span class="ot">`define SP   R[3]      </span><span class="co">// 堆疊暫存器</span>
+<span class="ot">`define PC   R[4]      </span><span class="co">// 程式計數器</span>
+<span class="ot">`define N    `SW[15]   </span><span class="co">// 負號旗標</span>
+<span class="ot">`define Z    `SW[14]   </span><span class="co">// 零旗標</span>
+<span class="ot">`define I    `SW[3]    </span><span class="co">// 是否中斷中</span>
+<span class="ot">`define M    m[`C]     </span><span class="co">// 存取記憶體</span>
+
+<span class="kw">module</span> cpu(<span class="dt">input</span> clock, <span class="dt">input</span> interrupt, <span class="dt">input</span>[<span class="dv">2</span>:<span class="dv">0</span>] irq); 
+  <span class="dt">parameter</span> [<span class="dv">3</span>:<span class="dv">0</span>] LD=<span class="bn">4&#39;h0</span>,ST=<span class="bn">4&#39;h1</span>,ADD=<span class="bn">4&#39;h2</span>,SUB=<span class="bn">4&#39;h3</span>,MUL=<span class="bn">4&#39;h4</span>,DIV=<span class="bn">4&#39;h5</span>,AND=<span class="bn">4&#39;h6</span>,OR=<span class="bn">4&#39;h7</span>,XOR=<span class="bn">4&#39;h8</span>,CMP=<span class="bn">4&#39;h9</span>,JMP=<span class="bn">4&#39;hA</span>,JEQ=<span class="bn">4&#39;hB</span>, JLT=<span class="bn">4&#39;hC</span>, JLE=<span class="bn">4&#39;hD</span>, JSUB=<span class="bn">4&#39;hE</span>, OP8=<span class="bn">4&#39;hF</span>;
+  <span class="dt">parameter</span> [<span class="dv">3</span>:<span class="dv">0</span>] LDI=<span class="bn">4&#39;h0</span>, MOV=<span class="bn">4&#39;h2</span>, PUSH=<span class="bn">4&#39;h3</span>, POP=<span class="bn">4&#39;h4</span>, SHL=<span class="bn">4&#39;h5</span>, SHR=<span class="bn">4&#39;h6</span>, ADDI=<span class="bn">4&#39;h7</span>, SUBI=<span class="bn">4&#39;h8</span>, NEG=<span class="bn">4&#39;h9</span>, SWI=<span class="bn">4&#39;hA</span>, NSW=<span class="bn">4&#39;hD</span>, RET=<span class="bn">4&#39;hE</span>, IRET=<span class="bn">4&#39;hF</span>;
+  <span class="dt">reg</span> [<span class="dv">15</span>:<span class="dv">0</span>] IR;    <span class="co">// 指令暫存器</span>
+  <span class="dt">reg</span> <span class="dt">signed</span> [<span class="dv">15</span>:<span class="dv">0</span>] R[<span class="dv">0</span>:<span class="dv">4</span>];
+  <span class="dt">reg</span> <span class="dt">signed</span> [<span class="dv">15</span>:<span class="dv">0</span>] pc0;
+  <span class="dt">reg</span> <span class="dt">signed</span> [<span class="dv">15</span>:<span class="dv">0</span>] m [<span class="dv">0</span>:<span class="dv">4095</span>]; <span class="co">// 內部的快取記憶體</span>
+  <span class="dt">integer</span> i;
+  <span class="kw">initial</span>  <span class="co">// 初始化</span>
+  <span class="kw">begin</span>
+    <span class="ot">`PC</span> = <span class="dv">0</span>; <span class="co">// 將 PC 設為起動位址 0</span>
+    <span class="ot">`SW</span> = <span class="dv">0</span>;
+    <span class="dt">$readmemh</span>(<span class="st">&quot;mcu0i.hex&quot;</span>, m);
+    <span class="kw">for</span> (i=<span class="dv">0</span>; i &lt; <span class="dv">32</span>; i=i<span class="dv">+2</span>) <span class="kw">begin</span>
+       <span class="dt">$display</span>(<span class="st">&quot;%x %x&quot;</span>, i, m[i]);
+    <span class="kw">end</span>
+  <span class="kw">end</span>
+  
+  <span class="kw">always</span> @(<span class="kw">posedge</span> clock) <span class="kw">begin</span> <span class="co">// 在 clock 時脈的正邊緣時觸發</span>
+    IR = m[<span class="ot">`PC</span>];                <span class="co">// 指令擷取階段：IR=m[PC], 2 個 Byte 的記憶體</span>
+    pc0= <span class="ot">`PC</span>;                   <span class="co">// 儲存舊的 PC 值在 pc0 中。</span>
+    <span class="ot">`PC</span> = <span class="ot">`PC</span><span class="dv">+1</span>;                <span class="co">// 擷取完成，PC 前進到下一個指令位址</span>
+    <span class="kw">case</span> (<span class="ot">`OP</span>)                  <span class="co">// 解碼、根據 OP 執行動作</span>
+      <span class="dv">LD:</span> <span class="ot">`A</span> = <span class="ot">`M</span>;              <span class="co">// LD C</span>
+      <span class="dv">ST:</span> <span class="ot">`M</span> = <span class="ot">`A</span>;              <span class="co">// ST C</span>
+      <span class="dv">ADD:</span> <span class="ot">`A</span> = <span class="ot">`A</span> + <span class="ot">`M</span>;        <span class="co">// ADD C</span>
+      <span class="dv">SUB:</span> <span class="ot">`A</span> = <span class="ot">`A</span> - <span class="ot">`M</span>;        <span class="co">// SUB C</span>
+      <span class="dv">MUL:</span> <span class="ot">`A</span> = <span class="ot">`A</span> * <span class="ot">`M</span>;        <span class="co">// MUL C</span>
+      <span class="dv">DIV:</span> <span class="ot">`A</span> = <span class="ot">`A</span> / <span class="ot">`M</span>;        <span class="co">// DIV C</span>
+      <span class="dv">AND:</span> <span class="ot">`A</span> = <span class="ot">`A</span> &amp; <span class="ot">`M</span>;        <span class="co">// AND C</span>
+      <span class="dv">OR :</span> <span class="ot">`A</span> = <span class="ot">`A</span> | <span class="ot">`M</span>;        <span class="co">// OR  C</span>
+      <span class="dv">XOR:</span> <span class="ot">`A</span> = <span class="ot">`A</span> ^ <span class="ot">`M</span>;        <span class="co">// XOR C</span>
+      <span class="dv">CMP:</span> <span class="kw">begin</span> <span class="ot">`N</span>=(<span class="ot">`A</span> &lt; <span class="ot">`M</span>); <span class="ot">`Z</span>=(<span class="ot">`A</span>==<span class="ot">`M</span>); <span class="kw">end</span> <span class="co">// CMP C</span>
+      <span class="dv">JMP:</span> <span class="ot">`PC</span> = <span class="ot">`C</span>;            <span class="co">// JSUB C</span>
+      <span class="dv">JEQ:</span> <span class="kw">if</span> (<span class="ot">`Z</span>) <span class="ot">`PC</span>=<span class="ot">`C</span>;      <span class="co">// JEQ C</span>
+      <span class="dv">JLT:</span> <span class="kw">if</span> (<span class="ot">`N</span>) <span class="ot">`PC</span>=<span class="ot">`C</span>;      <span class="co">// JLT C</span>
+      <span class="dv">JLE:</span> <span class="kw">if</span> (<span class="ot">`N</span> || <span class="ot">`Z</span>) <span class="ot">`PC</span>=<span class="ot">`C</span>;<span class="co">// JLE C</span>
+      <span class="dv">JSUB:</span><span class="kw">begin</span> <span class="ot">`LR</span> = <span class="ot">`PC</span>; <span class="ot">`PC</span> = <span class="ot">`C</span>; <span class="kw">end</span> <span class="co">// JSUB C</span>
+      <span class="dv">OP8:</span> <span class="kw">case</span> (IR[<span class="dv">11</span>:<span class="dv">8</span>])      <span class="co">// OP8: 加長運算碼</span>
+        <span class="dv">LDI:</span>  R[<span class="ot">`Ra</span>] = <span class="ot">`C4</span>;                         <span class="co">// LDI C</span>
+        <span class="dv">ADDI:</span> R[<span class="ot">`Ra</span>] = R[<span class="ot">`Ra</span>] + <span class="ot">`C4</span>;                <span class="co">// ADDI C</span>
+        <span class="dv">SUBI:</span> R[<span class="ot">`Ra</span>] = R[<span class="ot">`Ra</span>] - <span class="ot">`C4</span>;                <span class="co">// ADDI C</span>
+        <span class="dv">MOV:</span>  R[<span class="ot">`Ra</span>] = R[<span class="ot">`Rb</span>];                      <span class="co">// MOV Ra, Rb</span>
+        <span class="dv">PUSH:</span> <span class="kw">begin</span> <span class="ot">`SP</span>=<span class="ot">`SP</span><span class="dv">-1</span>; m[<span class="ot">`SP</span>] = R[<span class="ot">`Ra</span>]; <span class="kw">end</span> <span class="co">// PUSH Ra</span>
+        <span class="dv">POP:</span>  <span class="kw">begin</span> R[<span class="ot">`Ra</span>] = m[<span class="ot">`SP</span>]; <span class="ot">`SP</span>=<span class="ot">`SP</span><span class="dv">+1</span>; <span class="kw">end</span> <span class="co">// POP  Ra</span>
+        <span class="dv">SHL:</span>  R[<span class="ot">`Ra</span>] = R[<span class="ot">`Ra</span>] &lt;&lt; <span class="ot">`C4</span>;               <span class="co">// SHL C</span>
+        <span class="dv">SHR:</span>  R[<span class="ot">`Ra</span>] = R[<span class="ot">`Ra</span>] &gt;&gt; <span class="ot">`C4</span>;               <span class="co">// SHR C</span>
+        <span class="dv">SWI:</span>  <span class="dt">$display</span>(<span class="st">&quot;SWI C8=%d A=%d&quot;</span>, <span class="ot">`SC8</span>, <span class="ot">`A</span>); <span class="co">// SWI C</span>
+        <span class="dv">NEG:</span>  R[<span class="ot">`Ra</span>] = ~R[<span class="ot">`Ra</span>];                     <span class="co">// NEG Ra</span>
+        <span class="dv">NSW:</span>  <span class="kw">begin</span> <span class="ot">`N</span>=~<span class="ot">`N</span>; <span class="ot">`Z</span>=~<span class="ot">`Z</span>; <span class="kw">end</span>             <span class="co">// NSW  (negate N, Z)</span>
+        <span class="dv">RET:</span>  <span class="ot">`PC</span> = <span class="ot">`LR</span>;                            <span class="co">// RET</span>
+        <span class="dv">IRET:</span> <span class="kw">begin</span> <span class="ot">`PC</span> = <span class="ot">`LR</span>; <span class="ot">`I</span> = <span class="dv">0</span>; <span class="kw">end</span>          <span class="co">// IRET</span>
+        <span class="kw">default</span>: <span class="dt">$display</span>(<span class="st">&quot;op8=%d , not defined!&quot;</span>, IR[<span class="dv">11</span>:<span class="dv">8</span>]);
+      <span class="kw">endcase</span>
+    <span class="kw">endcase</span>
+    <span class="co">// 印出 PC, IR, SW, A 等暫存器值以供觀察</span>
+    <span class="dt">$display</span>(<span class="st">&quot;%4dns PC=%x IR=%x, SW=%x, A=%d SP=%x LR=%x&quot;</span>, <span class="dt">$stime</span>, pc0, IR, <span class="ot">`SW</span>, <span class="ot">`A</span>, <span class="ot">`SP</span>, <span class="ot">`LR</span>);
+    <span class="kw">if</span> (!<span class="ot">`I</span> &amp;&amp; interrupt) <span class="kw">begin</span>
+      <span class="ot">`I</span> = <span class="dv">1</span>;
+      <span class="ot">`LR</span> = <span class="ot">`PC</span>;
+      <span class="ot">`PC</span> = irq;
+    <span class="kw">end</span>    
+  <span class="kw">end</span>
+<span class="kw">endmodule</span>
+
+<span class="kw">module</span> main;                <span class="co">// 測試程式開始</span>
+<span class="dt">reg</span> clock;                  <span class="co">// 時脈 clock 變數</span>
+<span class="dt">reg</span> interrupt;
+<span class="dt">reg</span> [<span class="dv">2</span>:<span class="dv">0</span>] irq;
+
+cpu cpux(clock, interrupt, irq);            <span class="co">// 宣告 cpu0mc 處理器</span>
+
+<span class="kw">initial</span> <span class="kw">begin</span>
+  clock = <span class="dv">0</span>;          <span class="co">// 一開始 clock 設定為 0</span>
+  interrupt = <span class="dv">0</span>;
+  irq = <span class="dv">2</span>;
+<span class="kw">end</span>
+<span class="kw">always</span> <span class="bn">#10</span> clock=~clock;    <span class="co">// 每隔 10ns 反相，時脈週期為 20ns</span>
+
+<span class="kw">always</span> <span class="bn">#500</span> <span class="kw">begin</span> 
+  interrupt=<span class="dv">1</span>;
+  <span class="bn">#30</span>;
+  interrupt=<span class="dv">0</span>;
+<span class="kw">end</span>
+
+<span class="kw">initial</span> <span class="bn">#4000</span> <span class="dt">$finish</span>;      <span class="co">// 停止測試。</span>
+
+<span class="kw">endmodule</span></code></pre>
+<h3 id="輸入機器碼與組合語言"><a href="#輸入機器碼與組合語言">輸入機器碼與組合語言</a></h3>
+<pre><code>A00F  // 00            JMP   RESET
+A003  // 01            JMP   ERROR
+A004  // 02            JMP   IRQ
+A006  // 03    ERROR:  JMP   ERROR
+F300  // 04    IRQ:    PUSH  A
+F301  // 05            PUSH  LR
+F302  // 06            PUSH  SW
+001E  // 07            LD    TIMER
+F701  // 08            ADDI  1
+FA01  // 09            SWI   1
+101E  // 0A            ST    TIMER
+F402  // 0B            POP   SW
+F401  // 0C            POP   LR
+F400  // 0D            POP   A
+FF00  // 0E            IRET
+001F  // 0F    RESET:  LD    STACKEND
+F230  // 10            MOV   SP, A
+001C  // 11    LOOP:   LD    I
+901D  // 12            CMP   N
+B01A  // 13            JEQ   EXIT
+F701  // 14            ADDI  1
+101C  // 15            ST    I
+001B  // 16            LD    SUM
+201C  // 17            ADD   I
+101B  // 18            ST    SUM
+A011  // 19            JMP   LOOP
+A01A  // 1A    EXIT:   JMP   EXIT
+0000  // 1B    SUM:    WORD  0
+0000  // 1C    I:      WORD  0
+000A  // 1D    N:      WORD  10
+0000  // 1E    TIMER:  WORD  0
+007F  // 1F    STACKEND: WORD 127</code></pre>
+<h3 id="執行結果"><a href="#執行結果">執行結果</a></h3>
+<pre><code>D:\Dropbox\Public\web\oc\code\mcu0&gt;iverilog -o mcu0i mcu0i.v
+
+D:\Dropbox\Public\web\oc\code\mcu0&gt;vvp mcu0i
+WARNING: mcu0i.v:29: $readmemh(mcu0i.hex): Not enough words in the file for the
+requested range [0:4095].
+00000000 a00f
+00000002 a004
+00000004 f300
+00000006 f302
+00000008 f701
+0000000a 101e
+0000000c f401
+0000000e ff00
+00000010 f230
+00000012 901d
+00000014 f701
+00000016 001b
+00000018 101b
+0000001a a01a
+0000001c 0000
+0000001e 0000
+  10ns PC=0000 IR=a00f, SW=0000, A=    x SP=xxxx LR=xxxx
+  30ns PC=000f IR=001f, SW=0000, A=  127 SP=xxxx LR=xxxx
+  50ns PC=0010 IR=f230, SW=0000, A=  127 SP=007f LR=xxxx
+  70ns PC=0011 IR=001c, SW=0000, A=    0 SP=007f LR=xxxx
+  90ns PC=0012 IR=901d, SW=8000, A=    0 SP=007f LR=xxxx
+ 110ns PC=0013 IR=b01a, SW=8000, A=    0 SP=007f LR=xxxx
+ 130ns PC=0014 IR=f701, SW=8000, A=    1 SP=007f LR=xxxx
+ 150ns PC=0015 IR=101c, SW=8000, A=    1 SP=007f LR=xxxx
+ 170ns PC=0016 IR=001b, SW=8000, A=    0 SP=007f LR=xxxx
+ 190ns PC=0017 IR=201c, SW=8000, A=    1 SP=007f LR=xxxx
+ 210ns PC=0018 IR=101b, SW=8000, A=    1 SP=007f LR=xxxx
+ 230ns PC=0019 IR=a011, SW=8000, A=    1 SP=007f LR=xxxx
+ 250ns PC=0011 IR=001c, SW=8000, A=    1 SP=007f LR=xxxx
+ 270ns PC=0012 IR=901d, SW=8000, A=    1 SP=007f LR=xxxx
+ 290ns PC=0013 IR=b01a, SW=8000, A=    1 SP=007f LR=xxxx
+ 310ns PC=0014 IR=f701, SW=8000, A=    2 SP=007f LR=xxxx
+ 330ns PC=0015 IR=101c, SW=8000, A=    2 SP=007f LR=xxxx
+ 350ns PC=0016 IR=001b, SW=8000, A=    1 SP=007f LR=xxxx
+ 370ns PC=0017 IR=201c, SW=8000, A=    3 SP=007f LR=xxxx
+ 390ns PC=0018 IR=101b, SW=8000, A=    3 SP=007f LR=xxxx
+ 410ns PC=0019 IR=a011, SW=8000, A=    3 SP=007f LR=xxxx
+ 430ns PC=0011 IR=001c, SW=8000, A=    2 SP=007f LR=xxxx
+ 450ns PC=0012 IR=901d, SW=8000, A=    2 SP=007f LR=xxxx
+ 470ns PC=0013 IR=b01a, SW=8000, A=    2 SP=007f LR=xxxx
+ 490ns PC=0014 IR=f701, SW=8000, A=    3 SP=007f LR=xxxx
+ 510ns PC=0015 IR=101c, SW=8000, A=    3 SP=007f LR=xxxx
+ 530ns PC=0002 IR=a004, SW=8008, A=    3 SP=007f LR=0016
+ 550ns PC=0004 IR=f300, SW=8008, A=    3 SP=007e LR=0016
+ 570ns PC=0005 IR=f301, SW=8008, A=    3 SP=007d LR=0016
+ 590ns PC=0006 IR=f302, SW=8008, A=    3 SP=007c LR=0016
+ 610ns PC=0007 IR=001e, SW=8008, A=    0 SP=007c LR=0016
+ 630ns PC=0008 IR=f701, SW=8008, A=    1 SP=007c LR=0016
+SWI C8=   1 A=    1
+ 650ns PC=0009 IR=fa01, SW=8008, A=    1 SP=007c LR=0016
+ 670ns PC=000a IR=101e, SW=8008, A=    1 SP=007c LR=0016
+ 690ns PC=000b IR=f402, SW=8008, A=    3 SP=007d LR=0016
+ 710ns PC=000c IR=f401, SW=8008, A=    3 SP=007e LR=0016
+ 730ns PC=000d IR=f400, SW=8008, A=    3 SP=007f LR=0016
+ 750ns PC=000e IR=ff00, SW=8000, A=    3 SP=007f LR=0016
+ 770ns PC=0016 IR=001b, SW=8000, A=    3 SP=007f LR=0016
+ 790ns PC=0017 IR=201c, SW=8000, A=    6 SP=007f LR=0016
+ 810ns PC=0018 IR=101b, SW=8000, A=    6 SP=007f LR=0016
+ 830ns PC=0019 IR=a011, SW=8000, A=    6 SP=007f LR=0016
+ 850ns PC=0011 IR=001c, SW=8000, A=    3 SP=007f LR=0016
+ 870ns PC=0012 IR=901d, SW=8000, A=    3 SP=007f LR=0016
+ 890ns PC=0013 IR=b01a, SW=8000, A=    3 SP=007f LR=0016
+ 910ns PC=0014 IR=f701, SW=8000, A=    4 SP=007f LR=0016
+ 930ns PC=0015 IR=101c, SW=8000, A=    4 SP=007f LR=0016
+ 950ns PC=0016 IR=001b, SW=8000, A=    6 SP=007f LR=0016
+ 970ns PC=0017 IR=201c, SW=8000, A=   10 SP=007f LR=0016
+ 990ns PC=0018 IR=101b, SW=8000, A=   10 SP=007f LR=0016
+1010ns PC=0019 IR=a011, SW=8000, A=   10 SP=007f LR=0016
+1030ns PC=0011 IR=001c, SW=8000, A=    4 SP=007f LR=0016
+1050ns PC=0002 IR=a004, SW=8008, A=    4 SP=007f LR=0012
+1070ns PC=0004 IR=f300, SW=8008, A=    4 SP=007e LR=0012
+1090ns PC=0005 IR=f301, SW=8008, A=    4 SP=007d LR=0012
+1110ns PC=0006 IR=f302, SW=8008, A=    4 SP=007c LR=0012
+1130ns PC=0007 IR=001e, SW=8008, A=    1 SP=007c LR=0012
+1150ns PC=0008 IR=f701, SW=8008, A=    2 SP=007c LR=0012
+SWI C8=   1 A=    2
+1170ns PC=0009 IR=fa01, SW=8008, A=    2 SP=007c LR=0012
+1190ns PC=000a IR=101e, SW=8008, A=    2 SP=007c LR=0012
+1210ns PC=000b IR=f402, SW=8008, A=    4 SP=007d LR=0012
+1230ns PC=000c IR=f401, SW=8008, A=    4 SP=007e LR=0012
+1250ns PC=000d IR=f400, SW=8008, A=    4 SP=007f LR=0012
+1270ns PC=000e IR=ff00, SW=8000, A=    4 SP=007f LR=0012
+1290ns PC=0012 IR=901d, SW=8000, A=    4 SP=007f LR=0012
+1310ns PC=0013 IR=b01a, SW=8000, A=    4 SP=007f LR=0012
+1330ns PC=0014 IR=f701, SW=8000, A=    5 SP=007f LR=0012
+1350ns PC=0015 IR=101c, SW=8000, A=    5 SP=007f LR=0012
+1370ns PC=0016 IR=001b, SW=8000, A=   10 SP=007f LR=0012
+1390ns PC=0017 IR=201c, SW=8000, A=   15 SP=007f LR=0012
+1410ns PC=0018 IR=101b, SW=8000, A=   15 SP=007f LR=0012
+1430ns PC=0019 IR=a011, SW=8000, A=   15 SP=007f LR=0012
+1450ns PC=0011 IR=001c, SW=8000, A=    5 SP=007f LR=0012
+1470ns PC=0012 IR=901d, SW=8000, A=    5 SP=007f LR=0012
+1490ns PC=0013 IR=b01a, SW=8000, A=    5 SP=007f LR=0012
+1510ns PC=0014 IR=f701, SW=8000, A=    6 SP=007f LR=0012
+1530ns PC=0015 IR=101c, SW=8000, A=    6 SP=007f LR=0012
+1550ns PC=0016 IR=001b, SW=8000, A=   15 SP=007f LR=0012
+1570ns PC=0017 IR=201c, SW=8000, A=   21 SP=007f LR=0012
+1590ns PC=0002 IR=a004, SW=8008, A=   21 SP=007f LR=0018
+1610ns PC=0004 IR=f300, SW=8008, A=   21 SP=007e LR=0018
+1630ns PC=0005 IR=f301, SW=8008, A=   21 SP=007d LR=0018
+1650ns PC=0006 IR=f302, SW=8008, A=   21 SP=007c LR=0018
+1670ns PC=0007 IR=001e, SW=8008, A=    2 SP=007c LR=0018
+1690ns PC=0008 IR=f701, SW=8008, A=    3 SP=007c LR=0018
+SWI C8=   1 A=    3
+1710ns PC=0009 IR=fa01, SW=8008, A=    3 SP=007c LR=0018
+1730ns PC=000a IR=101e, SW=8008, A=    3 SP=007c LR=0018
+1750ns PC=000b IR=f402, SW=8008, A=   21 SP=007d LR=0018
+1770ns PC=000c IR=f401, SW=8008, A=   21 SP=007e LR=0018
+1790ns PC=000d IR=f400, SW=8008, A=   21 SP=007f LR=0018
+1810ns PC=000e IR=ff00, SW=8000, A=   21 SP=007f LR=0018
+1830ns PC=0018 IR=101b, SW=8000, A=   21 SP=007f LR=0018
+1850ns PC=0019 IR=a011, SW=8000, A=   21 SP=007f LR=0018
+1870ns PC=0011 IR=001c, SW=8000, A=    6 SP=007f LR=0018
+1890ns PC=0012 IR=901d, SW=8000, A=    6 SP=007f LR=0018
+1910ns PC=0013 IR=b01a, SW=8000, A=    6 SP=007f LR=0018
+1930ns PC=0014 IR=f701, SW=8000, A=    7 SP=007f LR=0018
+1950ns PC=0015 IR=101c, SW=8000, A=    7 SP=007f LR=0018
+1970ns PC=0016 IR=001b, SW=8000, A=   21 SP=007f LR=0018
+1990ns PC=0017 IR=201c, SW=8000, A=   28 SP=007f LR=0018
+2010ns PC=0018 IR=101b, SW=8000, A=   28 SP=007f LR=0018
+2030ns PC=0019 IR=a011, SW=8000, A=   28 SP=007f LR=0018
+2050ns PC=0011 IR=001c, SW=8000, A=    7 SP=007f LR=0018
+2070ns PC=0012 IR=901d, SW=8000, A=    7 SP=007f LR=0018
+2090ns PC=0013 IR=b01a, SW=8000, A=    7 SP=007f LR=0018
+2110ns PC=0002 IR=a004, SW=8008, A=    7 SP=007f LR=0014
+2130ns PC=0004 IR=f300, SW=8008, A=    7 SP=007e LR=0014
+2150ns PC=0005 IR=f301, SW=8008, A=    7 SP=007d LR=0014
+2170ns PC=0006 IR=f302, SW=8008, A=    7 SP=007c LR=0014
+2190ns PC=0007 IR=001e, SW=8008, A=    3 SP=007c LR=0014
+2210ns PC=0008 IR=f701, SW=8008, A=    4 SP=007c LR=0014
+SWI C8=   1 A=    4
+2230ns PC=0009 IR=fa01, SW=8008, A=    4 SP=007c LR=0014
+2250ns PC=000a IR=101e, SW=8008, A=    4 SP=007c LR=0014
+2270ns PC=000b IR=f402, SW=8008, A=    7 SP=007d LR=0014
+2290ns PC=000c IR=f401, SW=8008, A=    7 SP=007e LR=0014
+2310ns PC=000d IR=f400, SW=8008, A=    7 SP=007f LR=0014
+2330ns PC=000e IR=ff00, SW=8000, A=    7 SP=007f LR=0014
+2350ns PC=0014 IR=f701, SW=8000, A=    8 SP=007f LR=0014
+2370ns PC=0015 IR=101c, SW=8000, A=    8 SP=007f LR=0014
+2390ns PC=0016 IR=001b, SW=8000, A=   28 SP=007f LR=0014
+2410ns PC=0017 IR=201c, SW=8000, A=   36 SP=007f LR=0014
+2430ns PC=0018 IR=101b, SW=8000, A=   36 SP=007f LR=0014
+2450ns PC=0019 IR=a011, SW=8000, A=   36 SP=007f LR=0014
+2470ns PC=0011 IR=001c, SW=8000, A=    8 SP=007f LR=0014
+2490ns PC=0012 IR=901d, SW=8000, A=    8 SP=007f LR=0014
+2510ns PC=0013 IR=b01a, SW=8000, A=    8 SP=007f LR=0014
+2530ns PC=0014 IR=f701, SW=8000, A=    9 SP=007f LR=0014
+2550ns PC=0015 IR=101c, SW=8000, A=    9 SP=007f LR=0014
+2570ns PC=0016 IR=001b, SW=8000, A=   36 SP=007f LR=0014
+2590ns PC=0017 IR=201c, SW=8000, A=   45 SP=007f LR=0014
+2610ns PC=0018 IR=101b, SW=8000, A=   45 SP=007f LR=0014
+2630ns PC=0019 IR=a011, SW=8000, A=   45 SP=007f LR=0014
+2650ns PC=0002 IR=a004, SW=8008, A=   45 SP=007f LR=0011
+2670ns PC=0004 IR=f300, SW=8008, A=   45 SP=007e LR=0011
+2690ns PC=0005 IR=f301, SW=8008, A=   45 SP=007d LR=0011
+2710ns PC=0006 IR=f302, SW=8008, A=   45 SP=007c LR=0011
+2730ns PC=0007 IR=001e, SW=8008, A=    4 SP=007c LR=0011
+2750ns PC=0008 IR=f701, SW=8008, A=    5 SP=007c LR=0011
+SWI C8=   1 A=    5
+2770ns PC=0009 IR=fa01, SW=8008, A=    5 SP=007c LR=0011
+2790ns PC=000a IR=101e, SW=8008, A=    5 SP=007c LR=0011
+2810ns PC=000b IR=f402, SW=8008, A=   45 SP=007d LR=0011
+2830ns PC=000c IR=f401, SW=8008, A=   45 SP=007e LR=0011
+2850ns PC=000d IR=f400, SW=8008, A=   45 SP=007f LR=0011
+2870ns PC=000e IR=ff00, SW=8000, A=   45 SP=007f LR=0011
+2890ns PC=0011 IR=001c, SW=8000, A=    9 SP=007f LR=0011
+2910ns PC=0012 IR=901d, SW=8000, A=    9 SP=007f LR=0011
+2930ns PC=0013 IR=b01a, SW=8000, A=    9 SP=007f LR=0011
+2950ns PC=0014 IR=f701, SW=8000, A=   10 SP=007f LR=0011
+2970ns PC=0015 IR=101c, SW=8000, A=   10 SP=007f LR=0011
+2990ns PC=0016 IR=001b, SW=8000, A=   45 SP=007f LR=0011
+3010ns PC=0017 IR=201c, SW=8000, A=   55 SP=007f LR=0011
+3030ns PC=0018 IR=101b, SW=8000, A=   55 SP=007f LR=0011
+3050ns PC=0019 IR=a011, SW=8000, A=   55 SP=007f LR=0011
+3070ns PC=0011 IR=001c, SW=8000, A=   10 SP=007f LR=0011
+3090ns PC=0012 IR=901d, SW=4000, A=   10 SP=007f LR=0011
+3110ns PC=0013 IR=b01a, SW=4000, A=   10 SP=007f LR=0011
+3130ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=0011
+3150ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=0011
+3170ns PC=0002 IR=a004, SW=4008, A=   10 SP=007f LR=001a
+3190ns PC=0004 IR=f300, SW=4008, A=   10 SP=007e LR=001a
+3210ns PC=0005 IR=f301, SW=4008, A=   10 SP=007d LR=001a
+3230ns PC=0006 IR=f302, SW=4008, A=   10 SP=007c LR=001a
+3250ns PC=0007 IR=001e, SW=4008, A=    5 SP=007c LR=001a
+3270ns PC=0008 IR=f701, SW=4008, A=    6 SP=007c LR=001a
+SWI C8=   1 A=    6
+3290ns PC=0009 IR=fa01, SW=4008, A=    6 SP=007c LR=001a
+3310ns PC=000a IR=101e, SW=4008, A=    6 SP=007c LR=001a
+3330ns PC=000b IR=f402, SW=4008, A=   10 SP=007d LR=001a
+3350ns PC=000c IR=f401, SW=4008, A=   10 SP=007e LR=001a
+3370ns PC=000d IR=f400, SW=4008, A=   10 SP=007f LR=001a
+3390ns PC=000e IR=ff00, SW=4000, A=   10 SP=007f LR=001a
+3410ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3430ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3450ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3470ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3490ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3510ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3530ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3550ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3570ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3590ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3610ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3630ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3650ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3670ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3690ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3710ns PC=0002 IR=a004, SW=4008, A=   10 SP=007f LR=001a
+3730ns PC=0004 IR=f300, SW=4008, A=   10 SP=007e LR=001a
+3750ns PC=0005 IR=f301, SW=4008, A=   10 SP=007d LR=001a
+3770ns PC=0006 IR=f302, SW=4008, A=   10 SP=007c LR=001a
+3790ns PC=0007 IR=001e, SW=4008, A=    6 SP=007c LR=001a
+3810ns PC=0008 IR=f701, SW=4008, A=    7 SP=007c LR=001a
+SWI C8=   1 A=    7
+3830ns PC=0009 IR=fa01, SW=4008, A=    7 SP=007c LR=001a
+3850ns PC=000a IR=101e, SW=4008, A=    7 SP=007c LR=001a
+3870ns PC=000b IR=f402, SW=4008, A=   10 SP=007d LR=001a
+3890ns PC=000c IR=f401, SW=4008, A=   10 SP=007e LR=001a
+3910ns PC=000d IR=f400, SW=4008, A=   10 SP=007f LR=001a
+3930ns PC=000e IR=ff00, SW=4000, A=   10 SP=007f LR=001a
+3950ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3970ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a
+3990ns PC=001a IR=a01a, SW=4000, A=   10 SP=007f LR=001a</code></pre>
+<p>您可以看到上述執行過程中，每隔一小段時間就會印出 SWI 指令，那就是下列中斷處理常式的 <code>SWI 1</code> 這個指令所印出來的， 當 2 號中斷發生時，程式會跳到 02 位址的指令，也就是 JMP IRQ，接著跳到 04 位址的 IRQ 標記上，開始執行中斷常式， 於是在 09 的 SWI 1 這行當中，我們會利用 <code>SWI:  $display(&quot;SWI C8=%d A=%d&quot;,</code>SC8, <code>A);</code> 這行程式印出累積器 A 的値 以便觀察到中斷的發生，以下是測試程式中斷部份得機器碼與組合語言。</p>
+<pre><code>A00F  // 00            JMP   RESET
+A003  // 01            JMP   ERROR
+A004  // 02            JMP   IRQ
+A006  // 03    ERROR:  JMP   ERROR
+F300  // 04    IRQ:    PUSH  A
+F301  // 05            PUSH  LR
+F302  // 06            PUSH  SW
+001E  // 07            LD    TIMER
+F701  // 08            ADDI  1
+FA01  // 09            SWI   1
+101E  // 0A            ST    TIMER
+F402  // 0B            POP   SW
+F401  // 0C            POP   LR
+F400  // 0D            POP   A
+FF00  // 0E            IRET
+...</code></pre>
+<p>以上片段中 IRQ 到 IRET 指令之間為中斷常式，每次中斷時該常式就會將 TIMER 加一，因此就可以用來計算中斷發生的次數， 雖然這樣的程式並沒有太大的用途，但還蠻適合用來說明中斷原理的。</p>
+<h3 id="結語-2"><a href="#結語-2">結語</a></h3>
+<p>中斷向量裏通常存放一堆跳躍指令，在中斷的時候可以可以透過這些指令跳到中斷處理程式， 以便判別中斷類型並進行對應的處理，後續我們將介紹如何使用中斷機制進行輸出入處理 與行程切換的動作。</p>
+<h2 id="講題分享---用-r-進行中文-text-mining-作者陳嘉葳taiwan-r-user-group"><a href="#講題分享---用-r-進行中文-text-mining-作者陳嘉葳taiwan-r-user-group">講題分享 - 用 R 進行中文 text Mining (作者:陳嘉葳@Taiwan R User Group)</a></h2>
+<p>本文使用的分析方法，目前僅能在Windows上測試成功。</p>
+<h3 id="簡介-1"><a href="#簡介-1">簡介</a></h3>
+<p>現今網路上有大量文字資料,例如 ptt, facebook, 或 mobile01等討論網站上都有大量文字留言, 由於這些資料繁多雜亂, 我們可藉由文字探勘技術萃取出有用的訊息, 讓人們有效率掌握這些網路文字所提供的訊息。而R語言是一款非常適合資料分析的工具,有一系列文字探勘的套件可供使用,本文將簡單介紹中文文字探勘套件的使用方法。</p>
+<h3 id="安裝需要工具"><a href="#安裝需要工具">安裝需要工具</a></h3>
+<p>我的環境: Windows 7 + R 版本 2.15.3 + RStudio 0.98.484</p>
+<p>安裝以下套件</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">&quot;rJava&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;Rwordseg&quot;</span>, <span class="dt">repos=</span><span class="st">&quot;http://R-Forge.R-project.org&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;tm&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;tmcn&quot;</span>, <span class="dt">repos=</span><span class="st">&quot;http://R-Forge.R-project.org&quot;</span>, <span class="dt">type=</span><span class="st">&quot;source&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;wordcloud&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;XML&quot;</span>)
+<span class="kw">install.packages</span>(<span class="st">&quot;RCurl&quot;</span>)</code></pre>
+<p>Windows上安裝rJava的注意事項:</p>
+<ul>
+<li>將jvm.dll加到環境變數PATH之中</li>
+<li>注意java的版本(32-bit or 64-bit)必須要和R一致 (Windows binary)之後再安裝，以避免</li>
+</ul>
+<h3 id="抓取ptt笨版文章列表"><a href="#抓取ptt笨版文章列表">抓取ptt笨版文章列表</a></h3>
+<p>我們以分析ptt笨版文章為範例, 首先到ptt web 版抓取文章的url連結。 我們利用 RCurl套件的 getURL和 XML套件的 htmlParseApply 抓取笨版文章列表的 html網頁, 再用xpathSApply 去擷取出所有文章的url連結並儲存。 或是可以到<a href="https://dl.dropboxusercontent.com/u/21186660/doc.rar">已下載ptt笨版文章</a></p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(XML)
+<span class="kw">library</span>(RCurl)
+
+data &lt;-<span class="st"> </span><span class="kw">list</span>()
+
+for( i in <span class="dv">1058</span>:<span class="dv">1118</span>){
+  tmp &lt;-<span class="st"> </span><span class="kw">paste</span>(i, <span class="st">&#39;.html&#39;</span>, <span class="dt">sep=</span><span class="st">&#39;&#39;</span>)
+  url &lt;-<span class="st"> </span><span class="kw">paste</span>(<span class="st">&#39;www.ptt.cc/bbs/StupidClown/index&#39;</span>, tmp, <span class="dt">sep=</span><span class="st">&#39;&#39;</span>)
+  html &lt;-<span class="st"> </span><span class="kw">htmlParse</span>(<span class="kw">getURL</span>(url))
+  url.list &lt;-<span class="st"> </span><span class="kw">xpathSApply</span>(html, <span class="st">&quot;//div[@class=&#39;title&#39;]/a[@href]&quot;</span>, xmlAttrs)
+  data &lt;-<span class="st"> </span><span class="kw">rbind</span>(data, <span class="kw">paste</span>(<span class="st">&#39;www.ptt.cc&#39;</span>, url.list, <span class="dt">sep=</span><span class="st">&#39;&#39;</span>))
+}
+data &lt;-<span class="st"> </span><span class="kw">unlist</span>(data)</code></pre>
+<p>下載列表中的笨版文章之後，接著才開始利用所有文章的url連結去抓所有文章的html網頁, 並用xpathSApply去解析出文章的內容並儲存。</p>
+<pre class="sourceCode r"><code class="sourceCode r">getdoc &lt;-<span class="st"> </span>function(line){
+  start &lt;-<span class="st"> </span><span class="kw">regexpr</span>(<span class="st">&#39;www&#39;</span>, line)[<span class="dv">1</span>]
+  end &lt;-<span class="st"> </span><span class="kw">regexpr</span>(<span class="st">&#39;html&#39;</span>, line)[<span class="dv">1</span>]
+  
+  if(start !=<span class="st"> </span>-<span class="dv">1</span> &amp;<span class="st"> </span>end !=<span class="st"> </span>-<span class="dv">1</span>){
+    url &lt;-<span class="st"> </span><span class="kw">substr</span>(line, start, end<span class="dv">+3</span>)
+    html &lt;-<span class="st"> </span><span class="kw">htmlParse</span>(<span class="kw">getURL</span>(url), <span class="dt">encoding=</span><span class="st">&#39;UTF-8&#39;</span>)
+    doc &lt;-<span class="st"> </span><span class="kw">xpathSApply</span>(html, <span class="st">&quot;//div[@id=&#39;main-content&#39;]&quot;</span>, xmlValue)
+    name &lt;-<span class="st"> </span><span class="kw">strsplit</span>(url, <span class="st">&#39;/&#39;</span>)[[<span class="dv">1</span>]][<span class="dv">4</span>]
+    <span class="kw">write</span>(doc, <span class="kw">gsub</span>(<span class="st">&#39;html&#39;</span>, <span class="st">&#39;txt&#39;</span>, name))
+  }      
+}</code></pre>
+<p>開始下載文章</p>
+<p>先用 <code>setwd(填入資料夾位置)</code> 這指令, 選定文件下載位置<br />或是用 <code>getwd()</code>確定目前的工作資料夾位置</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sapply</span>(data, getdoc)  </code></pre>
+<h3 id="開始文字處理"><a href="#開始文字處理">開始文字處理</a></h3>
+<p>首先載入以下text mining 套件</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tm)
+<span class="kw">library</span>(tmcn)</code></pre>
+<pre><code>## # tmcn Version: 0.1-2</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rwordseg)</code></pre>
+<pre><code>## Loading required package: rJava
+## # Version: 0.2-1</code></pre>
+<p>匯入剛才抓完的笨版文章，doc 是儲存下載ptt文章的資料夾, 這些文章變成我們分析的語料庫。</p>
+<pre class="sourceCode r"><code class="sourceCode r">d.corpus &lt;-<span class="st"> </span><span class="kw">Corpus</span>(<span class="kw">DirSource</span>(<span class="st">&quot;doc&quot;</span>), <span class="kw">list</span>(<span class="dt">language =</span> <span class="ot">NA</span>))</code></pre>
+<h3 id="進行數據清理"><a href="#進行數據清理">進行數據清理</a></h3>
+<p>1 清除標點符號, 數字</p>
+<pre class="sourceCode r"><code class="sourceCode r">d.corpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(d.corpus, removePunctuation)
+d.corpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(d.corpus, removeNumbers)</code></pre>
+<p>2 清除大小寫英文與數字</p>
+<pre class="sourceCode r"><code class="sourceCode r">d.corpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(d.corpus, function(word) {
+    <span class="kw">gsub</span>(<span class="st">&quot;[A-Za-z0-9]&quot;</span>, <span class="st">&quot;&quot;</span>, word)
+})</code></pre>
+<h3 id="進行中文斷詞"><a href="#進行中文斷詞">進行中文斷詞</a></h3>
+<p>首先，由於ptt有自己獨特的詞彙，例如發文不附沒圖、沒圖沒真相...等等，因此我們另外安裝 ptt 常用詞彙來協助斷詞。ptt常用詞彙可以從<a href="http://wubi.sogou.com/dict/cell.php?id=9182">搜狗細胞辭庫</a>下載 。</p>
+<pre class="sourceCode r"><code class="sourceCode r">words &lt;-<span class="st"> </span><span class="kw">readLines</span>(<span class="st">&quot;http://wubi.sogou.com/dict/download_txt.php?id=9182&quot;</span>)
+words &lt;-<span class="st"> </span><span class="kw">toTrad</span>(words)
+<span class="kw">insertWords</span>(words)</code></pre>
+<p>接著，我們利用我們 Rwordseg套件裡的segmentCN來進行斷詞。Rwordseg是<a href="http://jliblog.com/app/rwordseg">李艦</a>所撰寫的R套件，利用rJava去連結java分詞工具ansj來進行斷詞。 另外，斷詞後的詞彙有詞性，例如動詞、名詞、形容詞、介係詞等等，我們只挑出名詞來進行分析。</p>
+<pre class="sourceCode r"><code class="sourceCode r">d.corpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(d.corpus[<span class="dv">1</span>:<span class="dv">100</span>], segmentCN, <span class="dt">nature =</span> <span class="ot">TRUE</span>)
+d.corpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(d.corpus, function(sentence) {
+    noun &lt;-<span class="st"> </span><span class="kw">lapply</span>(sentence, function(w) {
+        w[<span class="kw">names</span>(w) ==<span class="st"> &quot;n&quot;</span>]
+    })
+    <span class="kw">unlist</span>(noun)
+})
+d.corpus &lt;-<span class="st"> </span><span class="kw">Corpus</span>(<span class="kw">VectorSource</span>(d.corpus))</code></pre>
+<p>接著進行清除停用字符，停用字符指的是一些文章中常見的單字，但卻無法提供我們資訊的冗字。例如有些、以及、因此...等等字詞。</p>
+<pre class="sourceCode r"><code class="sourceCode r">myStopWords &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="kw">stopwordsCN</span>(), <span class="st">&quot;編輯&quot;</span>, <span class="st">&quot;時間&quot;</span>, <span class="st">&quot;標題&quot;</span>, <span class="st">&quot;發信&quot;</span>, <span class="st">&quot;實業&quot;</span>, <span class="st">&quot;作者&quot;</span>)
+d.corpus &lt;-<span class="st"> </span><span class="kw">tm_map</span>(d.corpus, removeWords, myStopWords)</code></pre>
+<p>我們可以看看有哪些停用字符，這裡抽出前20個停用字符來看</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(myStopWords, <span class="dv">20</span>)</code></pre>
+<pre><code>##  [1] &quot;第二&quot;     &quot;一番&quot;     &quot;一直&quot;     &quot;一&lt;U+4E2A&gt;&quot; &quot;一些&quot;     &quot;&lt;U+8BB8&gt;多&quot;
+##  [7] &quot;种&quot;       &quot;有的是&quot;   &quot;也就是&lt;U+8BF4&gt;&quot; &quot;末&quot;       &quot;啊&quot;       &quot;阿&quot;      
+## [13] &quot;哎&quot;       &quot;哎呀&quot;     &quot;哎&lt;U+54DF&gt;&quot; &quot;唉&quot;       &quot;俺&quot;       &quot;俺&lt;U+4EEC&gt;&quot;
+## [19] &quot;按&quot;       &quot;按照&quot;</code></pre>
+<h3 id="建立-termdocumentmatrix"><a href="#建立-termdocumentmatrix">建立 TermDocumentMatrix</a></h3>
+<p>中文斷詞結束後，我們用矩陣將結果儲存起來。TermDocumentMatrix 指的是關鍵字為列，文件是行的矩陣。儲存的數字是關鍵字在這些文件中出現的次數。其中 wordLengths=c(2,Inf) 表示我們挑至少兩個字的詞。</p>
+<pre class="sourceCode r"><code class="sourceCode r">tdm &lt;-<span class="st"> </span><span class="kw">TermDocumentMatrix</span>(d.corpus, <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">wordLengths =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="ot">Inf</span>)))</code></pre>
+<p>我們可以看看TermDocumentMatrix裡面，前兩篇文章的前10個關鍵字</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">inspect</span>(tdm[<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">1</span>:<span class="dv">2</span>])</code></pre>
+<pre><code>## A term-document matrix (10 terms, 2 documents)
+## 
+## Non-/sparse entries: 3/17
+## Sparsity           : 85%
+## Maximal term length: 3 
+## Weighting          : term frequency (tf)
+## 
+##         Docs
+## Terms    M.1384834727.A.0CB.txt M.1384838698.A.957.txt
+##   一生                        0                      0
+##   一家                        1                      0
+##   一家子                      0                      0
+##   一線                        0                      0
+##   人士                        0                      0
+##   人才                        0                      0
+##   人中                        0                      0
+##   人文                        0                      0
+##   人民                        0                      1
+##   人生                        0                      2</code></pre>
+<h3 id="畫出關鍵字詞雲"><a href="#畫出關鍵字詞雲">畫出關鍵字詞雲</a></h3>
+<p>我們利用 wordcloud 套件，畫出在所有文件中出現次數超過10次的名詞。出現次數越多，字體就會呈現越大。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(wordcloud)</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">as.matrix</span>(tdm)
+v &lt;-<span class="st"> </span><span class="kw">sort</span>(<span class="kw">rowSums</span>(m1), <span class="dt">decreasing =</span> <span class="ot">TRUE</span>)
+d &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">word =</span> <span class="kw">names</span>(v), <span class="dt">freq =</span> v)
+<span class="kw">wordcloud</span>(d$word, d$freq, <span class="dt">min.freq =</span> <span class="dv">10</span>, <span class="dt">random.order =</span> F, <span class="dt">ordered.colors =</span> F, 
+    <span class="dt">colors =</span> <span class="kw">rainbow</span>(<span class="kw">length</span>(<span class="kw">row.names</span>(m1))))</code></pre>
+<div class="figure">
+<img src="../img/unnamed-chunk-13.jpg" alt="plot of chunk unnamed-chunk-13" /><p class="caption">plot of chunk unnamed-chunk-13</p>
+</div>
+<p>這邊看到百合出現次數非常多，原因是因為一位叫小百合的網友所發的po文被鄉民推爆，留言當中也重複出現小百合的緣故。</p>
+<h3 id="尋找關鍵字之間的關聯"><a href="#尋找關鍵字之間的關聯">尋找關鍵字之間的關聯</a></h3>
+<p>當我們利用wordcloud 知道哪些關鍵字常出現後，接著可能想知道哪些字與它有關聯。 因此我們先建出DocumentTermMatrix，這是以文件名稱為列，關鍵字為欄的矩陣。</p>
+<pre class="sourceCode r"><code class="sourceCode r">d.dtm &lt;-<span class="st"> </span><span class="kw">DocumentTermMatrix</span>(d.corpus, <span class="dt">control =</span> <span class="kw">list</span>(<span class="dt">wordLengths =</span> <span class="kw">c</span>(<span class="dv">2</span>, <span class="ot">Inf</span>)))
+<span class="kw">inspect</span>(d.dtm[<span class="dv">1</span>:<span class="dv">10</span>, <span class="dv">1</span>:<span class="dv">2</span>])</code></pre>
+<pre><code>## A document-term matrix (10 documents, 2 terms)
+## 
+## Non-/sparse entries: 1/19
+## Sparsity           : 95%
+## Maximal term length: 2 
+## Weighting          : term frequency (tf)
+## 
+##                         Terms
+## Docs                     一生 一家
+##   M.1384834727.A.0CB.txt    0    1
+##   M.1384838698.A.957.txt    0    0
+##   M.1384840050.A.414.txt    0    0
+##   M.1384840304.A.EF5.txt    0    0
+##   M.1384842495.A.5B8.txt    0    0
+##   M.1384842609.A.A5B.txt    0    0
+##   M.1384847473.A.6A5.txt    0    0
+##   M.1384847771.A.729.txt    0    0
+##   M.1384848469.A.AD8.txt    0    0
+##   M.1384849471.A.B71.txt    0    0</code></pre>
+<p>可以用 findFreqTerms 看看在所有文件裡出現30次以上的關鍵字有哪些。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">findFreqTerms</span>(d.dtm, <span class="dv">30</span>)</code></pre>
+<pre><code>## [1] &quot;同學&quot; &quot;百合&quot; &quot;老闆&quot; &quot;朋友&quot; &quot;東西&quot; &quot;時候&quot; &quot;閃光&quot; &quot;問卷&quot; &quot;結果&quot;</code></pre>
+<p>再來可以用 findAssocs 找出最常與&quot;同學&quot;關程度0.5以上的關鍵字。</p>
+<pre class="sourceCode r"><code class="sourceCode r"><span class="kw">findAssocs</span>(d.dtm, <span class="st">&quot;同學&quot;</span>, <span class="fl">0.5</span>)</code></pre>
+<pre><code>## 同學.原因 
+##      0.56</code></pre>
+<h3 id="結尾"><a href="#結尾">結尾</a></h3>
+<p>以上我們介紹了如何將中文文章進行清理、斷詞等處理，最後轉換成矩陣，再進行一些簡單分析與繪圖。本文介紹之操作，還可以繼續進行關鍵字分群、主題模型、情緒分析等進階應用，有興趣繼續深入, 可以自行搜尋 tm, tmcn, Rwordseg 這三個套件，可以發現許多資源自行學習。</p>
+<h3 id="作者"><a href="#作者">作者</a></h3>
+<ul>
+<li>陳嘉葳 : 國立高雄大學資管所, <a href="https://www.facebook.com/groups/680228652018057/">Kaohsiung useR! Meetup</a>, <a href="http://www.meetup.com/Taiwan-R">Taiwan R User Group</a></li>
+</ul>
+<h3 id="參考資料-1"><a href="#參考資料-1">參考資料</a></h3>
+<ul>
+<li><a href="http://jliblog.com/app/rwordseg">Rwordseg</a><br /></li>
+<li><a href="https://docs.google.com/viewer?url=http%3A%2F%2Fevent.twdatascience.org%2Fimages%2Fr_taiwan%2Fshare%2F%25E5%25B0%2588%25E9%25A1%258C%25E6%25BC%2594%25E8%25AC%259B2RTaiwan2013_%25E6%259D%258E%25E8%2589%25A6.pdf">中文文字資料探勘 (英國Mango Solutions上海分公司資深顧問李艦)</a><br /></li>
+<li><a href="www.youtube.com/watch?v=TcMao3r6jYY">MLDM Monday - 如何用 R 作中文斷詞</a></li>
+<li><a href="http://stackoverflow.com/questions/7019912/using-the-rjava-package-on-win7-64-bit-with-r">using-the-rjava-package-on-win7-64-bit-with-r</a></li>
+</ul>
+<h1 id="雜誌訊息"><a href="#雜誌訊息">雜誌訊息</a></h1>
+<h2 id="讀者訂閱"><a href="#讀者訂閱">讀者訂閱</a></h2>
+<p>程式人雜誌是一個結合「開放原始碼與公益捐款活動」的雜誌，簡稱「開放公益雜誌」。開放公益雜誌本著「讀書做善事、寫書做公益」的精神，我們非常歡迎程式人認養專欄、或者捐出您的網誌，如果您願意成為本雜誌的專欄作家，請加入 <a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌社團</a> 一同共襄盛舉。</p>
+<p>我們透過發行這本雜誌，希望讓大家可以讀到想讀的書，學到想學的技術，同時也讓寫作的朋友的作品能產生良好價值 – 那就是讓讀者根據雜誌的價值捐款給慈善團體。 讀雜誌做公益也不需要有壓力，您不需要每讀一本就急著去捐款，您可以讀了十本再捐，或者使用固定的月捐款方式，當成是雜誌訂閱費，或者是季捐款、一年捐一次等都 OK ! 甚至是單純當個讀者我們也都很歡迎！</p>
+<p>本雜誌每期參考價：NT 50 元，如果您喜歡本雜誌，請將書款捐贈公益團體。例如可捐贈給「羅慧夫顱顏基金會 彰化銀行(009) 帳號：5234-01-41778-800」。(若匯款要加註可用「程式人雜誌」五個字)</p>
+<h2 id="投稿須知"><a href="#投稿須知">投稿須知</a></h2>
+<p><em>給專欄寫作者：</em> 做公益不需要有壓力。如果您願意撰寫專欄，您可以輕鬆的寫，如果當月的稿件出不來，我們會安排其他稿件上場。</p>
+<p><em>給網誌捐贈者：</em> 如果您沒時間寫專欄或投稿，沒關係，只要將您的網誌以 [創作共用的「姓名標示、非商業性、相同方式分享」授權] 並通知我們，我們會自動從中選取需要的文章進行編輯，放入適當的雜誌當中出刊。</p>
+<p><em>給文章投稿者：</em> 程式人雜誌非常歡迎您加入作者的行列，如果您想撰寫任何文章或投稿，請用 markdown 或 LibreOffice 編輯好您的稿件，並於每個月 25 日前投稿到<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌社團</a> 的檔案區，我們會盡可能將稿件編入隔月1號出版程式人雜誌當中，也歡迎您到社團中與我們一同討論。</p>
+<p>如果您要投稿給程式人雜誌，我們最希望的格式是採用 markdown 的格式撰寫，然後將所有檔按壓縮為 zip 上傳到社團檔案區給我們， 如您想學習 markdown 的撰寫出版方式，可以參考 <a href="https://dl.dropboxusercontent.com/u/101584453/pmag/201304/htm/video1.html">看影片學 markdown 編輯出版流程</a> 一文。</p>
+<p>如果您無法採用 markdown 的方式撰寫，也可以直接給我們您的稿件，像是 MS. Word 的 doc 檔或 LibreOffice 的 odt 檔都可以，我們 會將這些稿件改寫為 markdown 之後編入雜誌當中。</p>
+<h2 id="參與編輯"><a href="#參與編輯">參與編輯</a></h2>
+<p>您也可以擔任程式人雜誌的編輯，甚至創造一個全新的公益雜誌，我們誠摯的邀請您加入「開放公益出版」的行列，如果您想擔任編輯或創造新雜誌，也歡迎到 <a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌社團</a> 來與我們討論相關事宜。</p>
+<h2 id="公益資訊"><a href="#公益資訊">公益資訊</a></h2>
+<table>
+<col width="22%" />
+<col width="20%" />
+<col width="28%" />
+<col width="28%" />
+<thead>
+<tr class="header">
+<th align="left">公益團體</th>
+<th align="left">聯絡資訊</th>
+<th align="left">服務對象</th>
+<th align="left">捐款帳號</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">財團法人羅慧夫顱顏基金會</td>
+<td align="left"><a href="http://www.nncf.org/">http://www.nncf.org/</a> <BR/> <script type="text/javascript">
+<!--
+h='&#110;&#110;&#x63;&#102;&#46;&#x6f;&#114;&#x67;';a='&#64;';n='&#108;&#x79;&#110;&#110;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#108;&#x79;&#110;&#110;&#32;&#x61;&#116;&#32;&#110;&#110;&#x63;&#102;&#32;&#100;&#x6f;&#116;&#32;&#x6f;&#114;&#x67;</noscript> <BR/> 02-27190408分機 232</td>
+<td align="left">顱顏患者 (如唇顎裂、小耳症或其他罕見顱顏缺陷）</td>
+<td align="left">銀行：009彰化銀行民生分行<BR/> 帳號：5234-01-41778-800</td>
+</tr>
+<tr class="even">
+<td align="left">社團法人台灣省兒童少年成長協會</td>
+<td align="left"><a href="http://www.cyga.org/">http://www.cyga.org/</a> <BR/> <script type="text/javascript">
+<!--
+h='&#x67;&#x6d;&#x61;&#x69;&#108;&#46;&#x63;&#x6f;&#x6d;';a='&#64;';n='&#x63;&#x79;&#x67;&#x61;&#x39;&#x39;';e=n+a+h;
+document.write('<a h'+'ref'+'="ma'+'ilto'+':'+e+'">'+e+'<\/'+'a'+'>');
+// -->
+</script><noscript>&#x63;&#x79;&#x67;&#x61;&#x39;&#x39;&#32;&#x61;&#116;&#32;&#x67;&#x6d;&#x61;&#x69;&#108;&#32;&#100;&#x6f;&#116;&#32;&#x63;&#x6f;&#x6d;</noscript> <BR/> 04-23058005</td>
+<td align="left">單親、隔代教養.弱勢及一般家庭之兒童青少年</td>
+<td align="left">銀行：新光銀行 <BR/> 戶名：台灣省兒童少年成長協會 <BR/> 帳號：103-0912-10-000212-0</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201402/htm/home.html">2014 年 2 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#程式短訊lua-的-bnf-語法">程式短訊：Lua 的 BNF 語法</a></li>
+</ul>
+</div>
+<h2 id="程式短訊lua-的-bnf-語法"><a href="#程式短訊lua-的-bnf-語法">程式短訊：Lua 的 BNF 語法</a></h2>
+<p>看完上述的 Lua 程式範例之後，讓我們來看看 Lua 程式語言的語法吧！</p>
+<p>Lua 的語法非常精簡，可以列印在單一頁面中，以下是 Lua 的 BNF 語法。</p>
+<pre class="BNF"><code>    chunk ::= block
+
+    block ::= {stat} [retstat]
+
+    stat ::=  ‘;’ | 
+         varlist ‘=’ explist | 
+         functioncall | 
+         label | 
+         break | 
+         goto Name | 
+         do block end | 
+         while exp do block end | 
+         repeat block until exp | 
+         if exp then block {elseif exp then block} [else block] end | 
+         for Name ‘=’ exp ‘,’ exp [‘,’ exp] do block end | 
+         for namelist in explist do block end | 
+         function funcname funcbody | 
+         local function Name funcbody | 
+         local namelist [‘=’ explist] 
+
+    retstat ::= return [explist] [‘;’]
+
+    label ::= ‘::’ Name ‘::’
+
+    funcname ::= Name {‘.’ Name} [‘:’ Name]
+
+    varlist ::= var {‘,’ var}
+
+    var ::=  Name | prefixexp ‘[’ exp ‘]’ | prefixexp ‘.’ Name 
+
+    namelist ::= Name {‘,’ Name}
+
+    explist ::= exp {‘,’ exp}
+
+    exp ::=  nil | false | true | Number | String | ‘...’ | functiondef | 
+         prefixexp | tableconstructor | exp binop exp | unop exp 
+
+    prefixexp ::= var | functioncall | ‘(’ exp ‘)’
+
+    functioncall ::=  prefixexp args | prefixexp ‘:’ Name args 
+
+    args ::=  ‘(’ [explist] ‘)’ | tableconstructor | String 
+
+    functiondef ::= function funcbody
+
+    funcbody ::= ‘(’ [parlist] ‘)’ block end
+
+    parlist ::= namelist [‘,’ ‘...’] | ‘...’
+
+    tableconstructor ::= ‘{’ [fieldlist] ‘}’
+
+    fieldlist ::= field {fieldsep field} [fieldsep]
+
+    field ::= ‘[’ exp ‘]’ ‘=’ exp | Name ‘=’ exp | exp
+
+    fieldsep ::= ‘,’ | ‘;’
+
+    binop ::= ‘+’ | ‘-’ | ‘*’ | ‘/’ | ‘^’ | ‘%’ | ‘..’ | 
+         ‘&lt;’ | ‘&lt;=’ | ‘&gt;’ | ‘&gt;=’ | ‘==’ | ‘~=’ | 
+         and | or
+
+    unop ::= ‘-’ | not | ‘#’</code></pre>
+<p>以上的 Lua 語法中總有 23 個非終端項目，去除空行不算的話只有 40 行的 BNF 語法，而且高階語言該有的特性 Lua 都不會少，是一個非常完整的程式語言。</p>
+<p>對於那些想學習「編譯器」與「設計程式語言」的程式人而言，我相信研究 Lua 會是一件很美好的事情，因為「簡單就是美」啊！</p>
+<h3 id="參考文獻"><a href="#參考文獻">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Lua_programming_language">Wikipedia:Lua</a></li>
+<li>Lua 5.2 Reference Manual -- <a href="http://www.lua.org/manual/5.2/manual.html">http://www.lua.org/manual/5.2/manual.html</a></li>
+</ul>
+<p>【本文由陳鍾誠取材並修改自 <a href="http://zh.wikipedia.org/">維基百科</a>，採用創作共用的 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權】</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>

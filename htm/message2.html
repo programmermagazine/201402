@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; }
+code > span.dt { color: #902000; }
+code > span.dv { color: #40a070; }
+code > span.bn { color: #40a070; }
+code > span.fl { color: #40a070; }
+code > span.ch { color: #4070a0; }
+code > span.st { color: #4070a0; }
+code > span.co { color: #60a0b0; font-style: italic; }
+code > span.ot { color: #007020; }
+code > span.al { color: #ff0000; font-weight: bold; }
+code > span.fu { color: #06287e; }
+code > span.er { color: #ff0000; font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201402/htm/home.html">2014 年 2 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#程式短訊lua-的程式範例">程式短訊：Lua 的程式範例</a></li>
+</ul>
+</div>
+<h2 id="程式短訊lua-的程式範例"><a href="#程式短訊lua-的程式範例">程式短訊：Lua 的程式範例</a></h2>
+<p>本文的 Lua 程式乃是在 MS. Windows 的 MinGW 環境下執行的結果。</p>
+<p>檔案：hello.lua</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="fu">print</span><span class="ot">(</span><span class="st">&#39;Hello World!&#39;</span><span class="ot">)</span></code></pre>
+<p>執行結果：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ lua hello.lua
+Hello World!</code></pre>
+<p>範例：註解語法</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="co">-- A comment in Lua starts with a double-hyphen and runs to the end of the line.</span>
+ 
+<span class="co">--[[ Multi-line strings &amp; comments</span>
+<span class="co">     are adorned with double square brackets. ]]</span>
+ 
+<span class="co">--[=[ Comments like this can have other --[[comments]] nested. ]=]</span></code></pre>
+<p>範例：迴圈語法</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="co">--condition = true</span>
+ 
+<span class="kw">while</span> <span class="kw">condition</span> <span class="kw">do</span>
+  <span class="co">--statements</span>
+<span class="kw">end</span>
+ 
+<span class="kw">repeat</span>
+  <span class="co">--statements</span>
+<span class="kw">until</span> <span class="kw">condition</span>
+ 
+<span class="kw">for</span> <span class="kw">i</span> <span class="ot">=</span> <span class="kw">first</span><span class="ot">,</span><span class="kw">last</span><span class="ot">,</span><span class="kw">delta</span> <span class="kw">do</span>     <span class="co">--delta may be negative, allowing the for loop to count down or up</span>
+  <span class="fu">print</span><span class="ot">(</span><span class="kw">i</span><span class="ot">)</span>
+<span class="kw">end</span>
+
+<span class="kw">for</span> <span class="kw">key</span><span class="ot">,</span> <span class="kw">value</span> <span class="kw">in</span> <span class="fu">pairs</span><span class="ot">(</span><span class="kw">_G</span><span class="ot">)</span> <span class="kw">do</span>
+  <span class="fu">print</span><span class="ot">(</span><span class="kw">key</span><span class="ot">,</span> <span class="kw">value</span><span class="ot">)</span>
+<span class="kw">end</span></code></pre>
+<p>檔案：fact.lua -- 計算階層 n!</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="kw">function</span> factorial<span class="ot">(</span><span class="kw">n</span><span class="ot">)</span>
+  <span class="kw">local</span> <span class="kw">x</span> <span class="ot">=</span> <span class="dv">1</span>
+  <span class="kw">for</span> <span class="kw">i</span> <span class="ot">=</span> <span class="dv">2</span><span class="ot">,</span><span class="kw">n</span> <span class="kw">do</span>
+    <span class="kw">x</span> <span class="ot">=</span> <span class="kw">x</span> <span class="ot">*</span> <span class="kw">i</span>
+  <span class="kw">end</span>
+  <span class="kw">return</span> <span class="kw">x</span>
+<span class="kw">end</span>
+
+<span class="fu">print</span><span class="ot">(</span><span class="st">&quot;factorial(5)=&quot;</span><span class="ot">..</span>factorial<span class="ot">(</span><span class="dv">5</span><span class="ot">));</span></code></pre>
+<p>執行結果：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ lua fact.lua
+factorial(5)=120</code></pre>
+<p>檔案：obj.lua -- 物件</p>
+<pre class="sourceCode Lua"><code class="sourceCode lua"><span class="kw">function</span> Point<span class="ot">(</span><span class="kw">x</span><span class="ot">,</span> <span class="kw">y</span><span class="ot">)</span>        <span class="co">-- &quot;Point&quot; object constructor</span>
+  <span class="kw">return</span> <span class="ot">{</span> <span class="kw">x</span> <span class="ot">=</span> <span class="kw">x</span><span class="ot">,</span> <span class="kw">y</span> <span class="ot">=</span> <span class="kw">y</span> <span class="ot">}</span>   <span class="co">-- Creates and returns a new object (table)</span>
+<span class="kw">end</span>
+
+<span class="kw">array</span> <span class="ot">=</span> <span class="ot">{</span> Point<span class="ot">(</span><span class="dv">10</span><span class="ot">,</span> <span class="dv">20</span><span class="ot">),</span> Point<span class="ot">(</span><span class="dv">30</span><span class="ot">,</span> <span class="dv">40</span><span class="ot">),</span> Point<span class="ot">(</span><span class="dv">50</span><span class="ot">,</span> <span class="dv">60</span><span class="ot">)</span> <span class="ot">}</span>   <span class="co">-- Creates array of points</span>
+
+<span class="kw">for</span> <span class="kw">i</span> <span class="ot">=</span> <span class="dv">1</span><span class="ot">,</span><span class="dv">3</span> <span class="kw">do</span> 
+  <span class="fu">print</span><span class="ot">(</span><span class="st">&quot;point(&quot;</span><span class="ot">..</span><span class="kw">array</span><span class="ot">[</span><span class="kw">i</span><span class="ot">].</span><span class="kw">x</span><span class="ot">..</span><span class="st">&quot;,&quot;</span><span class="ot">..</span><span class="kw">array</span><span class="ot">[</span><span class="kw">i</span><span class="ot">].</span><span class="kw">y</span><span class="ot">..</span><span class="st">&quot;)&quot;</span><span class="ot">)</span>
+<span class="kw">end</span></code></pre>
+<p>執行結果：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ lua obj.lua
+point(10,20)
+point(30,40)
+point(50,60)</code></pre>
+<p>另外、Lua 不只可以直接執行，也可以先編譯成中間碼 (bytecode) 之後再執行，如下所示：</p>
+<pre><code>ccc@ccc-PC /c/lua
+$ luac -o obj.lo obj.lua
+
+ccc@ccc-PC /c/lua
+$ lua obj.lo
+point(10,20)
+point(30,40)
+point(50,60)</code></pre>
+<h3 id="參考文獻"><a href="#參考文獻">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Lua_programming_language">Wikipedia:Lua</a></li>
+</ul>
+<p>【本文由陳鍾誠取材並修改自 <a href="http://zh.wikipedia.org/">維基百科</a>，採用創作共用的 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權】</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>

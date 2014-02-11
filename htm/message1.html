@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <title></title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <link rel="stylesheet" href="../css/pmag.css" type="text/css" />
+</head>
+<body>
+<div id="header_wrap">
+   <h1><a href="https://www.facebook.com/groups/programmerMagazine">程式人雜誌</a> <sub> --  <a href="https://dl.dropbox.com/u/101584453/pmag/201402/htm/home.html">2014 年 2 月號</a> (開放公益出版品)</sub></h1>
+</div>
+<div id="content">
+<div id="TOC">
+<ul>
+<li><a href="#程式短訊lua-語言簡介">程式短訊：Lua 語言簡介</a></li>
+</ul>
+</div>
+<h2 id="程式短訊lua-語言簡介"><a href="#程式短訊lua-語言簡介">程式短訊：Lua 語言簡介</a></h2>
+<p>Lua 是一個輕量級的程式語言，該語言是由巴西的 Computer Graphics Technology Group (Tecgraf) 這家公司的員工 Roberto Ierusalimschy, Luiz Henrique de Figueiredo, and Waldemar Celes 等人所創造的。</p>
+<p>讀者可能會感到驚訝，為何會有一個來自巴西的程式語言呢？關於這件事，其實是有歷史典故的。很多技術的創新，其實都來自於某個歷史意外，Lua 語言的發明也是如此。</p>
+<p>在 1977 年到 1992 年之間，巴西對電腦軟硬體進行了嚴格的貿易管制保護措施，很多需要電腦軟硬體的公司無法買到國外的軟硬體，於是 Tecgraf 這家主攻「電腦繪圖與使用者介面」的公司就只好自行發展「程式語言與開發工具」，並且提供給客戶使用。</p>
+<p>在設計出 Lua 之前，Tecgraf 其實已經創造過 SOL (Simple Object Language) 與 DEL (data-entry language) 這兩個程式語言，但這兩個語言並沒有甚麼「流程控制」的語法，於是他們吸取了 SOL 與 DEL 的設計經驗，然後再參考了 「Modula 語言的 控制結構 (if, while, repeat/until)」，以及 「CLU 語言的 (多重指定、多傳回值) 等特性」，還有 「SNOBOL、AWK 中的字典 (associative arrays) 概念」，最後創造出了一種語法非常簡易的語言，那就是 Lua。</p>
+<p>為何叫做 Lua 呢？Lua 一詞是葡萄牙語中「Luna」（月亮）的意思，因為其前身 SOL 語言的葡萄牙語意義為「太陽」，所以下一個語言就自然叫做「月亮」囉！</p>
+<p>Lua 的語法非常的簡單，其 BNF 語法寫起來只有一頁，因此可以說是世界上最簡單的語言之一 (雖然 LISP 的語法比 Lua 更簡單，其 BNF 應該只要兩三行就寫完了，但是寫起來卻很不容易閱讀；而 Lua 則是容易讀容易寫，但是 BNF 語法就比 LISP 稍長了一些)。</p>
+<p>由於這種簡易的特性，後來 Lua 被廣泛使用在各種遊戲引擎裏做為「腳本語言」(Script Language) 使用，列表如下：</p>
+<ul>
+<li>2D 遊戲引擎 : Corona SDK、Love2D、Agen、Blitwizard、Cocos2d-x、EGSL、Grail、MOAI。</li>
+<li>2.5D 遊戲引擎 : Lavgine。</li>
+<li>3D 遊戲引擎 : Baja、Glint 3d、Irrlicht、Leadwerks、Spring RTS、Luxinia、Polycode、Cryengine。</li>
+</ul>
+<p>另外、Lua 也常被各式各樣需要腳本語言的工具軟體使用，像是 Damn Small Linux、Wikipedia template engine、Wireshark、Nginx、LuaTeX、Adobe Photoshop Lightroom 等軟體裏都有內嵌 Lua 腳本語言。</p>
+<p>筆者之所以對 Lua 感興趣，主要是因為我們正在進行「開放電腦計畫」，該計劃採用 KISS (Keep It Simple and Stupid) 的極度簡化原則，希望讓整台電腦的軟硬體設計都達到最簡易的程度。</p>
+<p>當我看到 Lua 的 BNF 語法時，感覺非常驚訝。因為我發現自己不可能設計得比 Lua 更好了，於是我決定要在「開放電腦計畫」中以 Lua 做為主要的程式語言，並開始研究 Lua 的編譯器與解譯引擎。</p>
+<p>筆者學習 Lua 的主要目的是為了創造開放電腦計畫中的編譯器與解譯器。官方版 Lua 預設的編譯器是用 C 語言寫成的，不過也有其他人寫出用 Lua 寫的 Lua 解譯器與編譯器，以下是相關資訊的網址：</p>
+<ul>
+<li><a href="http://lua-users.org/wiki/LuaInterpreterInLua">http://lua-users.org/wiki/LuaInterpreterInLua</a></li>
+<li><a href="http://lua-users.org/wiki/LuaCompilerInLua">http://lua-users.org/wiki/LuaCompilerInLua</a></li>
+</ul>
+<p>另外、也有像 LuaJIT 與 LLVM-Lua 這樣的立即編譯引擎 (Just in Time Compiler)，或許對「開放電腦計畫」也是有用的，以下是其網址：</p>
+<ul>
+<li><a href="http://luajit.org/">http://luajit.org/</a></li>
+<li><a href="https://code.google.com/p/llvm-lua/">https://code.google.com/p/llvm-lua/</a></li>
+</ul>
+<p>而且、在 LuaWiki 這個網站中，也有不少關於 Lua 原始碼與實作的研究，您可以從下列網址找到：</p>
+<ul>
+<li><a href="http://lua-users.org/wiki/LuaSource">http://lua-users.org/wiki/LuaSource</a></li>
+<li><a href="http://lua-users.org/wiki/LuaImplementations">http://lua-users.org/wiki/LuaImplementations</a></li>
+<li><a href="http://lua-users.org/wiki/LuaGrammar">http://lua-users.org/wiki/LuaGrammar</a></li>
+</ul>
+<p>當我開始做這件事情時，竟發現自己深深的被 Lua 迷住，我簡直愛死這個月亮了！</p>
+<p>如果您用過 JavaScript，應該會覺得這個語言怎麼這麼簡單又強大。但是當您看過 Lua 之後，可能會覺得 JavaScript 還是有點複雜，因為 Lua 感覺就像是「脫光光」的 JavaScript，沒有任何一點累贅的語法啊！</p>
+<h3 id="參考文獻"><a href="#參考文獻">參考文獻</a></h3>
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/Lua_programming_language">Wikipedia:Lua</a></li>
+<li>TecGraf -- <a href="http://lac-rio.com/tecgraf">http://lac-rio.com/tecgraf</a></li>
+<li><a href="http://stackoverflow.com/questions/5053134/what-is-a-good-game-engine-that-uses-lua">http://stackoverflow.com/questions/5053134/what-is-a-good-game-engine-that-uses-lua</a></li>
+</ul>
+<p>【本文由陳鍾誠取材並修改自 <a href="http://zh.wikipedia.org/">維基百科</a>，採用創作共用的 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/">姓名標示、相同方式分享</a> 授權】</p>
+</div>
+<div id="footer">
+<a href="https://www.facebook.com/groups/programmerMagazine/">程式人雜誌</a> ，採用 <a href="http://creativecommons.org/licenses/by-sa/3.0/tw/ ">創作共用：姓名標示、相同方式分享</a> 授權，歡迎加入 <a href="https://www.facebook.com/groups/programmerMagazine/">雜誌社團</a>
+</div>
+</body>
+</html>
