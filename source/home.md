@@ -16,7 +16,7 @@
     * [程式短訊：Lua 語言簡介](message1.html)
     * [程式短訊：Lua 的程式範例](message2.html)
     * [程式短訊：Lua 的 BNF 語法](message3.html)
-    * [程式短訊：如何在 Windows 中用 MinGW 建置 Lua ?](message2.html)
+    * [程式短訊：如何在 Windows 中用 MinGW 建置 Lua ?](message4.html)
 * 人物速寫
     * [Lua 的創造者 -- 巴西的 Tecgraf 組織與 Roberto Ierusalimschy 教授](people1.html)
 * 影音頻道
